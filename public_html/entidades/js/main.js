@@ -97,6 +97,18 @@ $("#searchVotes")
     searchSesiones(this.value)
 })
 
+//buscar entidades dentro del layout
+$("#searchEntityList")
+.on("input", function () {
+  //console.log("On input")
+  searchEntitysinList(this.value)
+})
+.on("click", function () {
+  //console.log("On click")
+  searchEntitysinList(this.value)
+})
+
+
 window.addEventListener('click', function(e){    
   if (document.getElementById('resultadosDiv').contains(e.target) || document.getElementById('searchEntity').contains(e.target)){
     // Clicked in box

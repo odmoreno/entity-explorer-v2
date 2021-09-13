@@ -325,7 +325,7 @@ createLabels = () => {
             enter
               .transition()
               .duration(durationRect)
-              .attr("transform", (d) => "translate(" + d.x + "," + (d.y+20) + ")")
+              .attr("transform", (d) => "translate(" + d.x + "," + (d.y+30) + ")")
               .style("opacity", 1)
           ),
       (update) =>
@@ -337,7 +337,7 @@ createLabels = () => {
           .attr("id", (d) => "text" + d.numeroid)
           //.attr('opacity', 1)
           .text((d) => getNameAsamb(d))
-          .attr("transform", (d) => "translate(" + d.x + "," + (d.y+20) + ")")
+          .attr("transform", (d) => "translate(" + d.x + "," + (d.y+30) + ")")
           .style("opacity", 1),
       (exit) => exit.remove()
     );

@@ -18,6 +18,27 @@ let entityList = document.getElementById('entity-list');
 //Bandera para identificar si se debe transicionar la lista de entidades
 let transitionFlag = true
 
+//buscador de entidades dentro de la lista
+
+searchEntitysinList = (text) => {
+  entityList.innerHTML += ''
+  console.log("Texto:", text)  
+  let list = Object.values(nodosActuales)
+  list = list.filter(element => element.visitado)
+  console.log("Nodos Actuales:", list)
+
+  const regex = new RegExp(`\\b.*${text}.*?\\b`, "gi");
+
+  let matches = Object.values(nodosActuales).filter((pais) => {
+    return pais.name.match(regex) && pais.visitado == true
+  });
+
+  console.log("matches:", matches)
+
+  let html = getListEntitys(matches, colorMap, transitionFlag)
+  entityList.innerHTML += html
+}
+
 //Lista de asambleistas ubicado a la derecha
 function ListEntitys (nodos, _colorMap = colorMap, _transitionFlag = transitionFlag) {
   let list = Object.values(nodos)
@@ -34,6 +55,57 @@ function ListEntitys (nodos, _colorMap = colorMap, _transitionFlag = transitionF
     })
   }
   d3.select('#div-entity').style('height','792px')
+
+  let html = getListEntitys(list, _colorMap, _transitionFlag)
+
+  /**
+   * const html = list.map(element => 
+    `<div id="e${element.numeroId}" class="card-list asamb-list nodrag noselect" 
+        style="margin-bottom: 10px;  border: ${!element.labelFlag ? '2px solid white' : '2px solid orange' }  ">
+        <div class="d-flex flex-row justify-content-between">
+          <div style="align-items: center;">
+
+            <svg height="22" width="22" style="margin-right: 2px;">
+              <circle class="circle_entity" cx="9" cy="10" r="8" fill="${color(element, _colorMap)}" 
+                stroke="${d3.rgb(color(element, _colorMap)).darker(1)}" stroke-width="1" 
+                style="opacity: ${_transitionFlag ? '0.2' : '1'};"
+                /></svg>
+
+            <span id="z${element.numeroId}" class="${element.visitado ? 'entitySelected': 'entityAway'}"  
+                  onmouseover="overEntity(${element.numeroId})" onmouseleave="onLeaveEntity(${element.numeroId})"> 
+                    ${element.nombre} </span>
+          </div>
+          <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-h fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+              <div class="dropdown-header">Opciones:</div>
+                <a class="dropdown-item" onclick="removeEntityChart(${element.numeroId})" style="display: ${element.visitado ? 'block': 'none'} ;">Remover del gráfico</a>
+                <a class="dropdown-item" id="quitar${element.numeroId}" onclick="quitarResaltado(${element.numeroId})" style="display: ${element.visitado && element.labelFlag ? 'block': 'none'} ;">Quitar resaltado</a>
+                <a class="dropdown-item" id="fijar${element.numeroId}" onclick="fijarResaltado(${element.numeroId})" style="display: ${element.visitado && !element.labelFlag ? 'block': 'none'} ;">Fijar resaltado</a>
+            </div>
+          </div>
+        </div>
+    </div>`
+  ).join('');
+   */
+
+  entityList.innerHTML += html
+  divTootltip()
+
+  if (_transitionFlag){
+    //d3.select("#entity-list")
+    //  //.selectAll('circle')
+    //  .transition()
+    //  .duration(durationRect)
+    //  .style("opacity", 1);
+    d3.selectAll('.circle_entity').transition().duration(durationRect).style("opacity", 1);
+  }
+    
+}
+
+function getListEntitys(list, _colorMap, _transitionFlag){
   const html = list.map(element => 
     `<div id="e${element.numeroId}" class="card-list asamb-list nodrag noselect" 
         style="margin-bottom: 10px;  border: ${!element.labelFlag ? '2px solid white' : '2px solid orange' }  ">
@@ -64,20 +136,7 @@ function ListEntitys (nodos, _colorMap = colorMap, _transitionFlag = transitionF
         </div>
     </div>`
   ).join('');
-
-  entityList.innerHTML += html
-  divTootltip()
-
-  if (_transitionFlag){
-    //d3.select("#entity-list")
-    //  //.selectAll('circle')
-    //  .transition()
-    //  .duration(durationRect)
-    //  .style("opacity", 1);
-    d3.selectAll('.circle_entity').transition().duration(durationRect).style("opacity", 1);
-  }
-    
-
+  return html
 }
 
 function divTootltip(){
