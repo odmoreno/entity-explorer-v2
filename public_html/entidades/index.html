@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Entidades</title>
+
+        <!-- Custom fonts for this template-->
+        <link href="../shared/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet" />
+
+        <!--Dependencias-->
+
+        <!-- Ion range slider -->
+        <link rel="stylesheet" href="../shared/ionRangeSlider/ion.rangeSlider.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.css" />
+
+        <!--Multiselect-->
+        <link rel="stylesheet" href="../shared/bootstrap-multiselect/bootstrap-multiselect.css" />
+        <!--D3 tips-->
+        <link rel="stylesheet" href="../shared/d3/d3-tip.css" />
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet" />
+
+        <!--<link href="https://visjs.github.io/vis-timeline/styles/vis-timeline-graph2d.min.css" rel="stylesheet"
+              type="text/css" />-->
+
+        <link href="../shared/vis-timeline/vis-timeline.css" rel="stylesheet"/>
+
+        <!--Tooltip tippyjs-->
+        <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css" />
+
+        <!-- Custom styles for this template-->
+        <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+        <!-- Custom styling -->
+        <link rel="stylesheet" href="css/style.css" />
+
+        <!--Creo que es una especie de token-->
+        <!--  <script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=mv9mdwMbPWMZ5R_Z8Zrpn--KYDA129Z_Q_rT0DsUWNQV9FETLiLd1kDEYaFYuNQhflvpLWNoniMBQA7MkfwsGcajKb3SoouFYnYO99tBE1sZQmEQIkNtzj2JxGsFjv_6imc8g-pdxJ7L9PLrU6-KieYSMHKYHGXSm_mmp8lrm0y2ymFPeS5VzE6hrBOjgTBrtbRxR3V9XUBXJ3xIWYgjgC7YM7wQ_QDXzrYKdHFhXPTlQ5AU2s0s3-Vem-IvtVVx8RS_wHGJfzEj6YALC7X-UAJ_5vLhySIfq-I4amt2KGztIDq7v-_87QDhj8r9gEcb2eOne-k8qYHw6tR9s8h0HanqHj6s2vbk60maH3NstWH-pY7KH_gdTgFhHcSd5JcQe3vsk-TjDmMMPLk5p8mJdGwp75GNP8YvnIM1A11TNl0eU3bNMWJgZkWGbI2nL2b1HSh0_KVG8PwQQic3nWrdhDQo3vjpV2J8BEAh8YUYFrwSMdA9tr80OlKo1igSOnpo77MHrVdD6VglL2_-Fg6I9g0JevkiSk6Q48vVoUnCwKA9T5mqZRDQxmGFGsu9rXiv-NZRVC9CrHsLFUb34Gliqd_Q_nvMsvcd0Nxv2MEgPlrrYlai6ccOhYJcR5lOEsdF8R90VHCnWeHyfweSo1nbJwx_ERHdJ6d7wkBMtM9oS2r-fnowYPAJuDP0nvgJ-GooT_i0y4ifcMrnVG866S32meTmfAYt8r_bV1L4mjUNtcssdj340bqeu1wynKcFlMOMj1EA3jv23noLfRsbFAv0FiurVHXiCcVXACOUuQESLPfqg5e2-Nm0SV2B8JVlTme7nYQZA87QafP-oPmwZXHwCCpa4PwjMtBSImenI9AM1jplPntnIc3oH01ZoJXz-kfzk_KB8jWt7yLf8CAf4JWDbAKiPA5kKrmBCCcGOGPwiSbdlQUSNKcoImPEir_3X4WnRsXuI5fICmQTgS3MExfETQQb4wbYHqB26pQYTR8sjeeNoiAuxQM8u9KwElq50keovN_faaDwu4xPQ_AUUvkXAUAERkINBn1lT2SBCB3rvrKcjhAM8p-C4eqYhoMJw8VVuc0jmKmNgulFeg2nnJa8LIoIakjMbviWWd8O5zKnW7GJTPPYCMoHmb-hNr4Ra2EEEFwk2fuI2HJMgVdXKh2e2NA9jHJ-FH2M5lCdcFtHpgTapld3zz01TO_yutTCn5zOdND1Oq7xyurSAdlGoU2BGw" nonce="94cec7f6fe19c20f4aba2f1942a9a52c" charset="UTF-8"></script>
+        -->
+
+    </head>
+
+    <body id="page-top">
+
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <div id="content">
+
+                <div class="container-fluid" style="padding-left: 5px; padding-right: 5px; padding-top: 0px;">
+                    <div class="wrapper">
+
+                        <div style="grid-column: 1 / 13; grid-row: 1; width: 100%; height: 780px;">
+
+                            <div class="two" style="margin-top: 5px; width: 15%; height: 100%; float: right; border-bottom: #3d3d3d solid 1px;">
+
+                                <div class="card" class="infoArea" style="border:none; width: 100%; height: 100%;">
+
+                                    <div id="legisladoresArea" class="card-header py-1 d-flex flex-row align-items-center justify-content-between"
+                                        style="border: #3d3d3d solid 1px; 
+                                        border-radius: 0px; 
+                                        border-bottom-right-radius: 0px; 
+                                        border-top-right-radius: 5px; 
+                                        border-left: none;                                        
+                                        border-bottom: none;
+                                        padding: 0px 0px;">
+                                        
+                                        <div class="col-lg-11 col-xl-11">
+                                            <!--
+                                                <h6 class="m-2 font-weight-bold" style="color: #3d3d3d; text-align: center;">
+                                                Legisladores
+                                            </h6>
+                                            -->
+                                            <ul class="nav nav-pills " id="pills-tab" role="tablist">
+                                                <li class="nav-item">
+                                                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">
+                                                      Legisladores
+                                                  </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                  <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" onclick="handleLegend(this)">Leyenda</a>
+                                                </li>
+                                              </ul>
+                                        </div>
+                                        <div class="dropdown no-arrow" style="position: absolute; right: 5px; top: 12px">
+                                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v fa-sm fa-fw" style="color: #54575b"></i>
+                                            </a>
+                                            <div class="
+                                                 dropdown-menu dropdown-menu-right
+                                                 shadow
+                                                 animated--fade-in
+                                                 " aria-labelledby="dropdownMenuLink">
+                                                <div class="dropdown-header">Ordenar Por:</div>
+                                                <a class="dropdown-item" onClick="sortHandler(1)">Alfabeticamente</a>
+                                                <a class="dropdown-item" onClick="sortHandler(2)">Partidos</a>
+                                                <a class="dropdown-item" onClick="sortHandler(3)">Regiones</a>
+                                                <a class="dropdown-item" onClick="sortHandler(4)">Provincia</a>
+                                                <a class="dropdown-item" onClick="sortHandler(5)">Voto</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body" id="div-entity" style="height: 100%; overflow-y: auto; width: 100%; 
+                                         border-right: #3d3d3d solid 1px; border-top: #e9e9e9 solid 1px;">
+
+                                         <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                                <div class="p-2 d-flex flex-column" id="entity-list" style="height: auto; opacity:1"></div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                                <div id="legend-area"></div>
+                                            </div>
+                                        </div>
+
+                                        <!--<div style="width: 100%;">                                
+
+                                            <input onClick="this.select();" type="text" id="searchEntityList"
+                                                   class="align-self-center form-control small"
+                                                   placeholder="Legisladores..."
+                                                   aria-label="Search" aria-describedby="basic-addon2"
+                                                   style="width: 98.6%; background-color: white;
+                                                          border-radius: 0px; border-left: none; border-right: none;"/>        
+                                        </div>-->
+                                        
+                                        
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="four" style="float: left;margin-top: 5px; width: 15%; height: 100%;" >
+
+
+                                <div class="card" style="border:none; width: 100%;">
+
+                                    <div class="card-header  py-1 d-flex flex-row align-items-center justify-content-between"
+                                         style="width: 100%; height: 85px; padding: 0px 0px; background-color: #e9e9e9; border: #3d3d3d solid 1px; 
+                                         border-radius: 0px; 
+                                         border-bottom-left-radius: 0px; 
+                                         border-top-left-radius: 5px; 
+                                         border-right: none; margin-right: 0px;">
+
+                                        <div class="col-lg-11 col-xl-11">
+                                            <div class="cardU" style="margin-top: -35px; margin-left: -12px;">
+                                                <h6 class="m-2 font-weight-bold" style="color: #3d3d3d;">
+                                                    Búsqueda:
+                                                </h6>
+
+                                                
+                                                <div class="mb-2 input-group" style="left: 1%; width: 98%;">
+
+                                                    <div class="input-group-append mr-2 align-self-center" style="
+                                                         margin-left: 5px;
+                                                         margin-top: 45px;
+                                                         position: absolute;
+                                                         right: -35px;
+                                                         ">
+                                                        <a class="rounded-circle" style="color: #54575b">
+                                                            <i class="fas fa-search fa-lg"></i>
+                                                        </a>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="periodos" 
+                                            style="position: absolute;
+                                            top: 3px;
+                                            right: 3px;
+                                            ">
+                                            <div class="dropdown2" style="background-color: #e9e9e9; border: none;">
+                                                <div class="select">
+                                                    <span style="font-weight: bold;">2017-2021</span>
+                                                  <i class="fa fa-chevron-left" style="font-weight: bold; margin-left: 5px; color: #000000;"></i>
+                                                </div>
+                                                <input type="hidden" name="gender">
+                                                <ul class="dropdown-menu2">
+                                                  <li id="1">2013-2017</li>
+                                                  <li id="2">2017-2021</li>
+                                                  <li id="3">2021</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div style="width: 100%; margin-top: -45px;">                                
+
+                                    <input onClick="this.select();" type="text" id="searchEntity"
+                                           class="align-self-center form-control small"
+                                           placeholder="Legisladores, partidos..."
+                                           aria-label="Search" aria-describedby="basic-addon2"
+                                           style="position: absolute; left: 0.5%; width: 12.6%; border: #54575b 1px solid; background-color: white; border-bottom-left-radius: 0px; " />
+
+                                    <div id="resultadosDiv" class="autocomplete-items"></div>
+
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+                            <div class="three" style="margin-top: 5px;width: 70%;float: left; border: #3d3d3d solid 1px; border-right-color: #e9e9e9; height: 100%;">
+                                <div class="card" style="border-radius: 0px; border: none; height: 100%;">
+                                    <div id="xxx" class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-lg-11">
+                                                <div class="d-flex flex-row" style="justify-content: center">
+
+
+
+
+                                                    <div class="d-flex flex-column" style="margin-top: 0px">
+                                                        <div class="d-flex justify-content-center" style="font-size: 11px;">
+                                                            <span class="text-secondary text-uppercase"><span id="fecha"></span></span>
+                                                            &emsp;&mdash;&emsp;
+                                                            <span class="text-secondary text-uppercase"><span id="hora"></span></span>
+                                                        </div>
+                                                        <div class="">
+                                                            <h6 class="card-text asuntoHeader ml-4" id="asunto" style="height: 50px"></h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row" id="chart"  style="height: 100%; margin-right: 0 !important; margin-left: 0 !important;"></div>
+
+                                                <div style="position: absolute; left: 20px; top: 50%; width: 50px;">
+                                                    <div style="height: 65px;">
+                                                        <svg id="svgParlamento" fill="#cecece" onclick="handlechart('3')" style="cursor: pointer; height: 20px; width: 35px;">
+                                                        <path transform="scale(0.08, 0.08)" d="M87.1,155H56.6c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.7,6.1-6.1v-30.5
+                                                              C93.2,157.7,90.4,155,87.1,155z M112.1,110.5H81.6c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.6c3.3,0,6-2.7,6-6.1
+                                                              v-30.5C118.2,113.2,115.4,110.5,112.1,110.5z M163.1,111.3V80.8c0-3.4-2.8-6.1-6.1-6.1h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              c0,3.4,2.8,6.1,6.1,6.1H157C160.4,117.4,163.1,114.6,163.1,111.3z M203,55.3h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              c0,3.4,2.8,6.1,6.1,6.1H203c3.4,0,6.1-2.7,6.1-6V61.4C209.1,58,206.3,55.3,203,55.3z M178.2,176.3h-30.5c-3.4,0-6.1,2.8-6.1,6.1
+                                                              v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.7,6.1-6v-30.6C184.3,179,181.5,176.3,178.2,176.3z M227.8,176.3h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6v-30.6C233.9,179,231.1,176.3,227.8,176.3z
+                                                              M319.6,155h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0.1,3.4,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1v-30.5
+                                                              C325.7,157.8,323,155,319.6,155z M299.7,147.1v-30.5c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5
+                                                              c0,3.4,2.7,6.1,6.1,6.1h30.5C296.9,153.2,299.7,150.5,299.7,147.1z M248.7,74.7h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5
+                                                              c0.1,3.3,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V80.8C254.8,77.5,252.1,74.7,248.7,74.7z M31.6,136.7h30.5
+                                                              c3.3,0,6.1-2.7,6.1-6.1v-30.5c0-3.4-2.8-6.1-6.1-6.1H31.6c-3.4,0-6.1,2.8-6.1,6.1v30.5C25.5,134,28.3,136.7,31.6,136.7z M76.9,95
+                                                              h30.6c3.3,0,6-2.7,6-6V58.4c0-3.4-2.8-6.1-6.1-6.1H76.9c-3.4,0-6.1,2.8-6.1,6.1v30.5C70.8,92.3,73.6,95,76.9,95z M122.3,64.5h30.5
+                                                              c3.4,0,6.1-2.7,6.1-6.1V27.9c0-3.4-2.8-6.1-6.1-6.1h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5C116.2,61.8,119,64.5,122.3,64.5z M37.1,143
+                                                              H6.6c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1v-30.5C43.2,145.7,40.4,143,37.1,143z
+                                                              M313.1,136.7h30.5c3.3,0,6.1-2.7,6.1-6.1v-30.5c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5
+                                                              C307.1,134,309.8,136.7,313.1,136.7z M267.8,95h30.5c3.3,0,6.1-2.7,6.1-6.1V58.4c0-3.3-2.7-6.1-6.1-6.1h-30.5
+                                                              c-3.3,0-6.1,2.7-6.1,6.1V89C261.7,92.3,264.5,95,267.8,95z M222.4,64.5H253c3.3,0,6.1-2.7,6.1-6.1V27.9c0-3.3-2.7-6.1-6.1-6.1
+                                                              h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5C216.4,61.8,219.1,64.5,222.4,64.5z M172.4,43.2h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6
+                                                              c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5C166.3,40.4,169,43.2,172.4,43.2z M368.6,143h-30.5
+                                                              c-3.3,0-6.1,2.7-6.1,6.1v30.5c0.1,3.4,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1v-30.5C374.7,145.8,372,143,368.6,143z"/>
+                                                        </svg>
+                                                    </div>
+
+                                                    <div style="height: 60px;" >
+
+                                                        <svg id="svgClusters" fill="#cecece" onclick="handlechart('1')" style="cursor: pointer; height: 25px; width: 35px;">
+                                                        <path transform="scale(0.08, 0.08)" d="M366.7,0.5h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.3,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6
+                                                              C372.8,3.3,370.1,0.5,366.7,0.5z M288.7,43.2h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1
+                                                              v30.5C282.6,40.4,285.3,43.2,288.7,43.2z M241.1,43.2h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6c0-3.3-2.7-6.1-6.1-6.1h-30.5
+                                                              c-3.3,0-6.1,2.7-6.1,6.1v30.5C235,40.4,237.8,43.2,241.1,43.2z M366.7,49.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5
+                                                              c0,3.4,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V55.2C372.8,51.9,370.1,49.1,366.7,49.1z M288.7,91.8h30.5c3.3,0,6.1-2.7,6.1-6.1
+                                                              V55.2c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5C282.6,89.1,285.3,91.8,288.7,91.8z M277.7,85.7V55.2
+                                                              c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5C274.9,91.8,277.7,89.1,277.7,85.7z
+                                                              M54.1,43.2h30.5c3.4,0,6.1-2.8,6.1-6.1V6.6c0-3.4-2.8-6.1-6.1-6.1H54.1c-3.4,0-6.1,2.8-6.1,6.1v30.5C48,40.5,50.8,43.2,54.1,43.2z
+                                                              M101.7,43.2h30.5c3.3,0,6.1-2.8,6.1-6.1V6.6c0-3.4-2.8-6.1-6.1-6.1h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              C95.6,40.5,98.4,43.2,101.7,43.2z M6.6,43.2h30.5c3.3,0,6.1-2.8,6.1-6.1V6.6c0-3.4-2.8-6.1-6.1-6.1H6.6c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              C0.5,40.5,3.3,43.2,6.6,43.2z M179.7,0.5h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.3,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6
+                                                              C185.8,3.3,183.1,0.5,179.7,0.5z M54.1,91.8h30.5c3.4,0,6.1-2.7,6.1-6.1V55.2c0-3.4-2.8-6.1-6.1-6.1H54.1c-3.4,0-6.1,2.8-6.1,6.1
+                                                              v30.5C48,89.1,50.8,91.8,54.1,91.8z M101.7,91.8h30.5c3.3,0,6.1-2.7,6.1-6.1V55.2c0-3.4-2.8-6.1-6.1-6.1h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5C95.6,89.1,98.4,91.8,101.7,91.8z M43.2,85.7V55.2c0-3.4-2.8-6.1-6.1-6.1H6.6c-3.4,0-6.1,2.8-6.1,6.1
+                                                              v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5C40.4,91.8,43.2,89.1,43.2,85.7z M108.4,132.5H77.9c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.8,6.1-6.1v-30.5C114.5,135.2,111.7,132.5,108.4,132.5z M156,132.5h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1H156c3.3,0,6-2.8,6.1-6.1v-30.5C162.1,135.2,159.3,132.5,156,132.5z M60.8,132.5
+                                                              H30.3c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.6c3.3,0,6-2.8,6-6.1v-30.5C66.9,135.2,64.1,132.5,60.8,132.5z
+                                                              M343,132.5h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1H343c3.3,0,6-2.8,6.1-6.1v-30.5
+                                                              C349.1,135.2,346.3,132.5,343,132.5z M295.4,132.5h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5
+                                                              c3.4,0,6.1-2.8,6.1-6.1v-30.5C301.5,135.2,298.7,132.5,295.4,132.5z"/>
+                                                        </svg>
+                                                    </div>
+
+                                                    <div style="height: 60px;">
+
+                                                        <svg id="svgCovotingNetworks" fill="#cecece" onclick="handlechart('2')" style="cursor: pointer; height: 25px; width: 35px;">
+                                                        <path transform="scale(0.08, 0.08)" d="M209,48.2h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.4,2.7,6.1,6,6.1H209c3.3,0,6.1-2.7,6.1-6.1V54.3
+                                                              C215.1,51,212.4,48.2,209,48.2z M263.1,84.8V54.3c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1
+                                                              H257C260.3,90.9,263.1,88.2,263.1,84.8z M209,0.5h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.3,2.7,6.1,6,6.1H209c3.3,0,6.1-2.7,6.1-6.1
+                                                              V6.6C215.1,3.3,212.4,0.5,209,0.5z M226.5,43.2H257c3.3,0,6.1-2.7,6.1-6.1V6.6c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1
+                                                              v30.5C220.4,40.4,223.2,43.2,226.5,43.2z M43.2,156.2v-30.5c0-3.3-2.7-6.1-6.1-6.1H6.6c-3.3,0-6.1,2.7-6.1,6.1v30.5
+                                                              c0,3.3,2.7,6.1,6.1,6.1h30.5C40.4,162.3,43.2,159.6,43.2,156.2z M115.9,164.9H85.4c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.7,6.1-6.1V171C122,167.6,119.2,164.9,115.9,164.9z M69.5,164.9H39c-3.3,0-6.1,2.7-6.1,6.1
+                                                              v30.5c0.1,3.4,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V171C75.6,167.7,72.9,164.9,69.5,164.9z M85.4,71.6h30.5
+                                                              c3.4,0,6.1-2.8,6.1-6.1V35c0-3.4-2.8-6.1-6.1-6.1H85.4c-3.4,0-6.1,2.8-6.1,6.1v30.5C79.3,68.9,82.1,71.6,85.4,71.6z M69.5,28.9H39
+                                                              c-3.3,0-6.1,2.7-6.1,6.1v30.5c0.1,3.3,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V35C75.6,31.7,72.9,28.9,69.5,28.9z M148.4,119.6
+                                                              h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.8,6.1-6.1v-30.5C154.5,122.3,151.7,119.6,148.4,119.6z
+                                                              M6.6,116.9h30.5c3.3,0,6.1-2.7,6.1-6.1V80.3c0-3.3-2.7-6.1-6.1-6.1H6.6c-3.3,0-6.1,2.7-6.1,6.1v30.5C0.5,114.2,3.2,116.9,6.6,116.9
+                                                              z M148.4,74.2h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.7,6.1-6.1V80.3
+                                                              C154.5,76.9,151.7,74.2,148.4,74.2z M286.8,140.9h30.5c3.3,0,6.1-2.7,6.1-6.1v-30.5c0-3.4-2.8-6.1-6.1-6.1h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5C280.7,138.2,283.5,140.9,286.8,140.9z M273.9,161.3v-30.5c0-3.4-2.8-6.1-6.1-6.1h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5C271.2,167.4,273.9,164.6,273.9,161.3z M366.7,124.7h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.8,6.1-6.1v-30.5C372.8,127.4,370,124.7,366.7,124.7z
+                                                              M343.9,174.6h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.4,2.7,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1v-30.5
+                                                              C350,177.4,347.3,174.6,343.9,174.6z M290.7,174.6h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5
+                                                              c3.3,0,6-2.7,6.1-6.1v-30.5C296.8,177.3,294,174.6,290.7,174.6z M209,186.2h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.4,2.7,6.1,6,6.1
+                                                              H209c3.3,0,6.1-2.7,6.1-6.1v-30.5C215.1,189,212.4,186.2,209,186.2z"/>
+                                                        </svg>
+                                                    </div>
+
+                                                    <div style="height: 60px;" >
+
+                                                        <svg id="svgSets" fill="#cecece" onclick="handlechart('4')" style="cursor: pointer; height: 25px; width: 35px;">
+                                                        <path transform="scale(0.08, 0.08)" d="M366.7,0.5h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.3,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6
+                                                              C372.8,3.3,370.1,0.5,366.7,0.5z M288.7,43.2h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1
+                                                              v30.5C282.6,40.4,285.3,43.2,288.7,43.2z M241.1,43.2h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6c0-3.3-2.7-6.1-6.1-6.1h-30.5
+                                                              c-3.3,0-6.1,2.7-6.1,6.1v30.5C235,40.4,237.8,43.2,241.1,43.2z M366.7,49.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5
+                                                              c0,3.4,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V55.2C372.8,51.9,370.1,49.1,366.7,49.1z M288.7,91.8h30.5c3.3,0,6.1-2.7,6.1-6.1
+                                                              V55.2c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5C282.6,89.1,285.3,91.8,288.7,91.8z M277.7,85.7V55.2
+                                                              c0-3.3-2.7-6.1-6.1-6.1h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5C274.9,91.8,277.7,89.1,277.7,85.7z
+                                                              M54.1,43.2h30.5c3.4,0,6.1-2.8,6.1-6.1V6.6c0-3.4-2.8-6.1-6.1-6.1H54.1c-3.4,0-6.1,2.8-6.1,6.1v30.5C48,40.5,50.8,43.2,54.1,43.2z
+                                                              M101.7,43.2h30.5c3.3,0,6.1-2.8,6.1-6.1V6.6c0-3.4-2.8-6.1-6.1-6.1h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              C95.6,40.5,98.4,43.2,101.7,43.2z M6.6,43.2h30.5c3.3,0,6.1-2.8,6.1-6.1V6.6c0-3.4-2.8-6.1-6.1-6.1H6.6c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              C0.5,40.5,3.3,43.2,6.6,43.2z M179.7,0.5h-30.5c-3.3,0-6.1,2.7-6.1,6.1v30.5c0,3.3,2.8,6.1,6.1,6.1h30.5c3.3,0,6.1-2.7,6.1-6.1V6.6
+                                                              C185.8,3.3,183.1,0.5,179.7,0.5z M54.1,91.8h30.5c3.4,0,6.1-2.7,6.1-6.1V55.2c0-3.4-2.8-6.1-6.1-6.1H54.1c-3.4,0-6.1,2.8-6.1,6.1
+                                                              v30.5C48,89.1,50.8,91.8,54.1,91.8z M101.7,91.8h30.5c3.3,0,6.1-2.7,6.1-6.1V55.2c0-3.4-2.8-6.1-6.1-6.1h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5C95.6,89.1,98.4,91.8,101.7,91.8z M43.2,85.7V55.2c0-3.4-2.8-6.1-6.1-6.1H6.6c-3.4,0-6.1,2.8-6.1,6.1
+                                                              v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5C40.4,91.8,43.2,89.1,43.2,85.7z M108.4,132.5H77.9c-3.4,0-6.1,2.8-6.1,6.1v30.5
+                                                              c0,3.4,2.8,6.1,6.1,6.1h30.5c3.4,0,6.1-2.8,6.1-6.1v-30.5C114.5,135.2,111.7,132.5,108.4,132.5z M156,132.5h-30.5
+                                                              c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1H156c3.3,0,6-2.8,6.1-6.1v-30.5C162.1,135.2,159.3,132.5,156,132.5z M60.8,132.5
+                                                              H30.3c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.6c3.3,0,6-2.8,6-6.1v-30.5C66.9,135.2,64.1,132.5,60.8,132.5z
+                                                              M343,132.5h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1H343c3.3,0,6-2.8,6.1-6.1v-30.5
+                                                              C349.1,135.2,346.3,132.5,343,132.5z M295.4,132.5h-30.5c-3.4,0-6.1,2.8-6.1,6.1v30.5c0,3.4,2.8,6.1,6.1,6.1h30.5
+                                                              c3.4,0,6.1-2.8,6.1-6.1v-30.5C301.5,135.2,298.7,132.5,295.4,132.5z"/>
+                                                        </svg>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+
+                                    
+
+                                </div>
+
+                                <div class="row" style="position: relative; top: -55px;">
+                                    <div class="col-xl-1 col-lg-1 btn-group btn-group-sm" role="group"
+                                         style="left: 20px; height: 80%; top: 5px">
+                                        <button id="prev-button" class="btn btn-sm btn-primary m-1" style="border-radius: 8px">
+                                            <i class="fas fa-arrow-left"></i>
+                                        </button>
+                                        <button id="play-button" class="btn btn-sm btn-primary m-1" style="border-radius: 8px">Play</button>
+                                        <button id="next-button" class="btn btn-sm btn-primary m-1" style="border-radius: 8px">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="col-lg-10 col-xl-10" style="top: -15px; left: 50px; z-index: 10" id="slider-div">
+                                        <input id="slider-votos" />
+                                    </div>
+                                   <!-- Topbar -->
+                                   <div style="position: absolute; right: 25px; bottom: 7px;">
+                                    <h1 class="h3 mb-0 tituloText"></h1>
+                                    <ul class="navbar-nav ml-auto">
+                                        <!-- Nav Item - Alerts -->
+                                        <li class="nav-item dropdown no-arrow mx-1">
+                                            <a class="nav-link dropdown-toggle" href="#alertsDropdown" role="button"
+                                               data-toggle="collapse" aria-expanded="false" aria-controls="alertsDDropdown">
+                                                <i class="fas fa-cogs"></i>
+                                            </a>
+                                            <!-- Dropdown - Alerts -->
+                                            <div class="
+                                                 dropdown-list
+                                                 menuOp
+                                                 shadow
+                                                 animated--grow-in
+                                                 collapse
+                                                 " id="alertsDropdown">
+                                                <h6 class="dropdown-header">Opciones</h6>
+                                                <div class="dropdown-item d-flex align-items-center">
+                                                    <div class="p-2 d-flex flex-column" id="zxz">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" value="" id="mostrarNombres" onclick="mostrarLabels()" checked>
+                                                            <label class="form-check-label text-gray-900" for="mostrarNombres">
+                                                                Mostrar Nombres
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-item d-flex align-items-center">
+                                                    <div class="p-2 d-flex flex-column" id="formColor">
+                                                        <label class="text-gray-900" for="colores-select">Pintar por :
+                                                        </label>
+                                                        <select id="colores-select" class="form-control">
+                                                            <option value="comisiones">
+                                                                Comisiones
+                                                            </option>
+                                                            <option value="partidos" >
+                                                                Partido
+                                                            </option>
+                                                            <option value="region" selected >Región</option>
+                                                            <option value="provincia">
+                                                                Provincia
+                                                            </option>
+                                                            <option value="voto">Voto</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="dropdown-item d-flex align-items-center">
+                                                    <div class="p-2 d-flex flex-column" id="zzz">
+                                                        <label class="text-gray-900" for="rowTamanio">
+                                                            Tamaño de circulos :
+                                                        </label>
+                                                        <div><input id="rowTamanio" /></div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div> 
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
+                        <div style="grid-column: 1 / 13; grid-row: 2; width: 100%;">
+
+                            <!---->
+                            <div class="six" style="float: left; width: 15%; visibility: hidden;">
+                                6
+                            </div>
+
+
+                            <div class="five" style="float: left; width: 70%; margin-top: 4px;">
+                                <div class="card" style="border: none;">
+                                    <div class="card-body">
+                                        <div id="timelineVis" style="border: #3d3d3d solid 1px;" ondrop="drop2(event)" ondragover="allowDrop2(event)"></div>
+                                    </div>
+                                    <div>
+                                        <button id="btn-remove-all" type="button" class="btn btn-outline-light btn-sm" 
+                                        style="right: 5px;
+                                            top: 3px;
+                                            background-color: #e9e9e9;
+                                            position: absolute;
+                                            border: none;
+                                            display: none"
+                                        onClick="removeAllSessionsTimeline()"
+                                       ><i class="far fa-trash-alt"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="one" style="float: left; width: 15%; visibility: hidden;">
+                                1
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <!--      <footer class="sticky-footer bg-white">
+              <div class="container my-auto">
+                  <div class="copyright text-center my-auto">
+                      <span> Centro de tecnologías de la información &copy; Resultados 2021</span>
+                  </div>
+              </div>
+          </footer>-->
+            <!-- End of Footer -->
+        </div>
+
+        <!-- Bootstrap core -->
+        <script src="../shared/jquery/jquery.min.js"></script>
+        <!--Ion range slider core-->
+        <script src="../shared/ionRangeSlider/ion.rangeSlider.min.js"></script>
+
+        <!--Multiselect-->
+        <script src="../shared/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+
+        <!-- D3 js core-->
+        <script src="../shared/d3/d3.min.js"></script>
+        <script src="../shared/d3/d3-tip.js"></script>
+        <script src="../shared/d3/d3-array.min.js"></script>
+
+        
+        <script src="https://cdn.jsdelivr.net/npm/d3-force@3"></script>
+
+
+        <!-- Custom scripts for all pages-->
+        <script src="../shared/sb2admin/sb-admin-2.min.js"></script>
+        <script src="../shared/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!--<script src="https://unpkg.com/event-drops@1.2.0/dist/index.js"></script>-->
+
+        <script src="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+
+        <script src="https://unpkg.com/d3-sankey@0"></script>
+
+        <!-- Custom Scripts-->
+        <script src="js/options.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/components/layouts/zoomMenu.js"></script>
+        <script src="js/components/layouts/clusters.js"></script>
+        <script src="js/components/layouts/curules.js"></script>
+        <script src="js/components/layouts/main.js"></script>
+        <script src="js/components/layouts/cvn.js"></script>
+        <script src="js/components/slider/main.js"></script>
+        <script src="js/components/timeline/timelinevis.js"></script>
+        <script src="js/components/buscadores/busqueda.js"></script>
+        <script src="js/components/buscadores/busquedaSes.js"></script>
+        <script src="js/components/listas/main.js"></script>
+        <script src="js/components/otros/legends.js"></script>
+        <script src="../data/partidosinfo.js"></script>
+    </body>
+
+</html>

@@ -1,0 +1,1932 @@
+{
+  "700": {
+    "country": "AFG",
+    "vote": 8,
+    "ccode": 700,
+    "name": "Afghanistan",
+    "nombre": "Afghanistan",
+    "region": 2,
+    "numeroId": 700,
+    "visitado": false
+  },
+  "339": {
+    "country": "ALB",
+    "name": "Albania",
+    "vote": 1,
+    "ccode": 339,
+    "nombre": "Albania",
+    "region": 3,
+    "numeroId": 339,
+    "visitado": false
+  },
+  "615": {
+    "country": "DZA",
+    "name": "Algeria",
+    "vote": 2,
+    "ccode": 615,
+    "nombre": "Algeria",
+    "region": 1,
+    "numeroId": 615,
+    "visitado": false
+  },
+  "232": {
+    "country": "AND",
+    "name": "Andorra",
+    "vote": 1,
+    "ccode": 232,
+    "nombre": "Andorra",
+    "region": 5,
+    "numeroId": 232,
+    "visitado": false
+  },
+  "540": {
+    "country": "AGO",
+    "name": "Angola",
+    "vote": 2,
+    "ccode": 540,
+    "nombre": "Angola",
+    "region": 1,
+    "numeroId": 540,
+    "visitado": false
+  },
+  "58": {
+    "country": "ATG",
+    "name": "Antigua and Barbuda",
+    "vote": 8,
+    "ccode": 58,
+    "nombre": "Antigua and Barbuda",
+    "region": 4,
+    "numeroId": 58,
+    "visitado": false
+  },
+  "160": {
+    "country": "ARG",
+    "name": "Argentina",
+    "vote": 1,
+    "ccode": 160,
+    "nombre": "Argentina",
+    "region": 4,
+    "numeroId": 160,
+    "visitado": false
+  },
+  "371": {
+    "country": "ARM",
+    "name": "Armenia",
+    "vote": 8,
+    "ccode": 371,
+    "nombre": "Armenia",
+    "region": 3,
+    "numeroId": 371,
+    "visitado": false
+  },
+  "900": {
+    "country": "AUS",
+    "name": "Australia",
+    "vote": 1,
+    "ccode": 900,
+    "nombre": "Australia",
+    "region": 5,
+    "numeroId": 900,
+    "visitado": false
+  },
+  "305": {
+    "country": "AUT",
+    "name": "Austria",
+    "vote": 1,
+    "ccode": 305,
+    "nombre": "Austria",
+    "region": 5,
+    "numeroId": 305,
+    "visitado": false
+  },
+  "373": {
+    "country": "AZE",
+    "name": "Azerbaijan",
+    "vote": 1,
+    "ccode": 373,
+    "nombre": "Azerbaijan",
+    "region": 3,
+    "numeroId": 373,
+    "visitado": false
+  },
+  "31": {
+    "country": "BHS",
+    "name": "Bahamas",
+    "vote": 8,
+    "ccode": 31,
+    "nombre": "Bahamas",
+    "region": 4,
+    "numeroId": 31,
+    "visitado": false
+  },
+  "692": {
+    "country": "BHR",
+    "name": "Bahrain",
+    "vote": 1,
+    "ccode": 692,
+    "nombre": "Bahrain",
+    "region": 2,
+    "numeroId": 692,
+    "visitado": false
+  },
+  "771": {
+    "country": "BGD",
+    "name": "Bangladesh",
+    "vote": 8,
+    "ccode": 771,
+    "nombre": "Bangladesh",
+    "region": 2,
+    "numeroId": 771,
+    "visitado": false
+  },
+  "53": {
+    "country": "BRB",
+    "name": "Barbados",
+    "vote": 8,
+    "ccode": 53,
+    "nombre": "Barbados",
+    "region": 4,
+    "numeroId": 53,
+    "visitado": false
+  },
+  "370": {
+    "country": "BLR",
+    "name": "Belarus",
+    "vote": 2,
+    "ccode": 370,
+    "nombre": "Belarus",
+    "region": 3,
+    "numeroId": 370,
+    "visitado": false
+  },
+  "211": {
+    "country": "BEL",
+    "name": "Belgium",
+    "vote": 1,
+    "ccode": 211,
+    "nombre": "Belgium",
+    "region": 5,
+    "numeroId": 211,
+    "visitado": false
+  },
+  "80": {
+    "country": "BLZ",
+    "name": "Belize",
+    "vote": 8,
+    "ccode": 80,
+    "nombre": "Belize",
+    "region": 4,
+    "numeroId": 80,
+    "visitado": false
+  },
+  "434": {
+    "country": "BEN",
+    "name": "Benin",
+    "vote": 8,
+    "ccode": 434,
+    "nombre": "Benin",
+    "region": 1,
+    "numeroId": 434,
+    "visitado": false
+  },
+  "760": {
+    "country": "BTN",
+    "name": "Bhutan",
+    "vote": 1,
+    "ccode": 760,
+    "nombre": "Bhutan",
+    "region": 2,
+    "numeroId": 760,
+    "visitado": false
+  },
+  "145": {
+    "country": "BOL",
+    "name": "Bolivia (Plurinational State of)",
+    "vote": 2,
+    "ccode": 145,
+    "nombre": "Bolivia (Plurinational State of)",
+    "region": 4,
+    "numeroId": 145,
+    "visitado": false
+  },
+  "346": {
+    "country": "BIH",
+    "name": "Bosnia and Herzegovina",
+    "vote": 1,
+    "ccode": 346,
+    "nombre": "Bosnia and Herzegovina",
+    "region": 3,
+    "numeroId": 346,
+    "visitado": false
+  },
+  "571": {
+    "country": "BWA",
+    "name": "Botswana",
+    "vote": 8,
+    "ccode": 571,
+    "nombre": "Botswana",
+    "region": 1,
+    "numeroId": 571,
+    "visitado": false
+  },
+  "140": {
+    "country": "BRA",
+    "name": "Brazil",
+    "vote": 1,
+    "ccode": 140,
+    "nombre": "Brazil",
+    "region": 4,
+    "numeroId": 140,
+    "visitado": false
+  },
+  "835": {
+    "country": "BRN",
+    "name": "Brunei Darussalam",
+    "vote": 1,
+    "ccode": 835,
+    "nombre": "Brunei Darussalam",
+    "region": 2,
+    "numeroId": 835,
+    "visitado": false
+  },
+  "355": {
+    "country": "BGR",
+    "name": "Bulgaria",
+    "vote": 1,
+    "ccode": 355,
+    "nombre": "Bulgaria",
+    "region": 3,
+    "numeroId": 355,
+    "visitado": false
+  },
+  "439": {
+    "country": "BFA",
+    "name": "Burkina Faso",
+    "vote": 8,
+    "ccode": 439,
+    "nombre": "Burkina Faso",
+    "region": 1,
+    "numeroId": 439,
+    "visitado": false
+  },
+  "516": {
+    "country": "BDI",
+    "name": "Burundi",
+    "vote": 8,
+    "ccode": 516,
+    "nombre": "Burundi",
+    "region": 1,
+    "numeroId": 516,
+    "visitado": false
+  },
+  "402": {
+    "country": "CPV",
+    "name": "Cabo Verde",
+    "vote": 1,
+    "ccode": 402,
+    "nombre": "Cabo Verde",
+    "region": 1,
+    "numeroId": 402,
+    "visitado": false
+  },
+  "811": {
+    "country": "KHM",
+    "name": "Cambodia",
+    "vote": 2,
+    "ccode": 811,
+    "nombre": "Cambodia",
+    "region": 2,
+    "numeroId": 811,
+    "visitado": false
+  },
+  "471": {
+    "country": "CMR",
+    "name": "Cameroon",
+    "vote": 8,
+    "ccode": 471,
+    "nombre": "Cameroon",
+    "region": 1,
+    "numeroId": 471,
+    "visitado": false
+  },
+  "20": {
+    "country": "CAN",
+    "name": "Canada",
+    "vote": 1,
+    "ccode": 20,
+    "nombre": "Canada",
+    "region": 5,
+    "numeroId": 20,
+    "visitado": false
+  },
+  "482": {
+    "country": "CAF",
+    "name": "Central African Republic",
+    "vote": 8,
+    "ccode": 482,
+    "nombre": "Central African Republic",
+    "region": 1,
+    "numeroId": 482,
+    "visitado": false
+  },
+  "483": {
+    "country": "TCD",
+    "name": "Chad",
+    "vote": 1,
+    "ccode": 483,
+    "nombre": "Chad",
+    "region": 1,
+    "numeroId": 483,
+    "visitado": false
+  },
+  "155": {
+    "country": "CHL",
+    "name": "Chile",
+    "vote": 1,
+    "ccode": 155,
+    "nombre": "Chile",
+    "region": 4,
+    "numeroId": 155,
+    "visitado": false
+  },
+  "710": {
+    "country": "CHN",
+    "name": "China",
+    "vote": 3,
+    "ccode": 710,
+    "nombre": "China",
+    "region": 2,
+    "numeroId": 710,
+    "visitado": false
+  },
+  "100": {
+    "country": "COL",
+    "name": "Colombia",
+    "vote": 1,
+    "ccode": 100,
+    "nombre": "Colombia",
+    "region": 4,
+    "numeroId": 100,
+    "visitado": false
+  },
+  "581": {
+    "country": "COM",
+    "name": "Comoros",
+    "vote": 8,
+    "ccode": 581,
+    "nombre": "Comoros",
+    "region": 1,
+    "numeroId": 581,
+    "visitado": false
+  },
+  "484": {
+    "country": "COG",
+    "name": "Congo",
+    "vote": 8,
+    "ccode": 484,
+    "nombre": "Congo",
+    "region": 1,
+    "numeroId": 484,
+    "visitado": false
+  },
+  "94": {
+    "country": "CRI",
+    "name": "Costa Rica",
+    "vote": 1,
+    "ccode": 94,
+    "nombre": "Costa Rica",
+    "region": 4,
+    "numeroId": 94,
+    "visitado": false
+  },
+  "437": {
+    "country": "CIV",
+    "name": "Côte D'Ivoire",
+    "vote": 2,
+    "ccode": 437,
+    "nombre": "Côte D'Ivoire",
+    "region": 1,
+    "numeroId": 437,
+    "visitado": false
+  },
+  "344": {
+    "country": "HRV",
+    "name": "Croatia",
+    "vote": 1,
+    "ccode": 344,
+    "nombre": "Croatia",
+    "region": 3,
+    "numeroId": 344,
+    "visitado": false
+  },
+  "40": {
+    "country": "CUB",
+    "name": "Cuba",
+    "vote": 2,
+    "ccode": 40,
+    "nombre": "Cuba",
+    "region": 4,
+    "numeroId": 40,
+    "visitado": false
+  },
+  "352": {
+    "country": "CYP",
+    "name": "Cyprus",
+    "vote": 1,
+    "ccode": 352,
+    "nombre": "Cyprus",
+    "region": 2,
+    "numeroId": 352,
+    "visitado": false
+  },
+  "316": {
+    "country": "CZE",
+    "name": "Czech Republic",
+    "vote": 1,
+    "ccode": 316,
+    "nombre": "Czech Republic",
+    "region": 3,
+    "numeroId": 316,
+    "visitado": false
+  },
+  "731": {
+    "country": "PRK",
+    "name": "Democratic People's Republic of Korea",
+    "vote": 8,
+    "ccode": 731,
+    "nombre": "Democratic People's Republic of Korea",
+    "region": 2,
+    "numeroId": 731,
+    "visitado": false
+  },
+  "490": {
+    "country": "COD",
+    "name": "Democratic Republic of the Congo",
+    "vote": 8,
+    "ccode": 490,
+    "nombre": "Democratic Republic of the Congo",
+    "region": 1,
+    "numeroId": 490,
+    "visitado": false
+  },
+  "390": {
+    "country": "DNK",
+    "name": "Denmark",
+    "vote": 1,
+    "ccode": 390,
+    "nombre": "Denmark",
+    "region": 5,
+    "numeroId": 390,
+    "visitado": false
+  },
+  "522": {
+    "country": "DJI",
+    "name": "Djibouti",
+    "vote": 8,
+    "ccode": 522,
+    "nombre": "Djibouti",
+    "region": 1,
+    "numeroId": 522,
+    "visitado": false
+  },
+  "54": {
+    "country": "DMA",
+    "name": "Dominica",
+    "vote": 8,
+    "ccode": 54,
+    "nombre": "Dominica",
+    "region": 4,
+    "numeroId": 54,
+    "visitado": false
+  },
+  "42": {
+    "country": "DOM",
+    "name": "Dominican Republic",
+    "vote": 1,
+    "ccode": 42,
+    "nombre": "Dominican Republic",
+    "region": 4,
+    "numeroId": 42,
+    "visitado": false
+  },
+  "130": {
+    "country": "ECU",
+    "name": "Ecuador",
+    "vote": 1,
+    "ccode": 130,
+    "nombre": "Ecuador",
+    "region": 4,
+    "numeroId": 130,
+    "visitado": false
+  },
+  "651": {
+    "country": "EGY",
+    "name": "Egypt",
+    "vote": 1,
+    "ccode": 651,
+    "nombre": "Egypt",
+    "region": 1,
+    "numeroId": 651,
+    "visitado": false
+  },
+  "92": {
+    "country": "SLV",
+    "name": "El Salvador",
+    "vote": 1,
+    "ccode": 92,
+    "nombre": "El Salvador",
+    "region": 4,
+    "numeroId": 92,
+    "visitado": false
+  },
+  "411": {
+    "country": "GNQ",
+    "name": "Equatorial Guinea",
+    "vote": 8,
+    "ccode": 411,
+    "nombre": "Equatorial Guinea",
+    "region": 1,
+    "numeroId": 411,
+    "visitado": false
+  },
+  "531": {
+    "country": "ERI",
+    "name": "Eritrea",
+    "vote": 8,
+    "ccode": 531,
+    "nombre": "Eritrea",
+    "region": 1,
+    "numeroId": 531,
+    "visitado": false
+  },
+  "366": {
+    "country": "EST",
+    "name": "Estonia",
+    "vote": 1,
+    "ccode": 366,
+    "nombre": "Estonia",
+    "region": 3,
+    "numeroId": 366,
+    "visitado": false
+  },
+  "572": {
+    "country": "SWZ",
+    "name": "Eswatini",
+    "vote": 8,
+    "ccode": 572,
+    "nombre": "Eswatini",
+    "region": 1,
+    "numeroId": 572,
+    "visitado": false
+  },
+  "530": {
+    "country": "ETH",
+    "name": "Ethiopia",
+    "vote": 1,
+    "ccode": 530,
+    "nombre": "Ethiopia",
+    "region": 1,
+    "numeroId": 530,
+    "visitado": false
+  },
+  "950": {
+    "country": "FJI",
+    "name": "Fiji",
+    "vote": 1,
+    "ccode": 950,
+    "nombre": "Fiji",
+    "region": 2,
+    "numeroId": 950,
+    "visitado": false
+  },
+  "375": {
+    "country": "FIN",
+    "name": "Finland",
+    "vote": 1,
+    "ccode": 375,
+    "nombre": "Finland",
+    "region": 5,
+    "numeroId": 375,
+    "visitado": false
+  },
+  "220": {
+    "country": "FRA",
+    "name": "France",
+    "vote": 1,
+    "ccode": 220,
+    "nombre": "France",
+    "region": 5,
+    "numeroId": 220,
+    "visitado": false
+  },
+  "481": {
+    "country": "GAB",
+    "name": "Gabon",
+    "vote": 8,
+    "ccode": 481,
+    "nombre": "Gabon",
+    "region": 1,
+    "numeroId": 481,
+    "visitado": false
+  },
+  "420": {
+    "country": "GMB",
+    "name": "Gambia (Republic of The)",
+    "vote": 8,
+    "ccode": 420,
+    "nombre": "Gambia (Republic of The)",
+    "region": 1,
+    "numeroId": 420,
+    "visitado": false
+  },
+  "372": {
+    "country": "GEO",
+    "name": "Georgia",
+    "vote": 8,
+    "ccode": 372,
+    "nombre": "Georgia",
+    "region": 3,
+    "numeroId": 372,
+    "visitado": false
+  },
+  "255": {
+    "country": "DEU",
+    "name": "Germany",
+    "vote": 1,
+    "ccode": 255,
+    "nombre": "Germany",
+    "region": 5,
+    "numeroId": 255,
+    "visitado": false
+  },
+  "452": {
+    "country": "GHA",
+    "name": "Ghana",
+    "vote": 8,
+    "ccode": 452,
+    "nombre": "Ghana",
+    "region": 1,
+    "numeroId": 452,
+    "visitado": false
+  },
+  "350": {
+    "country": "GRC",
+    "name": "Greece",
+    "vote": 1,
+    "ccode": 350,
+    "nombre": "Greece",
+    "region": 5,
+    "numeroId": 350,
+    "visitado": false
+  },
+  "55": {
+    "country": "GRD",
+    "name": "Grenada",
+    "vote": 8,
+    "ccode": 55,
+    "nombre": "Grenada",
+    "region": 4,
+    "numeroId": 55,
+    "visitado": false
+  },
+  "90": {
+    "country": "GTM",
+    "name": "Guatemala",
+    "vote": 1,
+    "ccode": 90,
+    "nombre": "Guatemala",
+    "region": 4,
+    "numeroId": 90,
+    "visitado": false
+  },
+  "438": {
+    "country": "GIN",
+    "name": "Guinea",
+    "vote": 8,
+    "ccode": 438,
+    "nombre": "Guinea",
+    "region": 1,
+    "numeroId": 438,
+    "visitado": false
+  },
+  "404": {
+    "country": "GNB",
+    "name": "Guinea Bissau",
+    "vote": 8,
+    "ccode": 404,
+    "nombre": "Guinea Bissau",
+    "region": 1,
+    "numeroId": 404,
+    "visitado": false
+  },
+  "110": {
+    "country": "GUY",
+    "name": "Guyana",
+    "vote": 1,
+    "ccode": 110,
+    "nombre": "Guyana",
+    "region": 4,
+    "numeroId": 110,
+    "visitado": false
+  },
+  "41": {
+    "country": "HTI",
+    "name": "Haiti",
+    "vote": 8,
+    "ccode": 41,
+    "nombre": "Haiti",
+    "region": 4,
+    "numeroId": 41,
+    "visitado": false
+  },
+  "91": {
+    "country": "HND",
+    "name": "Honduras",
+    "vote": 8,
+    "ccode": 91,
+    "nombre": "Honduras",
+    "region": 4,
+    "numeroId": 91,
+    "visitado": false
+  },
+  "310": {
+    "country": "HUN",
+    "name": "Hungary",
+    "vote": 1,
+    "ccode": 310,
+    "nombre": "Hungary",
+    "region": 3,
+    "numeroId": 310,
+    "visitado": false
+  },
+  "395": {
+    "country": "ISL",
+    "name": "Iceland",
+    "vote": 1,
+    "ccode": 395,
+    "nombre": "Iceland",
+    "region": 5,
+    "numeroId": 395,
+    "visitado": false
+  },
+  "750": {
+    "country": "IND",
+    "name": "India",
+    "vote": 1,
+    "ccode": 750,
+    "nombre": "India",
+    "region": 2,
+    "numeroId": 750,
+    "visitado": false
+  },
+  "850": {
+    "country": "IDN",
+    "name": "Indonesia",
+    "vote": 1,
+    "ccode": 850,
+    "nombre": "Indonesia",
+    "region": 2,
+    "numeroId": 850,
+    "visitado": false
+  },
+  "630": {
+    "country": "IRN",
+    "name": "Iran (Islamic Republic of)",
+    "vote": 8,
+    "ccode": 630,
+    "nombre": "Iran (Islamic Republic of)",
+    "region": 2,
+    "numeroId": 630,
+    "visitado": false
+  },
+  "645": {
+    "country": "IRQ",
+    "name": "Iraq",
+    "vote": 1,
+    "ccode": 645,
+    "nombre": "Iraq",
+    "region": 2,
+    "numeroId": 645,
+    "visitado": false
+  },
+  "205": {
+    "country": "IRL",
+    "name": "Ireland",
+    "vote": 1,
+    "ccode": 205,
+    "nombre": "Ireland",
+    "region": 5,
+    "numeroId": 205,
+    "visitado": false
+  },
+  "666": {
+    "country": "ISR",
+    "name": "Israel",
+    "vote": 1,
+    "ccode": 666,
+    "nombre": "Israel",
+    "region": 5,
+    "numeroId": 666,
+    "visitado": false
+  },
+  "325": {
+    "country": "ITA",
+    "name": "Italy",
+    "vote": 1,
+    "ccode": 325,
+    "nombre": "Italy",
+    "region": 5,
+    "numeroId": 325,
+    "visitado": false
+  },
+  "51": {
+    "country": "JAM",
+    "name": "Jamaica",
+    "vote": 1,
+    "ccode": 51,
+    "nombre": "Jamaica",
+    "region": 4,
+    "numeroId": 51,
+    "visitado": false
+  },
+  "740": {
+    "country": "JPN",
+    "name": "Japan",
+    "vote": 1,
+    "ccode": 740,
+    "nombre": "Japan",
+    "region": 2,
+    "numeroId": 740,
+    "visitado": false
+  },
+  "663": {
+    "country": "JOR",
+    "name": "Jordan",
+    "vote": 1,
+    "ccode": 663,
+    "nombre": "Jordan",
+    "region": 2,
+    "numeroId": 663,
+    "visitado": false
+  },
+  "705": {
+    "country": "KAZ",
+    "name": "Kazakhstan",
+    "vote": 1,
+    "ccode": 705,
+    "nombre": "Kazakhstan",
+    "region": 2,
+    "numeroId": 705,
+    "visitado": false
+  },
+  "501": {
+    "country": "KEN",
+    "name": "Kenya",
+    "vote": 8,
+    "ccode": 501,
+    "nombre": "Kenya",
+    "region": 1,
+    "numeroId": 501,
+    "visitado": false
+  },
+  "946": {
+    "country": "KIR",
+    "name": "Kiribati",
+    "vote": 8,
+    "ccode": 946,
+    "nombre": "Kiribati",
+    "region": 6,
+    "numeroId": 946,
+    "visitado": false
+  },
+  "690": {
+    "country": "KWT",
+    "name": "Kuwait",
+    "vote": 1,
+    "ccode": 690,
+    "nombre": "Kuwait",
+    "region": 2,
+    "numeroId": 690,
+    "visitado": false
+  },
+  "703": {
+    "country": "KGZ",
+    "name": "Kyrgyzstan",
+    "vote": 1,
+    "ccode": 703,
+    "nombre": "Kyrgyzstan",
+    "region": 2,
+    "numeroId": 703,
+    "visitado": false
+  },
+  "812": {
+    "country": "LAO",
+    "name": "Lao Peoples Democratic Republic",
+    "vote": 1,
+    "ccode": 812,
+    "nombre": "Lao Peoples Democratic Republic",
+    "region": 2,
+    "numeroId": 812,
+    "visitado": false
+  },
+  "367": {
+    "country": "LVA",
+    "name": "Latvia",
+    "vote": 1,
+    "ccode": 367,
+    "nombre": "Latvia",
+    "region": 3,
+    "numeroId": 367,
+    "visitado": false
+  },
+  "660": {
+    "country": "LBN",
+    "name": "Lebanon",
+    "vote": 1,
+    "ccode": 660,
+    "nombre": "Lebanon",
+    "region": 2,
+    "numeroId": 660,
+    "visitado": false
+  },
+  "570": {
+    "country": "LSO",
+    "name": "Lesotho",
+    "vote": 8,
+    "ccode": 570,
+    "nombre": "Lesotho",
+    "region": 1,
+    "numeroId": 570,
+    "visitado": false
+  },
+  "450": {
+    "country": "LBR",
+    "name": "Liberia",
+    "vote": 8,
+    "ccode": 450,
+    "nombre": "Liberia",
+    "region": 1,
+    "numeroId": 450,
+    "visitado": false
+  },
+  "620": {
+    "country": "LBY",
+    "name": "Libya",
+    "vote": 1,
+    "ccode": 620,
+    "nombre": "Libya",
+    "region": 1,
+    "numeroId": 620,
+    "visitado": false
+  },
+  "223": {
+    "country": "LIE",
+    "name": "Liechtenstein",
+    "vote": 1,
+    "ccode": 223,
+    "nombre": "Liechtenstein",
+    "region": 5,
+    "numeroId": 223,
+    "visitado": false
+  },
+  "368": {
+    "country": "LTU",
+    "name": "Lithuania",
+    "vote": 1,
+    "ccode": 368,
+    "nombre": "Lithuania",
+    "region": 3,
+    "numeroId": 368,
+    "visitado": false
+  },
+  "212": {
+    "country": "LUX",
+    "name": "Luxembourg",
+    "vote": 1,
+    "ccode": 212,
+    "nombre": "Luxembourg",
+    "region": 5,
+    "numeroId": 212,
+    "visitado": false
+  },
+  "580": {
+    "country": "MDG",
+    "name": "Madagascar",
+    "vote": 2,
+    "ccode": 580,
+    "nombre": "Madagascar",
+    "region": 1,
+    "numeroId": 580,
+    "visitado": false
+  },
+  "553": {
+    "country": "MWI",
+    "name": "Malawi",
+    "vote": 8,
+    "ccode": 553,
+    "nombre": "Malawi",
+    "region": 1,
+    "numeroId": 553,
+    "visitado": false
+  },
+  "820": {
+    "country": "MYS",
+    "name": "Malaysia",
+    "vote": 1,
+    "ccode": 820,
+    "nombre": "Malaysia",
+    "region": 2,
+    "numeroId": 820,
+    "visitado": false
+  },
+  "781": {
+    "country": "MDV",
+    "name": "Maldives",
+    "vote": 1,
+    "ccode": 781,
+    "nombre": "Maldives",
+    "region": 2,
+    "numeroId": 781,
+    "visitado": false
+  },
+  "432": {
+    "country": "MLI",
+    "name": "Mali",
+    "vote": 1,
+    "ccode": 432,
+    "nombre": "Mali",
+    "region": 1,
+    "numeroId": 432,
+    "visitado": false
+  },
+  "338": {
+    "country": "MLT",
+    "name": "Malta",
+    "vote": 1,
+    "ccode": 338,
+    "nombre": "Malta",
+    "region": 5,
+    "numeroId": 338,
+    "visitado": false
+  },
+  "983": {
+    "country": "MHL",
+    "name": "Marshall Islands",
+    "vote": 8,
+    "ccode": 983,
+    "nombre": "Marshall Islands",
+    "region": 2,
+    "numeroId": 983,
+    "visitado": false
+  },
+  "435": {
+    "country": "MRT",
+    "name": "Mauritania",
+    "vote": 8,
+    "ccode": 435,
+    "nombre": "Mauritania",
+    "region": 1,
+    "numeroId": 435,
+    "visitado": false
+  },
+  "590": {
+    "country": "MUS",
+    "name": "Mauritius",
+    "vote": 1,
+    "ccode": 590,
+    "nombre": "Mauritius",
+    "region": 1,
+    "numeroId": 590,
+    "visitado": false
+  },
+  "70": {
+    "country": "MEX",
+    "name": "Mexico",
+    "vote": 1,
+    "ccode": 70,
+    "nombre": "Mexico",
+    "region": 4,
+    "numeroId": 70,
+    "visitado": false
+  },
+  "987": {
+    "country": "FSM",
+    "name": "Micronesia (Federated States of)",
+    "vote": 8,
+    "ccode": 987,
+    "nombre": "Micronesia (Federated States of)",
+    "region": 2,
+    "numeroId": 987,
+    "visitado": false
+  },
+  "221": {
+    "country": "MCO",
+    "name": "Monaco",
+    "vote": 1,
+    "ccode": 221,
+    "nombre": "Monaco",
+    "region": 5,
+    "numeroId": 221,
+    "visitado": false
+  },
+  "712": {
+    "country": "MNG",
+    "name": "Mongolia",
+    "vote": 1,
+    "ccode": 712,
+    "nombre": "Mongolia",
+    "region": 2,
+    "numeroId": 712,
+    "visitado": false
+  },
+  "341": {
+    "country": "MNE",
+    "name": "Montenegro",
+    "vote": 1,
+    "ccode": 341,
+    "nombre": "Montenegro",
+    "region": 3,
+    "numeroId": 341,
+    "visitado": false
+  },
+  "600": {
+    "country": "MAR",
+    "name": "Morocco",
+    "vote": 1,
+    "ccode": 600,
+    "nombre": "Morocco",
+    "region": 1,
+    "numeroId": 600,
+    "visitado": false
+  },
+  "541": {
+    "country": "MOZ",
+    "name": "Mozambique",
+    "vote": 8,
+    "ccode": 541,
+    "nombre": "Mozambique",
+    "region": 1,
+    "numeroId": 541,
+    "visitado": false
+  },
+  "775": {
+    "country": "MMR",
+    "name": "Myanmar",
+    "vote": 8,
+    "ccode": 775,
+    "nombre": "Myanmar",
+    "region": 2,
+    "numeroId": 775,
+    "visitado": false
+  },
+  "565": {
+    "country": "NAM",
+    "name": "Namibia",
+    "vote": 8,
+    "ccode": 565,
+    "nombre": "Namibia",
+    "region": 1,
+    "numeroId": 565,
+    "visitado": false
+  },
+  "970": {
+    "country": "NRU",
+    "name": "Nauru",
+    "vote": 8,
+    "ccode": 970,
+    "nombre": "Nauru",
+    "region": 2,
+    "numeroId": 970,
+    "visitado": false
+  },
+  "790": {
+    "country": "NPL",
+    "name": "Nepal",
+    "vote": 1,
+    "ccode": 790,
+    "nombre": "Nepal",
+    "region": 2,
+    "numeroId": 790,
+    "visitado": false
+  },
+  "210": {
+    "country": "NLD",
+    "name": "Netherlands",
+    "vote": 1,
+    "ccode": 210,
+    "nombre": "Netherlands",
+    "region": 5,
+    "numeroId": 210,
+    "visitado": false
+  },
+  "920": {
+    "country": "NZL",
+    "name": "New Zealand",
+    "vote": 1,
+    "ccode": 920,
+    "nombre": "New Zealand",
+    "region": 5,
+    "numeroId": 920,
+    "visitado": false
+  },
+  "93": {
+    "country": "NIC",
+    "name": "Nicaragua",
+    "vote": 2,
+    "ccode": 93,
+    "nombre": "Nicaragua",
+    "region": 4,
+    "numeroId": 93,
+    "visitado": false
+  },
+  "436": {
+    "country": "NER",
+    "name": "Niger",
+    "vote": 8,
+    "ccode": 436,
+    "nombre": "Niger",
+    "region": 1,
+    "numeroId": 436,
+    "visitado": false
+  },
+  "475": {
+    "country": "NGA",
+    "name": "Nigeria",
+    "vote": 1,
+    "ccode": 475,
+    "nombre": "Nigeria",
+    "region": 1,
+    "numeroId": 475,
+    "visitado": false
+  },
+  "343": {
+    "country": "MKD",
+    "name": "North Macedonia",
+    "vote": 1,
+    "ccode": 343,
+    "nombre": "North Macedonia",
+    "region": 3,
+    "numeroId": 343,
+    "visitado": false
+  },
+  "385": {
+    "country": "NOR",
+    "name": "Norway",
+    "vote": 1,
+    "ccode": 385,
+    "nombre": "Norway",
+    "region": 5,
+    "numeroId": 385,
+    "visitado": false
+  },
+  "698": {
+    "country": "OMN",
+    "name": "Oman",
+    "vote": 1,
+    "ccode": 698,
+    "nombre": "Oman",
+    "region": 2,
+    "numeroId": 698,
+    "visitado": false
+  },
+  "770": {
+    "country": "PAK",
+    "name": "Pakistan",
+    "vote": 1,
+    "ccode": 770,
+    "nombre": "Pakistan",
+    "region": 2,
+    "numeroId": 770,
+    "visitado": false
+  },
+  "986": {
+    "country": "PLW",
+    "name": "Palau",
+    "vote": 8,
+    "ccode": 986,
+    "nombre": "Palau",
+    "region": 2,
+    "numeroId": 986,
+    "visitado": false
+  },
+  "95": {
+    "country": "PAN",
+    "name": "Panama",
+    "vote": 1,
+    "ccode": 95,
+    "nombre": "Panama",
+    "region": 4,
+    "numeroId": 95,
+    "visitado": false
+  },
+  "910": {
+    "country": "PNG",
+    "name": "Papua New Guinea",
+    "vote": 1,
+    "ccode": 910,
+    "nombre": "Papua New Guinea",
+    "region": 2,
+    "numeroId": 910,
+    "visitado": false
+  },
+  "150": {
+    "country": "PRY",
+    "name": "Paraguay",
+    "vote": 1,
+    "ccode": 150,
+    "nombre": "Paraguay",
+    "region": 4,
+    "numeroId": 150,
+    "visitado": false
+  },
+  "135": {
+    "country": "PER",
+    "name": "Peru",
+    "vote": 1,
+    "ccode": 135,
+    "nombre": "Peru",
+    "region": 4,
+    "numeroId": 135,
+    "visitado": false
+  },
+  "840": {
+    "country": "PHL",
+    "name": "Philippines",
+    "vote": 1,
+    "ccode": 840,
+    "nombre": "Philippines",
+    "region": 2,
+    "numeroId": 840,
+    "visitado": false
+  },
+  "290": {
+    "country": "POL",
+    "name": "Poland",
+    "vote": 1,
+    "ccode": 290,
+    "nombre": "Poland",
+    "region": 3,
+    "numeroId": 290,
+    "visitado": false
+  },
+  "235": {
+    "country": "PRT",
+    "name": "Portugal",
+    "vote": 1,
+    "ccode": 235,
+    "nombre": "Portugal",
+    "region": 5,
+    "numeroId": 235,
+    "visitado": false
+  },
+  "694": {
+    "country": "QAT",
+    "name": "Qatar",
+    "vote": 1,
+    "ccode": 694,
+    "nombre": "Qatar",
+    "region": 2,
+    "numeroId": 694,
+    "visitado": false
+  },
+  "732": {
+    "country": "KOR",
+    "name": "Republic of Korea",
+    "vote": 1,
+    "ccode": 732,
+    "nombre": "Republic of Korea",
+    "region": 2,
+    "numeroId": 732,
+    "visitado": false
+  },
+  "359": {
+    "country": "MDA",
+    "name": "Republic of Moldova",
+    "vote": 1,
+    "ccode": 359,
+    "nombre": "Republic of Moldova",
+    "region": 3,
+    "numeroId": 359,
+    "visitado": false
+  },
+  "360": {
+    "country": "ROU",
+    "name": "Romania",
+    "vote": 1,
+    "ccode": 360,
+    "nombre": "Romania",
+    "region": 3,
+    "numeroId": 360,
+    "visitado": false
+  },
+  "365": {
+    "country": "RUS",
+    "name": "Russian Federation",
+    "vote": 3,
+    "ccode": 365,
+    "nombre": "Russian Federation",
+    "region": 3,
+    "numeroId": 365,
+    "visitado": false
+  },
+  "517": {
+    "country": "RWA",
+    "name": "Rwanda",
+    "vote": 8,
+    "ccode": 517,
+    "nombre": "Rwanda",
+    "region": 1,
+    "numeroId": 517,
+    "visitado": false
+  },
+  "60": {
+    "country": "KNA",
+    "name": "Saint Kitts and Nevis",
+    "vote": 8,
+    "ccode": 60,
+    "nombre": "Saint Kitts and Nevis",
+    "region": 4,
+    "numeroId": 60,
+    "visitado": false
+  },
+  "56": {
+    "country": "LCA",
+    "name": "Saint Lucia",
+    "vote": 8,
+    "ccode": 56,
+    "nombre": "Saint Lucia",
+    "region": 4,
+    "numeroId": 56,
+    "visitado": false
+  },
+  "57": {
+    "country": "VCT",
+    "name": "Saint Vincent and the Grenadines",
+    "vote": 8,
+    "ccode": 57,
+    "nombre": "Saint Vincent and the Grenadines",
+    "region": 4,
+    "numeroId": 57,
+    "visitado": false
+  },
+  "990": {
+    "country": "WSM",
+    "name": "Samoa",
+    "vote": 8,
+    "ccode": 990,
+    "nombre": "Samoa",
+    "region": 2,
+    "numeroId": 990,
+    "visitado": false
+  },
+  "331": {
+    "country": "SMR",
+    "name": "San Marino",
+    "vote": 1,
+    "ccode": 331,
+    "nombre": "San Marino",
+    "region": 5,
+    "numeroId": 331,
+    "visitado": false
+  },
+  "403": {
+    "country": "STP",
+    "name": "Sao Tome and Principe",
+    "vote": 8,
+    "ccode": 403,
+    "nombre": "Sao Tome and Principe",
+    "region": 1,
+    "numeroId": 403,
+    "visitado": false
+  },
+  "670": {
+    "country": "SAU",
+    "name": "Saudi Arabia",
+    "vote": 1,
+    "ccode": 670,
+    "nombre": "Saudi Arabia",
+    "region": 2,
+    "numeroId": 670,
+    "visitado": false
+  },
+  "433": {
+    "country": "SEN",
+    "name": "Senegal",
+    "vote": 1,
+    "ccode": 433,
+    "nombre": "Senegal",
+    "region": 1,
+    "numeroId": 433,
+    "visitado": false
+  },
+  "345": {
+    "country": "YGS",
+    "name": "Yugoslavia",
+    "vote": 8,
+    "ccode": 345,
+    "nombre": "Yugoslavia",
+    "region": 6,
+    "numeroId": 345,
+    "visitado": false
+  },
+  "591": {
+    "country": "SYC",
+    "name": "Seychelles",
+    "vote": 8,
+    "ccode": 591,
+    "nombre": "Seychelles",
+    "region": 1,
+    "numeroId": 591,
+    "visitado": false
+  },
+  "451": {
+    "country": "SLE",
+    "name": "Sierra Leone",
+    "vote": 8,
+    "ccode": 451,
+    "nombre": "Sierra Leone",
+    "region": 1,
+    "numeroId": 451,
+    "visitado": false
+  },
+  "830": {
+    "country": "SGP",
+    "name": "Singapore",
+    "vote": 1,
+    "ccode": 830,
+    "nombre": "Singapore",
+    "region": 2,
+    "numeroId": 830,
+    "visitado": false
+  },
+  "317": {
+    "country": "SVK",
+    "name": "Slovakia",
+    "vote": 1,
+    "ccode": 317,
+    "nombre": "Slovakia",
+    "region": 3,
+    "numeroId": 317,
+    "visitado": false
+  },
+  "349": {
+    "country": "SVN",
+    "name": "Slovenia",
+    "vote": 1,
+    "ccode": 349,
+    "nombre": "Slovenia",
+    "region": 3,
+    "numeroId": 349,
+    "visitado": false
+  },
+  "940": {
+    "country": "SLB",
+    "name": "Solomon Islands",
+    "vote": 8,
+    "ccode": 940,
+    "nombre": "Solomon Islands",
+    "region": 2,
+    "numeroId": 940,
+    "visitado": false
+  },
+  "520": {
+    "country": "SOM",
+    "name": "Somalia",
+    "vote": 8,
+    "ccode": 520,
+    "nombre": "Somalia",
+    "region": 1,
+    "numeroId": 520,
+    "visitado": false
+  },
+  "560": {
+    "country": "ZAF",
+    "name": "South Africa",
+    "vote": 1,
+    "ccode": 560,
+    "nombre": "South Africa",
+    "region": 1,
+    "numeroId": 560,
+    "visitado": false
+  },
+  "626": {
+    "country": "SSD",
+    "name": "South Sudan",
+    "vote": 8,
+    "ccode": 626,
+    "nombre": "South Sudan",
+    "region": 1,
+    "numeroId": 626,
+    "visitado": false
+  },
+  "230": {
+    "country": "ESP",
+    "name": "Spain",
+    "vote": 1,
+    "ccode": 230,
+    "nombre": "Spain",
+    "region": 5,
+    "numeroId": 230,
+    "visitado": false
+  },
+  "780": {
+    "country": "LKA",
+    "name": "Sri Lanka",
+    "vote": 1,
+    "ccode": 780,
+    "nombre": "Sri Lanka",
+    "region": 2,
+    "numeroId": 780,
+    "visitado": false
+  },
+  "625": {
+    "country": "SDN",
+    "name": "Sudan",
+    "vote": 1,
+    "ccode": 625,
+    "nombre": "Sudan",
+    "region": 1,
+    "numeroId": 625,
+    "visitado": false
+  },
+  "115": {
+    "country": "SUR",
+    "name": "Suriname",
+    "vote": 8,
+    "ccode": 115,
+    "nombre": "Suriname",
+    "region": 4,
+    "numeroId": 115,
+    "visitado": false
+  },
+  "380": {
+    "country": "SWE",
+    "name": "Sweden",
+    "vote": 1,
+    "ccode": 380,
+    "nombre": "Sweden",
+    "region": 5,
+    "numeroId": 380,
+    "visitado": false
+  },
+  "225": {
+    "country": "CHE",
+    "name": "Switzerland",
+    "vote": 1,
+    "ccode": 225,
+    "nombre": "Switzerland",
+    "region": 5,
+    "numeroId": 225,
+    "visitado": false
+  },
+  "652": {
+    "country": "SYR",
+    "name": "Syrian Arab Republic",
+    "vote": 3,
+    "ccode": 652,
+    "nombre": "Syrian Arab Republic",
+    "region": 2,
+    "numeroId": 652,
+    "visitado": false
+  },
+  "702": {
+    "country": "TJK",
+    "name": "Tajikistan",
+    "vote": 8,
+    "ccode": 702,
+    "nombre": "Tajikistan",
+    "region": 2,
+    "numeroId": 702,
+    "visitado": false
+  },
+  "800": {
+    "country": "THA",
+    "name": "Thailand",
+    "vote": 1,
+    "ccode": 800,
+    "nombre": "Thailand",
+    "region": 2,
+    "numeroId": 800,
+    "visitado": false
+  },
+  "860": {
+    "country": "TLS",
+    "name": "Timor-Leste",
+    "vote": 1,
+    "ccode": 860,
+    "nombre": "Timor-Leste",
+    "region": 2,
+    "numeroId": 860,
+    "visitado": false
+  },
+  "461": {
+    "country": "TGO",
+    "name": "Togo",
+    "vote": 1,
+    "ccode": 461,
+    "nombre": "Togo",
+    "region": 1,
+    "numeroId": 461,
+    "visitado": false
+  },
+  "955": {
+    "country": "TON",
+    "name": "Tonga",
+    "vote": 8,
+    "ccode": 955,
+    "nombre": "Tonga",
+    "region": 2,
+    "numeroId": 955,
+    "visitado": false
+  },
+  "52": {
+    "country": "TTO",
+    "name": "Trinidad and Tobago",
+    "vote": 8,
+    "ccode": 52,
+    "nombre": "Trinidad and Tobago",
+    "region": 4,
+    "numeroId": 52,
+    "visitado": false
+  },
+  "616": {
+    "country": "TUN",
+    "name": "Tunisia",
+    "vote": 8,
+    "ccode": 616,
+    "nombre": "Tunisia",
+    "region": 1,
+    "numeroId": 616,
+    "visitado": false
+  },
+  "640": {
+    "country": "TUR",
+    "name": "Turkey",
+    "vote": 1,
+    "ccode": 640,
+    "nombre": "Turkey",
+    "region": 5,
+    "numeroId": 640,
+    "visitado": false
+  },
+  "701": {
+    "country": "TKM",
+    "name": "Turkmenistan",
+    "vote": 8,
+    "ccode": 701,
+    "nombre": "Turkmenistan",
+    "region": 2,
+    "numeroId": 701,
+    "visitado": false
+  },
+  "947": {
+    "country": "TUV",
+    "name": "Tuvalu",
+    "vote": 8,
+    "ccode": 947,
+    "nombre": "Tuvalu",
+    "region": 2,
+    "numeroId": 947,
+    "visitado": false
+  },
+  "500": {
+    "country": "UGA",
+    "name": "Uganda",
+    "vote": 8,
+    "ccode": 500,
+    "nombre": "Uganda",
+    "region": 1,
+    "numeroId": 500,
+    "visitado": false
+  },
+  "369": {
+    "country": "UKR",
+    "name": "Ukraine",
+    "vote": 1,
+    "ccode": 369,
+    "nombre": "Ukraine",
+    "region": 3,
+    "numeroId": 369,
+    "visitado": false
+  },
+  "696": {
+    "country": "ARE",
+    "name": "United Arab Emirates",
+    "vote": 1,
+    "ccode": 696,
+    "nombre": "United Arab Emirates",
+    "region": 2,
+    "numeroId": 696,
+    "visitado": false
+  },
+  "200": {
+    "country": "GBR",
+    "name": "United Kingdom of Great Britain and Northern Ireland",
+    "vote": 1,
+    "ccode": 200,
+    "nombre": "United Kingdom of Great Britain and Northern Ireland",
+    "region": 5,
+    "numeroId": 200,
+    "visitado": false
+  },
+  "510": {
+    "country": "TZA",
+    "name": "United Republic of Tanzania",
+    "vote": 8,
+    "ccode": 510,
+    "nombre": "United Republic of Tanzania",
+    "region": 1,
+    "numeroId": 510,
+    "visitado": false
+  },
+  "2": {
+    "country": "USA",
+    "name": "United States of America",
+    "vote": 1,
+    "ccode": 2,
+    "nombre": "United States of America",
+    "region": 7,
+    "numeroId": 2,
+    "visitado": false
+  },
+  "165": {
+    "country": "URY",
+    "name": "Uruguay",
+    "vote": 1,
+    "ccode": 165,
+    "nombre": "Uruguay",
+    "region": 4,
+    "numeroId": 165,
+    "visitado": false
+  },
+  "704": {
+    "country": "UZB",
+    "name": "Uzbekistan",
+    "vote": 8,
+    "ccode": 704,
+    "nombre": "Uzbekistan",
+    "region": 2,
+    "numeroId": 704,
+    "visitado": false
+  },
+  "935": {
+    "country": "VUT",
+    "name": "Vanuatu",
+    "vote": 8,
+    "ccode": 935,
+    "nombre": "Vanuatu",
+    "region": 2,
+    "numeroId": 935,
+    "visitado": false
+  },
+  "101": {
+    "country": "VEN",
+    "name": "Venezuela, Bolivarian Republic of",
+    "vote": 2,
+    "ccode": 101,
+    "nombre": "Venezuela, Bolivarian Republic of",
+    "region": 4,
+    "numeroId": 101,
+    "visitado": false
+  },
+  "816": {
+    "country": "VNM",
+    "name": "Viet Nam",
+    "vote": 1,
+    "ccode": 816,
+    "nombre": "Viet Nam",
+    "region": 2,
+    "numeroId": 816,
+    "visitado": false
+  },
+  "679": {
+    "country": "YEM",
+    "name": "Yemen",
+    "vote": 1,
+    "ccode": 679,
+    "nombre": "Yemen",
+    "region": 2,
+    "numeroId": 679,
+    "visitado": false
+  },
+  "551": {
+    "country": "ZMB",
+    "name": "Zambia",
+    "vote": 8,
+    "ccode": 551,
+    "nombre": "Zambia",
+    "region": 1,
+    "numeroId": 551,
+    "visitado": false
+  },
+  "552": {
+    "country": "ZWE",
+    "name": "Zimbabwe",
+    "vote": 2,
+    "ccode": 552,
+    "nombre": "Zimbabwe",
+    "region": 1,
+    "numeroId": 552,
+    "visitado": false
+  }
+}
