@@ -24,7 +24,7 @@ function findEntities (searchText) {
     OrgFilter1(text, searchText)
   }
   else if(organismoOp == 2){
-    OrgFilter2(searchText)
+    OrgFilter2(text, searchText)
   }
   
   if(searchText === "") listaResultados.innerHTML = ''
@@ -50,8 +50,14 @@ function OrgFilter1(text, searchText){
 }
 
 //Filtro Naciones Unidas
-function OrgFilter2(searchText){
-  filterEntidades(searchText)
+function OrgFilter2(text, searchText){
+ 
+  if (text.includes("todo"))
+    filterAll()
+  else 
+    filterEntidades(searchText)
+
+  //filterAll(searchText)
 }
 
 filterEntidades = (text) => {
@@ -103,17 +109,25 @@ filterAsams = (text, flag) => {
 
 filterAll = () => {
   //const regex = new RegExp(`\\b.*${text}.*?\\b`, 'gi')
-  let matches = Object.values(nodosActuales)
   let data = []
   let info = []
+  let matches;
 
-  dictIds['cAsambs'] = matches
+  if(organismoOp == 1){
+    matches = Object.values(nodosActuales)
+    dictIds['cAsambs'] = matches
+  }
+  else if (organismoOp == 2){
+    matches = Object.values(paisesUN)
+    dictIds['cEntidades'] = matches
+    dictIds['cTodos'] = matches 
+  }
+  
   info.push("Todos")
   info.push(matches)
   data.push(info)
   
   outputEntidades(data, 'Todos')
-
 }
 
 filterPartidos = (text, flag) => {
@@ -326,7 +340,6 @@ buscarProvinciasOpciones = (list, provinciasSet, asambs) => {
   return data  
 }
 
-
 /**Lista de entidades Individuales */
 function outputAsambleistas (nodos) {
   let list = Object.values(nodos)
@@ -399,6 +412,7 @@ function outputEntidades (matches, option) {
 
   let oriiD = "c"+ option
   let totalAsambs = dictIds[oriiD]
+  //console.log("op", oriiD, totalAsambs, dictIds)
   let listasamb = Object.values(totalAsambs)
   LOGO && console.log(option)
   LOGO && console.log("total:", dictIds, listasamb, listasamb.length)

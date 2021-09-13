@@ -1,4 +1,4 @@
-var LOGC = true
+var LOGC = false
 
 function updateSesion(sesion) {
   nodosActuales = {}
@@ -321,11 +321,12 @@ createLabels = () => {
           .attr("id", (d) => "text" + d.numeroid)
           .text((d) => getNameAsamb(d))
           .attr("transform", (d) => "translate(" + d.xOffset + "," + d.yOffset + ")")
+          .style("font-size", "14px")
           .call((enter) =>
             enter
               .transition()
               .duration(durationRect)
-              .attr("transform", (d) => "translate(" + d.x + "," + (d.y+30) + ")")
+              .attr("transform", (d) => "translate(" + d.x + "," + (d.y+25) + ")")
               .style("opacity", 1)
           ),
       (update) =>
@@ -337,8 +338,9 @@ createLabels = () => {
           .attr("id", (d) => "text" + d.numeroid)
           //.attr('opacity', 1)
           .text((d) => getNameAsamb(d))
-          .attr("transform", (d) => "translate(" + d.x + "," + (d.y+30) + ")")
-          .style("opacity", 1),
+          .attr("transform", (d) => "translate(" + d.x + "," + (d.y+25) + ")")
+          .style("opacity", 1)
+          .style("font-size", "14px"),
       (exit) => exit.remove()
     );
 };

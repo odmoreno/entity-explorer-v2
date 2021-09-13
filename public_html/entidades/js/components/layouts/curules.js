@@ -3,7 +3,7 @@
  * Grafico para dibujar los curules
  */
 
- var LOGCU = true
+ var LOGCU = false
 
  
 var w2;
@@ -24,7 +24,7 @@ function updateCurules(){
   }
 
 
-  
+  testp()
   const newnodes = updateNodesCurules(data)
   const validcurulnodes = createNodes(newnodes, groups)
   
@@ -35,6 +35,30 @@ function updateCurules(){
   if(!flagEmptySes && !flagEmptyChart)
     calculateData(validcurulnodes)
 
+}
+
+function testp() {
+  const parliament = {
+    linke: {
+      seats: 64,
+      colour: '#a08'
+    },
+    spd: {
+      seats: 193,
+      colour: '#e02'
+    },
+    gruene: {
+      seats: 63,
+      colour: '#0b2'
+    },
+    union: {
+      seats: 311,
+      colour: '#333'
+    }
+  }
+  const radius = 20
+	const points = generatePoints(parliament, radius)
+  console.log("fin", points)
 }
 
 function updateNodesCurules(sesion){
@@ -98,9 +122,9 @@ function calculateData(validNodesCurul){
     
   w2 = 800 -100//width
   h2 = 700 -180//height
-  var xyfactor = w2 / 40.0;
+  var xyfactor = w2 / 45.0//40.0;
   //console.log('factor', xyfactor)
-  var acx = (690-w2) / 8.4
+  var acx = (690-w2) / 6.4//8.4
   var cx = w2 / 2 + acx;// - 20;
   var cy = h2 / 4 - 20;
   var tcx = (800-w2)*0.28;
@@ -139,7 +163,7 @@ function drawCurules(test){
             //console.log("enter curul:", d);
             if (d.visitado) {
               var _color = color(d, colorMap)
-              console.log(_color)
+              LOGCU && console.log(_color)
               return _color
             } else {
               return "#fff";
@@ -228,18 +252,11 @@ function drawCurules(test){
           .attr("class", (d) => selectClassTextLabels(d))
           .attr("text-anchor", "middle")
           .attr("id", (d) => "text" + d.numeroid)
+          .style("font-size", "14px")
           .text((d) => getNameAsamb(d))
           .call((enter) =>
             enter
-              //.attr("x", (d) => {
-              //  LOGCU && console.log("enter name");
-              //  var text = d3.select("#text" + d.numeroid);
-              //  var width = text.node().getComputedTextLength();
-              //  let value = width / 2;
-              //  return d.cx; //- value + 400;
-              //})
-              //.attr("y", (d) => d.cy + 20 + offsetY )//+ 100)
-              .attr("transform", (d) => "translate(" + d.cx + "," + (d.cy+20+offsetY) + ")")
+              .attr("transform", (d) => "translate(" + d.cx + "," + (d.cy+25+offsetY) + ")")
               .transition()
               .duration(durationRect)
               .style("opacity", (d) => {
@@ -256,23 +273,16 @@ function drawCurules(test){
           .attr("id", (d) => "text" + d.numeroid)
           .attr("text-anchor", "middle")
           .attr("class", (d) => selectClassTextLabels(d))
+          .style("font-size", "14px")
           //.attr('opacity', 1)
           .transition()
           .duration(durationRect)
             .text((d) => getNameAsamb(d))
-            //.attr("x", (d) => {
-            //  LOGCU && console.log("update name");
-            //  var text = d3.select("#text" + d.numeroid);
-            //  var width = text.node().getComputedTextLength();
-            //  let value = width / 2;
-            //  return d.cx; // - value + 400;
-            //})
-            //.attr("y", (d) => d.cy + 20 +offsetY)//+ 100)
-            .attr("transform", (d) => "translate(" + d.cx + "," + (d.cy+20+offsetY) + ")")
+            .attr("transform", (d) => "translate(" + d.cx + "," + (d.cy+25+offsetY) + ")")
           .style("opacity", (d) => {
-            console.log("Opacidad:", d)
+            LOGCU && console.log("Opacidad:", d)
             if (d.visitado) {
-              console.log("Opacidad:", d)
+              LOGCU && console.log("Opacidad:", d)
               return d.opacidad;
             } else {
               return 0.3;
@@ -290,8 +300,8 @@ function getNodosEdit (newnodes, curulesPorFila, cx, cy, tcx, tcy, xyfactor){
   var contadorGeneral = 0;
   let test = [...newnodes]
 
-  console.log(curulesPorFila)
-  console.log(curulesPorFila.length)
+  //console.log(curulesPorFila)
+  //console.log(curulesPorFila.length)
   if(organismoOp == 1){      
     test.sort((a,b) => (a.curul > b.curul) ? 1 : ((b.curul > a.curul) ? -1 : 0))
   }
@@ -302,7 +312,7 @@ function getNodosEdit (newnodes, curulesPorFila, cx, cy, tcx, tcy, xyfactor){
   // Primer bloque de asambleistas
   //console.log('Primer bloque de asambleistas ')
   for (var i = 0; i < curulesPorFila.length; i++) {
-    console.log("contador1 : ", contadorGeneral)
+    //console.log("contador1 : ", contadorGeneral)
       var radio = 150 + (27*xyfactor/20) * i;
       var bloques = curulesPorFila[i];
       var deltaAngulo = (25*xyfactor/20) / radio;
@@ -341,7 +351,7 @@ function getNodosEdit (newnodes, curulesPorFila, cx, cy, tcx, tcy, xyfactor){
   var anguloMax = angulo + deltaMax3 * (curulesPorFila[curulesPorFila.length - 1][1] + 1);
 
   for (i = 0; i < curulesPorFila.length; i++) {
-    console.log("contador2: ", contadorGeneral)
+    //console.log("contador2: ", contadorGeneral)
       var radio = 150 + (27*xyfactor/20) * i;
       var bloques = curulesPorFila[i];
       var deltaAngulo = (25*xyfactor/20) / radio;
@@ -367,7 +377,7 @@ function getNodosEdit (newnodes, curulesPorFila, cx, cy, tcx, tcy, xyfactor){
           test[contadorGeneral].cx = px * 2
           test[contadorGeneral].cy = py * 2
           test[contadorGeneral].r = xyfactor -9
-          console.log("contador2: ", contadorGeneral)
+          //console.log("contador2: ", contadorGeneral)
           angulo += deltaAngulo;
           contadorGeneral++;
       }

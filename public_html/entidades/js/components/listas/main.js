@@ -21,11 +21,11 @@ let transitionFlag = true
 //buscador de entidades dentro de la lista
 
 searchEntitysinList = (text) => {
-  entityList.innerHTML += ''
-  console.log("Texto:", text)  
+  
+  //console.log("Texto:", text)  
   let list = Object.values(nodosActuales)
   list = list.filter(element => element.visitado)
-  console.log("Nodos Actuales:", list)
+  //console.log("Nodos Actuales:", list)
 
   const regex = new RegExp(`\\b.*${text}.*?\\b`, "gi");
 
@@ -33,18 +33,21 @@ searchEntitysinList = (text) => {
     return pais.name.match(regex) && pais.visitado == true
   });
 
-  console.log("matches:", matches)
-
+  //console.log("matches:", matches)
+  
   let html = getListEntitys(matches, colorMap, transitionFlag)
   entityList.innerHTML += html
+  divTootltip()
+
+  if (transitionFlag)d3.selectAll('.circle_entity').transition().duration(durationRect).style("opacity", 1);
+  
 }
 
 //Lista de asambleistas ubicado a la derecha
 function ListEntitys (nodos, _colorMap = colorMap, _transitionFlag = transitionFlag) {
   let list = Object.values(nodos)
-  //LOGO && 
   list = list.filter(element => element.visitado) 
-  LOGO && console.log("LIST:", list, _colorMap)
+  LOGLI && console.log("LIST:", list, _colorMap)
   if(currentOptChart ==4){
     list = list.sort((a,b) => {
       if(a.codpartido > b.codpartido) return 1 
@@ -141,7 +144,7 @@ function getListEntitys(list, _colorMap, _transitionFlag){
 
 function divTootltip(){
   const asambsDivs = document.querySelectorAll('.entitySelected');
-  LOGO && console.log("tips:", asambsDivs);
+  LOGLI && console.log("tips:", asambsDivs);
 
   asambsDivs.forEach(change => change.addEventListener("mouseover", function() {
     let id = change.id.substring(1)
@@ -251,9 +254,9 @@ function removeEntityChart(id){
 }
 
 function fijarResaltado(id){
-  LOGO && console.log('Fijar ID:', id)
+  LOGLI && console.log('Fijar ID:', id)
   let nodoCircle = d3.select("#node"+id)
-  LOGO && console.log("Stroke:", nodoCircle.style("stroke"))
+  LOGLI && console.log("Stroke:", nodoCircle.style("stroke"))
 
   nodoCircle.attr("stroke", "orange")
             .attr("stroke-width", 3.0)
@@ -305,7 +308,7 @@ function sortByOption(op, nodosDesordenados){
     list.sort((a, b) => (a.nombre > b.nombre) ? 1 : ((b.nombre > a.nombre) ? -1 : 0))
   }
 
-  LOGO && console.log("sorted: ", list)
+  LOGLI && console.log("sorted: ", list)
   return list
 }
 

@@ -101,10 +101,12 @@ $("#searchVotes")
 $("#searchEntityList")
 .on("input", function () {
   //console.log("On input")
+  entityList.innerHTML = ''
   searchEntitysinList(this.value)
 })
 .on("click", function () {
   //console.log("On click")
+  entityList.innerHTML = ''
   searchEntitysinList(this.value)
 })
 
