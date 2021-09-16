@@ -63,6 +63,7 @@ let votesSet = [0, 1, 2, 3, 4]
 
 let valueText = '';
 
+let idsOpacidad = {}
 
 //Dimensiones del chart principal
 let height = 720//$('#chart').height()
@@ -91,7 +92,7 @@ const svg = d3.select("#chart").append("svg").attr('id', 'svg1')
 let g = svg.append("g")
         .attr('id', 'group')
 
-let circles = g.selectAll("nodeCircle").attr("transform", "translate(0,0)")
+let circles = g.selectAll("nodeCircle").attr("transform", "translate(0,0)").style("pointer-events", "all");
 let grptexts = svg.append("g").attr('id', 'grpTexts').attr("transform", "translate(0,0)")
 let texts = g.selectAll("text").attr("transform", "translate(0,0)")
 
@@ -111,17 +112,17 @@ let pl2 = d3
   .attr("transform", "translate(" + -400 + ", " + -200 + ")");
 
       
-d3.select("#svg1")
-  .append("rect")
-  .attr("fill", "none")
-  .attr("pointer-events", "all")
-  .attr("width", width)
-  .attr("height", height)
-  .attr(
-    "transform",
-    "translate(" + (-width / 2 + 50) + "," + (-height / 2 - 50) + ")"
-  )
-  .call(d3.zoom().scaleExtent([0.9, 8]).on("zoom", zoomed));
+//d3.select("#svg1")
+//  .append("rect")
+//  .attr("fill", "none")
+//  .attr("pointer-events", "all")
+//  .attr("width", width)
+//  .attr("height", height)
+//  .attr(
+//    "transform",
+//    "translate(" + (-width / 2 + 50) + "," + (-height / 2 - 50) + ")"
+//  )
+//  .call(d3.zoom().scaleExtent([0.9, 8]).on("zoom", zoomed));
 
 let tip = d3
   .tip()
@@ -902,6 +903,7 @@ function drawnodescenter(leaves){
           .remove()
     ); 
 
+    
   circles
     .on("mouseover", (d) => mouseOverRect(d.data))
     .on("mouseout", (d) => mouseOutRect(d.data));

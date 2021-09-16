@@ -49,6 +49,9 @@ Promise.all(promises)
   .catch((err) => console.log(err));
 
 function manageData() {
+
+  console.log("LODASH", _.round(4.006))
+  
   createGroups();
   //testChart()
   //initChart();
@@ -120,12 +123,22 @@ window.addEventListener('click', function(e){
     
     // Clicked outside the box
   }
-  $(document).keyup(function(e) {
+  $(document).keydown(function(e) {
     if (e.key === "Escape") { // escape key maps to keycode `27`
        console.log("Trigger ESC")
        fueradelbuscadorEntidades()
      }
+     else if(e.key == "Shift"){
+       //console.log("SHIFT press")
+       shiftPressed = true
+     }
+  }).keyup(function(e) {
+    if (e.key == "Shift") { 
+      //console.log("SHIFT up")
+      shiftPressed = false;
+    }
   });
+  
 
 });
 

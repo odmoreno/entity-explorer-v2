@@ -4,6 +4,7 @@
 //opciones de mapeo
 let colorMap= $('#colores-select').val()
 
+let shiftPressed = false;
 /**
  * Tipo de organismo
  * 1 = Asamblea Nacional

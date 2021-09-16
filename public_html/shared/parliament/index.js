@@ -1,4 +1,4 @@
-const sl = require('sainte-lague')
+//const sl = require('sainte-lague')
 const pi = Math.PI
 
 const round = (x) => Math.round(x * 100) / 100 //roundTo(x, 10)
@@ -61,7 +61,7 @@ const nextRing = (rings, ringProgress) => {
 const generatePoints = (parliament, r0) => {
 	const seatCount = seatSum(parliament)
 	const numberOfRings = calculateNumberOfRings(seatCount, r0)
-	const seatDistance = calculateSeatDistance(seatCount, numberOfRings, r0)
+	let seatDistance = calculateSeatDistance(seatCount, numberOfRings, r0) +5
 
     console.log("seatCount", seatCount)
     console.log("numberOfRings", numberOfRings)
@@ -77,7 +77,9 @@ const generatePoints = (parliament, r0) => {
 
 	// calculate seats per ring
 	// todo: float to int
-	rings = sl(rings, seatCount)
+	rings = sainteLague(rings, seatCount)
+
+	console.log("rings2", rings)
 
 	const points = []
 	let r, a, point
@@ -101,16 +103,16 @@ const generatePoints = (parliament, r0) => {
 		points.push(ring)
 	}
 
-    console.log("points alfa ", points)
+  console.log("points alfa ", points)
 	// fill seats
 	const ringProgress = Array(points.length).fill(0)
-    console.log(ringProgress)
+  //console.log(ringProgress)
 	for (let party in parliament) {
-        console.log(parliament[party])
+        //console.log(parliament[party])
 		for (let i = 0; i < parliament[party].seats; i++) {
 			ring = nextRing(points, ringProgress)
-            console.log(i)
-            console.log(ring,  points[ring] , ringProgress[ring])
+            //console.log(i)
+            //console.log(ring,  points[ring] , ringProgress[ring])
 
 			points[ring][ringProgress[ring]].fill = parliament[party].colour
 			points[ring][ringProgress[ring]].party = party
@@ -118,7 +120,7 @@ const generatePoints = (parliament, r0) => {
 		}
 	}
 
-    console.log("points", points)
+  console.log("points", points)
 	return merge(points)
 }
 
@@ -129,6 +131,18 @@ const pointToSVG = (point) => svg('circle', {
 	fill: point.fill,
 	class: point.party
 })
+
+const pointToSVG2 = (point) => {
+	let value = {
+		cx: point.x,
+		cy: point.y,
+		r: point.r,
+		fill: point.fill,
+		class: point.party
+	}
+	return value
+}
+
 
 const generate = (parliament, seatCount) => {
 	const radius = 20

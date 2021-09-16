@@ -3,11 +3,12 @@
  * Grafico para dibujar los curules
  */
 
- var LOGCU = false
+ var LOGCU = true
 
  
 var w2;
 var h2;
+var points;
 
 function updateCurules(){
 
@@ -24,9 +25,11 @@ function updateCurules(){
   }
 
 
-  testp()
+  points = testp()
   const newnodes = updateNodesCurules(data)
   const validcurulnodes = createNodes(newnodes, groups)
+
+  console.log("nodos curul:", validcurulnodes)
   
   optionColor2()
   LOGCU && console.log("colorMap:", colorMap, currentSes)
@@ -38,27 +41,41 @@ function updateCurules(){
 }
 
 function testp() {
-  const parliament = {
-    linke: {
-      seats: 64,
-      colour: '#a08'
+  const unParliament = {
+    1: {
+      seats: 54,
+      colour: '#0000FF'
     },
-    spd: {
-      seats: 193,
-      colour: '#e02'
+    2: {
+      seats: 54,
+      colour: '#339900'
     },
-    gruene: {
-      seats: 63,
-      colour: '#0b2'
+    3: {
+      seats: 23,
+      colour: '#CC0000'
     },
-    union: {
-      seats: 311,
-      colour: '#333'
+    4: {
+      seats: 33,
+      colour: '#CC3399'
+    },
+    5: {
+      seats: 28,
+      colour: '#CC9900'
+    },
+    7: {
+      seats: 1,
+      colour: '#c0c0c0'
     }
   }
-  const radius = 20
-	const points = generatePoints(parliament, radius)
-  console.log("fin", points)
+
+  const radius = 500
+	const points = generatePoints(unParliament, radius)
+  let elements = points.map(pointToSVG2)
+  elements = _.sortBy(elements, ['class']);
+  console.log("points", points)
+  console.log("elements", elements)
+  
+  return elements
 }
 
 function updateNodesCurules(sesion){
@@ -119,7 +136,12 @@ function calculateData(validNodesCurul){
     curulesPorFila = [[4, 4], [5, 5], [5, 5], [5, 7], [6, 7], [7, 7], [7, 8], [8, 10]];
 
   }
-    
+   
+  postCalculate(validNodesCurul, curulesPorFila)
+
+}
+
+function postCalculate(validNodesCurul, curulesPorFila){
   w2 = 800 -100//width
   h2 = 700 -180//height
   var xyfactor = w2 / 45.0//40.0;
@@ -130,13 +152,20 @@ function calculateData(validNodesCurul){
   var tcx = (800-w2)*0.28;
   var tcy = -(690-w2)/23.0;
 
-  const test  =  getNodosEdit(validNodesCurul, curulesPorFila, cx, cy, tcx, tcy, xyfactor)
+  let test  =  getNodosEdit(validNodesCurul, curulesPorFila, cx, cy, tcx, tcy, xyfactor)
   LOGCU && console.log('edit', test)
 
-  drawCurules(test)
+  let test2 = test.map( (n,i) => {
+    //console.log(n,i)
+    n.cx = points[i].cx 
+    n.cy = points[i].cy 
+    n.r = 10 //points[i].r
+    return n
+  })
 
+
+  drawCurules(test2)
 }
-
 
 function drawCurules(test){
   
@@ -241,6 +270,14 @@ function drawCurules(test){
 
   
   circles.on("mouseover", tip.show).on("mouseout", tip.hide)
+  circles.on("click", function(){
+    console.log("CLICK ON CCURUL")
+  })
+  circles.on("keypress", function() {
+    if(d3.event.keyCode === 32 || d3.event.keyCode === 13){
+    console.log("Congrats, you pressed enter or space!")
+    }
+  })
 
   texts = texts
     .data(test, (d) => d.id)

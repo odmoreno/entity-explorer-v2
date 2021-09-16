@@ -135,6 +135,7 @@ function clusters() {
           //.attr("cx", (d) => d.xOffset)
           //.attr("cy", (d) => d.yOffset)
           .attr("r", 0)
+          .attr("pointer-events", "all")
           .attr("transform", (d) => "translate(" + d.xOffset + "," + d.yOffset + ")")
           .attr("opacity", 0)
           .attr("stroke-width", (d) => (d.labelFlag ? 3.0 : 1))
@@ -172,6 +173,7 @@ function clusters() {
             LOGC && console.log("update cluster:")
             return d.id
           })
+          .attr("pointer-events", "all")
           .attr("class", (d) => selectClass(d))
           .transition()
           .duration(durationRect)
@@ -201,9 +203,32 @@ function clusters() {
           .remove()
     );
 
-  circles
-    .on("mouseover", (d) => mouseOverRect(d))
-    .on("mouseout", (d) => mouseOutRect(d));
+  //circles
+  //  .on("mouseover", (d) => mouseOverRect(d))
+  //  .on("mouseout", (d) => mouseOutRect(d));
+
+  circles.on("click", function(e){
+    
+    if(shiftPressed){
+      //console.log("click node shift:", e)
+      idsOpacidad[e.id] = 1
+      let values = Object.keys(idsOpacidad)
+      console.log("Values:", values)
+      d3.selectAll("circle").attr("opacity", "0.3")
+      values.forEach((element)=>{
+        d3.select("#"+element).attr("opacity", "1")
+      })
+    }
+    else {
+      console.log("uhh", e)
+      idsOpacidad = {}
+      d3.selectAll("circle").attr("opacity", "0.3")
+      d3.select("#"+e.id).attr("opacity", "1")
+      idsOpacidad[e.id] = 1
+    }
+    
+  })
+
 
   //rect.on('contextmenu', d3.contextMenu(menu));
   //rect.on('contextmenu', d3.contextMenu(menu, {
@@ -405,6 +430,7 @@ mouseOverRect = (d) => {
   //tip.show(d)
   let id = "#e" + d.numeroid;
   d3.select(id).style("border", "2px solid orange");
+  console.log("MOUSE OVER RECT")
   //console.log(d3.select(id))
 };
 
