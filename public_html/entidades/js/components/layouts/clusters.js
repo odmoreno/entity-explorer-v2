@@ -203,35 +203,44 @@ function clusters() {
           .remove()
     );
 
-  //circles
-  //  .on("mouseover", (d) => mouseOverRect(d))
-  //  .on("mouseout", (d) => mouseOutRect(d));
+  circles
+    .on("mouseover", (d) => mouseOverRect(d))
+    .on("mouseout", (d) => mouseOutRect(d));
 
   circles.on("click", function(e){
     
+    validateKeypress(e)
+    
+  })
+
+  validateKeypress = (e) => {
     if(shiftPressed){
       //console.log("click node shift:", e)
       idsOpacidad[e.id] = 1
       let values = Object.keys(idsOpacidad)
       console.log("Values:", values)
       d3.selectAll("circle").attr("opacity", "0.3")
+      texts.style("opacity", "0.3")
       values.forEach((element)=>{
         d3.select("#"+element).attr("opacity", "1")
+        d3.select("#text" + element.substring(4)).style("opacity", "1")
       })
     }
     else {
       console.log("uhh", e)
       idsOpacidad = {}
       d3.selectAll("circle").attr("opacity", "0.3")
+      d3.select("#group").selectAll("text").style("opacity", "0.3")
+      //texts.style("opacity", "0.3")
       d3.select("#"+e.id).attr("opacity", "1")
+      d3.select("#text" + e.numeroid).style("opacity", "1")
       idsOpacidad[e.id] = 1
     }
-    
-  })
+    d3.event.stopPropagation();
+  }
 
-
-  //rect.on('contextmenu', d3.contextMenu(menu));
-  //rect.on('contextmenu', d3.contextMenu(menu, {
+  circles.on('contextmenu', d3.contextMenu(menu));
+  //circles.on('contextmenu', d3.contextMenu(menu, {
   //	onOpen: function() {
   //		console.log('Quick! Before the menu appears!');
   //	},
@@ -340,7 +349,6 @@ createLabels = () => {
       (enter) =>
         enter
           .append("text")
-          .attr("opacity", 0)
           .attr("class", (d) => selectClassTextLabels(d))
           .attr("text-anchor", "middle")
           .attr("id", (d) => "text" + d.numeroid)
@@ -430,7 +438,7 @@ mouseOverRect = (d) => {
   //tip.show(d)
   let id = "#e" + d.numeroid;
   d3.select(id).style("border", "2px solid orange");
-  console.log("MOUSE OVER RECT")
+  //console.log("MOUSE OVER RECT")
   //console.log(d3.select(id))
 };
 

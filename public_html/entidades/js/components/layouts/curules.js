@@ -269,15 +269,17 @@ function drawCurules(test){
     );
 
   
-  circles.on("mouseover", tip.show).on("mouseout", tip.hide)
-  circles.on("click", function(){
-    console.log("CLICK ON CCURUL")
+  //circles.on("mouseover", tip.show).on("mouseout", tip.hide)
+  circles
+    .on("mouseover", (d) => mouseOverRect(d))
+    .on("mouseout", (d) => mouseOutRect(d));
+  
+  circles.on("click", function(e){
+  
+    validateKeypress(e)
+    
   })
-  circles.on("keypress", function() {
-    if(d3.event.keyCode === 32 || d3.event.keyCode === 13){
-    console.log("Congrats, you pressed enter or space!")
-    }
-  })
+
 
   texts = texts
     .data(test, (d) => d.id)
