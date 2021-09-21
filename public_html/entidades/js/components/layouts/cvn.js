@@ -192,7 +192,7 @@ function updateChartCvn(newnodes, newlinks) {
           .attr("visibility", "visible")
           .attr("class", "labeltext")
           //                        .attr('id', d => 'text' + d.numeroid)
-          .text((d) => getNameAsamb2(d))
+          .text((d) => getNameAsamb(d))
           //.attr('x', d=> getposX(d))
           //.attr('y', d => d.y +20)
           .attr("text-anchor", "middle")
@@ -200,7 +200,7 @@ function updateChartCvn(newnodes, newlinks) {
       (update) =>
         update
           //                        .attr('id', d => 'text' + d.numeroid)
-          .text((d) => getNameAsamb2(d))
+          .text((d) => getNameAsamb(d))
 
           .attr("text-anchor", "middle")
           //.attr('x', d=> getposX(d))

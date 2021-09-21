@@ -408,6 +408,8 @@ handleDataset = (value) =>{
   entityList.innerHTML = ''
   ListEntitys(list, colorMap, false)
 
+  fueradelbuscadorEntidades()
+  
   removeAllSessionsTimeline()
   
   idSesiones = {}
@@ -415,6 +417,7 @@ handleDataset = (value) =>{
   firstIds;
 
   resetValuesSlider()
+      
 }
 
 function fillemptyicons(){
