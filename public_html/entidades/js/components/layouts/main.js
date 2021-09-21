@@ -85,8 +85,24 @@ const svg = d3.select("#chart").append("svg").attr('id', 'svg1')
   //.style("background-color", 'red')
   .append("g")
   .attr('id', 'g1')
-  .attr("transform", "translate(" + (-width / 2 + 50) + "," + (-height / 2 - 50) + ")");
+  .attr("transform", "translate(" + (-width / 2 + 50) + "," + (-height / 2 - 50) + ")")
+  .call(d3.zoom().scaleExtent([0.9, 8]).on("zoom", zoomed))
   //.attr("transform", "translate(" + (-50) + "," + (-30 ) + ")");
+  .on("click", ()=> {
+    console.log("SVG CLICK")
+    d3.selectAll("circle").attr("opacity", "1")
+    texts.style("opacity", "1")
+  })
+
+var rect = svg.append("rect")
+  .attr("fill", "none")
+  .attr("width", width)
+  .attr("height", height)
+  //.attr(
+  //  "transform",
+  //  "translate(" + (-width / 2 + 50) + "," + (-height / 2 - 50) + ")"
+  //)
+  .attr("pointer-events", "all")
 
 //Elementos del svg 
 let g = svg.append("g")
@@ -129,6 +145,13 @@ let tip = d3
   .attr("class", "d3-tip")
   .html(function (d) {
     //console.log(d)
+    return showTipBy(d)
+  })
+  .offset([-12, 0]);
+svg.call(tip);
+
+showTipBy = (d) => {
+  if(organismoOp == 1){
     let html = `<div class="d-flex flex-column" id="tooltip">
         <strong class="p-1 textTip"><span style="color: #1375b7" >${
           d.nombre
@@ -144,9 +167,61 @@ let tip = d3
         }</span></span>
       </div>`;
     return html;
-  })
-  .offset([-12, 0]);
-svg.call(tip);
+  }
+  else if(organismoOp == 2){
+    let html = `<div class="d-flex flex-column" id="tooltip">
+        <strong class="p-1 textTip"><span style="color: #1375b7" >${
+          d.nombre
+        } (${d.idnombre})</span></strong>
+        <span id="asambTip" class="p-1" style="display: none;"><span style='text-transform:capitalize' >${groupCodes[d.region]}</span></span>
+        <span id="votoTip" class="p-1" style="display: none;"><span style='text-transform:capitalize' >Voto: ${
+          d.voto
+        }</span></span>
+      </div>`;
+    return html;
+  }
+}
+
+
+//Context Menu
+var menu = [
+  {
+    title: "Resaltar",
+    action: function (elm, d, i) {
+      LOGC && console.log("Resaltar");
+      LOGC && console.log(d);
+
+      if (d.labelFlag == false) {
+        LOGC && console.log("no visitado");
+        d3.select("#node" + d.numeroid)
+          .attr("stroke", "orange")
+          .attr("stroke-width", 3.0);
+        //d3.select("#text" + d.numeroid).attr("visibility", "visible");
+        d3.select("#e" + d.numeroid).style("border", "2px solid orange");
+        d.labelFlag = true;
+        entidades[d.numeroid].labelFlag = true;
+      } else {
+        d3.select("#node" + d.numeroid)
+          .attr("stroke", "#fff")
+          .attr("stroke-width", 0);
+        //d3.select("#text" + d.numeroid).attr("visibility", "hidden");
+        d3.select("#e" + d.numeroid).style("border", "2px solid white");
+        d.labelFlag = false;
+        entidades[d.numeroid].labelFlag = false;
+      }
+    },
+  },
+  {
+    title: "Eliminar",
+    action: function (elm, d, i) {
+      LOGC && console.log(elm, d, i);
+      LOGC && console.log("Eliminar!");
+      LOGC && console.log(d);
+      //removeEntityChart(d.numeroid);
+    },
+  },
+];
+
 
 function showPsets(){
   ////d3.select("#g1").transition().duration(durationRect).attr("opacity", "0") 

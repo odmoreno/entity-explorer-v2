@@ -249,8 +249,8 @@ function onLeaveEntity(id){
 /**Opciones de la lista de asambleistas */
 function removeEntityChart(id){
   entidades[id].visitado = false
-  updateChartEntitys()
-  findEntities(valueText)
+  //updateNodes()
+  //findEntities(valueText)
 }
 
 function fijarResaltado(id){

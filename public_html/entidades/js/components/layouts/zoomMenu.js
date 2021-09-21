@@ -4,7 +4,7 @@
 function zoomed() {
 
   var t = d3.zoomTransform(this);
-  //console.log(t)
+  //console.log("Zoom",t)
   if(flagEmptyChart){
     circles.attr("transform", transformInit(t))
     texts.attr("transform", transformText(t))
