@@ -514,3 +514,43 @@ function calculateValues(dictTmpLinks, dictLinkSes, sesLinkId, count) {
   //console.log("VAlues:", Object.values(dictAcum).length ,dictAcum)
   //return dictAcum
 }
+
+
+function createNodesForCvn(nodos, groups) {
+  let nodes = [];
+
+  nodos.map(function (d, i) {
+    groups[d.voto].cnt += 1;
+
+    let nodeu = {
+      id: "node" + d.numeroId,
+      numeroid: d.numeroId,
+      //x: (tmp + dictM[i].x),//Math.random() * (-10 - 60) + (-10),
+      //y: groups[d.voto].y + dictM[i].y,
+      //oldx: (tmp + dictM[i].x),//Math.random() * (-10 - 60) + (-10),
+      //oldy: groups[d.voto].y + dictM[i].y,
+
+      xOffset: d.xOffset,
+      yOffset: d.yOffset,
+      voto: d.voto,
+      lastvoto: d.lastvote,
+      group: d.voto,
+      partido: d.partido,
+      codpartido: d.codpartido,
+      nombre: d.nombre,
+      idnombre: d.id,
+      opacidad: d.opacidad,
+      provincia: d.provincia,
+      region: d.region,
+      tipo: d.tipo,
+      comisiones: d.comisiones,
+      curul: d.curul,
+      visitado: d.visitado,
+      labelFlag: d.labelFlag,
+    };
+
+    nodes.push(nodeu);
+  });
+
+  return nodes;
+}
