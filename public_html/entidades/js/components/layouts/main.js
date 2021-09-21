@@ -152,6 +152,7 @@ svg.call(tip);
 
 showTipBy = (d) => {
   if(organismoOp == 1){
+    console.log(d)
     let html = `<div class="d-flex flex-column" id="tooltip">
         <strong class="p-1 textTip"><span style="color: #1375b7" >${
           d.nombre
@@ -392,6 +393,49 @@ function handlechart(value) {
       updateLegends()
     }
   }
+}
+
+function initChart() {
+  
+  if(organismoOp == 1){      
+    testChart()
+  }
+  else if(organismoOp == 2){
+    console.log("a")
+  }
+}
+
+
+//Funcion con entidades por defecto agregadas
+function testChart() {
+
+  groups = _groups()
+
+  d3.values(asambleistas).map(function (asamb) {
+      if (true) {//asamb.partido == 'creo' || asamb.partido == 'suma'
+          asamb.labelFlag = false
+          //entidades[asamb.numeroId] = asamb
+      }
+  })
+  LOGC && console.log("Entidades selecc: ", entidades)
+  LOGC && console.log("total: ", d3.values(entidades).length)
+
+  let newnodos = updateSesion(sesiones[currentSes])
+  nodes = createNodes(newnodos, groups)
+
+  colorMap = $('#colores-select').val()
+  //updateInfoChart(sesiones[currentSes])
+
+  //updateTable(nodes)
+
+  //chart()
+  //sortFunction(nodosActuales)
+  ////ListEntitys(nodosActuales)
+
+  LOGC && console.log("Nodos Actuales :", Object.values(nodosActuales).length, nodosActuales)
+  LOGC && console.log("entidades: ", Object.values(entidades).length, entidades)
+  LOGC && console.log("newnodes: ", Object.values(newnodos).length, newnodos)
+  //console.log("Nodes:", nodes)
 }
 
 
@@ -985,3 +1029,13 @@ function drawnodescenter(leaves){
 
 }
 
+function updateEmptyChart(){
+  nodosActuales = {}
+  for(let key in entidades){
+    //let entidad = entidades[key]
+    entidades[key].visitado = false
+    delete entidades[key]
+  }
+  //updateEmptyInfo()
+  console.log("entidades enceradas;", entidades, nodosActuales)
+}

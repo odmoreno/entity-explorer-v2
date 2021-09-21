@@ -18,4 +18,5 @@ var partidosInfo = {
   'jp': { id: 'jp', nameid: 'juntos', name: 'Juntos Podemos', shortname: 'JP', select: true },
   'mat': { id: 'mat', nameid: 'mat', name: 'Movimiento Alianza Tsáchila', shortname: 'MAT', select: true },
   'midc': { id: 'midc', nameid: 'midc', name: 'Movimiento Integración Democrática Del Carchi', shortname: 'MIDC', select: true },
+  'unes': { id: 'unes', nameid: 'unes', name: 'Unión por la Esperanza ', shortname: 'UNES', select: true },
 }

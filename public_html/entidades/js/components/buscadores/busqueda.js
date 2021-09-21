@@ -79,7 +79,7 @@ filterEntidades = (text) => {
 
 filterAsams = (text, flag) => {
   const regex = new RegExp(`\\b.*${text}.*?\\b`, 'gi')
-
+  console.log("Nodos actuales", nodosActuales)
   let conjuntoDeAsambs = []
   let matches = Object.values(nodosActuales).filter(sess => {
       //console.log(sess)
@@ -387,7 +387,7 @@ function outputAsambleistas (nodos) {
                   stroke="${d3.rgb(color(element, colorMap)).darker(1)}" stroke-width="1"/></svg>
         
               <span class="${element.visitado ? 'entitySelected': 'entityAway'}" style="width: 85%;">
-                      ${element.name} </span>
+                      ${organismoOp == 1 ? element.nombre  : element.name}</span>
             </div>
           </div>
       </div>`

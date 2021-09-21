@@ -268,3 +268,62 @@ function getContent2(item) {
     
     return itemDiv
 }
+
+function removeAllSessionsTimeline() {
+  /**1. comprabar IDs de sesion
+   * 2. Remover todas las sesiones del timeline
+   * 3. Remover todas las sesiones para el canvas
+   * 4. remover lista de entidades a la derecha
+   * 5. actualizar el canvas a vacio 0 entidades en la lista
+   */
+  console.log("Removiendo todas las votaciones del timeline");
+
+  let valuesDICT = Object.keys(idSesiones);
+  console.log("a:", valuesDICT, idSesiones);
+  console.log(datas)
+  datas.remove(0)
+  for(let key in valuesDICT){
+    let id = parseInt(valuesDICT[key])
+    console.log(id)
+    datas.remove(id)
+    //removeSes(id)
+    //updateSlider()
+    //datas.delete(id)
+    delete idSesiones[id]
+  }
+
+  let slider = $("#slider-votos").data("ionRangeSlider");
+  slider.update({
+    min: 0,
+    max: 1,
+    from: 0,
+    step: 1,
+    grid: false 
+  })
+
+  //updateEmptyChart()
+  updateEmptyInfo()
+  //nodes = []
+  //sortFunction(nodosActuales)
+
+  currentOptChart = 1
+  flagEmptyChart = true
+  //flagEmptySes = true
+
+  d3.selectAll('.grp').attr("opacity", "0")
+
+  optionColor1()
+
+  
+  //nodosCentrales()
+  fillemptyicons()
+
+
+  console.log("Dict de sesiones id:", idSesiones)
+  //d3.timeout(chart, 500)
+//
+  console.log("entidades:", entidades)
+  console.log("Nodos actuales:", nodosActuales)
+  //console.log("nodos:", nodes)
+}
+

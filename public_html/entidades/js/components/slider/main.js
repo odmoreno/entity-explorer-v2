@@ -9,6 +9,14 @@ let totalDict;
 let countIndex = 0; 
 let flagindex = true
 
+function resetValuesSlider(){
+  listIndicesVotes = []
+  dictIVotes = {}
+  currentValueIndex=0;
+  reverseDIVotes = {}
+  totalDict =0
+  countIndex = 0; 
+}
 
 //Eventos del slider
 $("#play-button").on("click", function () {
@@ -109,18 +117,18 @@ function udpateSliderVotes(){
     },
     //prettify_enabled: true,
     //prettify_separator: ',',
-    prettify: function (n) {
-      let valuesDICT = Object.keys(idSesiones)
-      //console.log("Slider:", valuesDICT, n)
-      let value = titleByOption(n)
-      return value
-    },  
+    //prettify: function (n) {
+    //  let valuesDICT = Object.keys(idSesiones)
+    //  console.log("Slider:", valuesDICT, n)
+    //  let value = titleByOption(n, valuesDICT)
+    //  return value
+    //},  
   });
   //irs-grid-text
   LOG && console.log("SLider:", slider)
 }
 
-titleByOption = (n) => {
+titleByOption = (n, valuesDICT) => {
   if(organismoOp == 1){      
     if(valuesDICT.length > 1){
       let sesId = dictIVotes[n]
@@ -130,9 +138,12 @@ titleByOption = (n) => {
     }else return n
   }
   else if(organismoOp == 2){
-    let sesId = dictIVotes[n]
-    var tag = unResolutions[sesId]
-    return tag.unres
+    if(valuesDICT.length > 1){
+      let sesId = dictIVotes[n]
+      var tag = unResolutions[sesId]
+      return tag.unres
+    }else return n
+    
   }
   
 }

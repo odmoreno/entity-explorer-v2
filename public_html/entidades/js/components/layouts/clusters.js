@@ -354,7 +354,7 @@ createLabels = () => {
           .attr("id", (d) => "text" + d.numeroid)
           .text((d) => getNameAsamb(d))
           .attr("transform", (d) => "translate(" + d.xOffset + "," + d.yOffset + ")")
-          .style("font-size", "14px")
+          .style("font-size", organismoOp == 1 ? "10px" : "14px")
           .call((enter) =>
             enter
               .transition()
@@ -373,7 +373,7 @@ createLabels = () => {
           .text((d) => getNameAsamb(d))
           .attr("transform", (d) => "translate(" + d.x + "," + (d.y+25) + ")")
           .style("opacity", 1)
-          .style("font-size", "14px"),
+          .style("font-size", organismoOp == 1 ? "10px" : "14px"),
       (exit) => exit.remove()
     );
 };

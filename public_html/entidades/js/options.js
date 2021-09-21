@@ -176,6 +176,7 @@ colorPartidos2 = (d) => {
       "jp",
       "mat",
       "midc",
+      "unes"
     ])
     .range([
       "#d3d92b", //Alianza pais
@@ -188,7 +189,7 @@ colorPartidos2 = (d) => {
       "#6e4691", // idp (independiente)
       "#255734", // psa (partido sociedad patriótica)
       "#5e6f75", // aus (ausente
-      "#f986db", // pac (pachakutik)
+      "#FE2EC8", // pac (pachakutik)
       "#db693b", // id (izquierda demo)
       "#f59b42", // suma 
       "#999999", // om (otro movimiento)
@@ -198,6 +199,7 @@ colorPartidos2 = (d) => {
       "#90f703", // jp (juntos podemos)
       "#f3f703", // mat (movimiento alianza tsáchila)
       "#59adba", // midc (movimiento integración democrática del carchi)
+      "#FF4500"//Union por la esperanza
     ]);
   //console.log("Color:", scale(d))
   return scale(d) 

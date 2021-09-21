@@ -128,20 +128,6 @@ function updateNodesCurules(sesion){
 function calculateData(validNodesCurul){
   let curulesPorFila;
 
-  if(organismoOp == 1){      
-    curulesPorFila = [[2, 4], [3, 5], [4, 6], [5, 7], [6, 9], [8, 10]];
-  }
-  else if(organismoOp == 2){
-    //curulesPorFila = [[8, 8], [9, 9], [10, 10], [12, 12], [13, 13], [14, 14], [15, 15], [17, 17]];
-    curulesPorFila = [[4, 4], [5, 5], [5, 5], [5, 7], [6, 7], [7, 7], [7, 8], [8, 10]];
-
-  }
-   
-  postCalculate(validNodesCurul, curulesPorFila)
-
-}
-
-function postCalculate(validNodesCurul, curulesPorFila){
   w2 = 800 -100//width
   h2 = 700 -180//height
   var xyfactor = w2 / 45.0//40.0;
@@ -152,19 +138,38 @@ function postCalculate(validNodesCurul, curulesPorFila){
   var tcx = (800-w2)*0.28;
   var tcy = -(690-w2)/23.0;
 
+  
+  if(organismoOp == 1){      
+    curulesPorFila = [[2, 4], [3, 5], [4, 6], [5, 7], [6, 9], [8, 10]];
+  }
+  else if(organismoOp == 2){
+    //curulesPorFila = [[8, 8], [9, 9], [10, 10], [12, 12], [13, 13], [14, 14], [15, 15], [17, 17]];
+    curulesPorFila = [[4, 4], [5, 5], [5, 5], [5, 7], [6, 7], [7, 7], [7, 8], [8, 10]];
+  }
+   
   let test  =  getNodosEdit(validNodesCurul, curulesPorFila, cx, cy, tcx, tcy, xyfactor)
   LOGCU && console.log('edit', test)
 
-  let test2 = test.map( (n,i) => {
-    //console.log(n,i)
-    n.cx = points[i].cx 
-    n.cy = points[i].cy 
-    n.r = 10 //points[i].r
-    return n
-  })
+  if (organismoOp == 1) {
+    drawCurules(test);
+  } else {
+    let test2 = test.map((n, i) => {
+      //console.log(n,i)
+      n.cx = points[i].cx;
+      n.cy = points[i].cy;
+      n.r = 10; //points[i].r
+      return n;
+    });
+    drawCurules(test2);
+  }
 
 
-  drawCurules(test2)
+  //postCalculate(validNodesCurul, curulesPorFila)
+
+}
+
+function postCalculate(validNodesCurul, curulesPorFila){
+  
 }
 
 function drawCurules(test){
@@ -291,7 +296,7 @@ function drawCurules(test){
           .attr("class", (d) => selectClassTextLabels(d))
           .attr("text-anchor", "middle")
           .attr("id", (d) => "text" + d.numeroid)
-          .style("font-size", "14px")
+          .style("font-size", organismoOp == 1 ? "10px" : "14px")
           .text((d) => getNameAsamb(d))
           .call((enter) =>
             enter
@@ -312,7 +317,7 @@ function drawCurules(test){
           .attr("id", (d) => "text" + d.numeroid)
           .attr("text-anchor", "middle")
           .attr("class", (d) => selectClassTextLabels(d))
-          .style("font-size", "14px")
+          .style("font-size", organismoOp == 1 ? "10px" : "14px")
           //.attr('opacity', 1)
           .transition()
           .duration(durationRect)

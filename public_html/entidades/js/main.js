@@ -37,10 +37,10 @@ Promise.all(promises)
     provId = Object.values(provincias);
     comisionesId = Object.values(comisiones);
 
-    //console.log("info", info)
-    //console.log("asams", asambleistas)
-    //console.log("votaciones", sesiones)
-    //console.log("Enlaces", enlaces)
+    console.log("info", info)
+    console.log("asams", asambleistas)
+    console.log("votaciones", sesiones)
+    console.log("Enlaces", enlaces)
     console.log("UN Res", unResolutions);
     console.log("Paises", paisesUN);
 
@@ -54,9 +54,11 @@ function manageData() {
   
   createGroups();
   //testChart()
-  //initChart();
+  initChart();
   //udpateChartCvn(0)
   createTimelineEvents();
+
+  console.log("Current dataset", organismoOp)
 }
 
 
@@ -377,3 +379,46 @@ $('.dropdown2 .dropdown-menu2 li').click(function () {
 });
 /*End Dropdown Menu*/
 
+
+handleDataset = (value) =>{
+  console.log("HANDLE DATASET:", value)
+  if(value == 1){
+    organismoOp = 1
+  }
+  else if(value == 2){
+    organismoOp = 2
+  }
+
+  //initChart()
+  updateEmptyChart()
+  
+  circles.transition()
+          .duration(durationRect)
+          .style("opacity", () => {
+            LOGC && console.log("eliminar");
+            return 0;
+          })
+          .remove()
+
+  texts.remove()
+  grptexts.selectAll(".grp").remove()
+
+  let listEntity = Object.values(entidades);
+  let list = sortByOption(optionSort, listEntity)
+  entityList.innerHTML = ''
+  ListEntitys(list, colorMap, false)
+
+  removeAllSessionsTimeline()
+  
+  idSesiones = {}
+  lastIdS; 
+  firstIds;
+
+  resetValuesSlider()
+}
+
+function fillemptyicons(){
+  $("#svgParlamento").attr("fill", "#cecece");
+  $("#svgClusters").attr("fill", "#cecece");
+  $("#svgCovotingNetworks").attr("fill", "#cecece");
+}
