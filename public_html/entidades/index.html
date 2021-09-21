@@ -46,15 +46,63 @@
 
     </head>
 
-    <body id="page-top">
+    <body id="page-top" class="sidebar-toggled">
 
-        <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="accordionSidebar">
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+        
+        <!-- Heading -->
+        <div class="sidebar-heading">
+          Datasets
+        </div>
+  
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item active">
+          <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fa fa-database" aria-hidden="true"></i>
+            <span>Asamblea nacional</span>
+          </a>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Periodos:</h6>
+              <a class="collapse-item" href="">2017-2021</a>
+              <a class="collapse-item active" href="">2021-Presente</a>
+            </div>
+          </div>
+        </li>
+  
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="fa fa-database" aria-hidden="true"></i>
+            <span>Naciones Unidas</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+  
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+  
+      </ul>
+      <!-- End of Sidebar -->
+
+            <div id="content-wrapper" class="d-flex flex-column">
 
             <div id="content">
-
+                
                 <div class="container-fluid" style="padding-left: 5px; padding-right: 5px; padding-top: 0px;">
                     <div class="wrapper">
 
+                        
                         <div style="grid-column: 1 / 13; grid-row: 1; width: 100%; height: 780px;">
 
                             <div class="two" style="margin-top: 5px; width: 15%; height: 100%; float: right; border-bottom: #3d3d3d solid 1px;">
@@ -197,11 +245,13 @@
 
                                 <div style="width: 100%; margin-top: -45px;">                                
 
+                                    <!--style="position: absolute; left: 0.5%; width: 12.6%; border: #54575b 1px solid; background-color: white; border-bottom-left-radius: 0px; "-->
                                     <input onClick="this.select();" type="text" id="searchEntity"
                                            class="align-self-center form-control small"
                                            placeholder="Legisladores, partidos..."
                                            aria-label="Search" aria-describedby="basic-addon2"
-                                           style="position: absolute; left: 0.5%; width: 12.6%; border: #54575b 1px solid; background-color: white; border-bottom-left-radius: 0px; " />
+                                           
+                                           style="position: relative; left: 0.5%; border: #54575b 1px solid; background-color: white; border-bottom-left-radius: 0px; " />
 
                                     <div id="resultadosDiv" class="autocomplete-items"></div>
 
@@ -500,6 +550,8 @@
               </div>
           </footer>-->
             <!-- End of Footer -->
+            </div>
+
         </div>
 
         <!-- Bootstrap core -->

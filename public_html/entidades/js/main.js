@@ -347,7 +347,7 @@ dataGroup = (newnodes, groupMap) => {
       group = Array.from(d3.group(newnodes, d=> d.provincia))
   else if (groupMap == 'voto')
       group = Array.from(d3.group(newnodes, d=> d.voto))
-  else if (groupMap == 'comision')
+  /*else if (groupMap == 'comision')
       group = Array.from(d3.group(newnodes, d=> {
         if(d.comisiones.length > 0){
           //console.log(d.comisiones[0].comision)
@@ -356,7 +356,7 @@ dataGroup = (newnodes, groupMap) => {
         else{
           return ""
         }
-      } ))
+      } ))*/
 
   return group;
 }

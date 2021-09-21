@@ -241,15 +241,16 @@ body{
 
 /*Autocompletar div para el buscador de entidades*/
 .autocomplete-items {
-    position: absolute;
+    position: relative;
+    /*position: absolute;*/
     border: 1px solid #d4d4d4;    
     border-top: none;
     border-right: none;
     z-index: 99;    
-    margin-top: 40px;
+    /*margin-top: 40px;*/
     left: 0.5%;
     right: 0;
-    width: 12.6%;
+    /*width: 12.6%;*/
     overflow-x: auto;
     max-height: 85%;
     opacity: 1;
@@ -641,3 +642,36 @@ body{
   .irs-single {
       visibility: hidden;
   }
+
+  /*Css  s2badmin*/
+
+.sidebar.toggled {
+    overflow: visible;
+    width: 1.5rem!important;
+}
+
+.sidebar #sidebarToggle {
+    width: 1.5rem !important;
+    height: 1.5rem!important;
+    text-align: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.sidebar .nav-item .nav-link {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 1rem;
+    width: 12rem !important;
+}
+
+.sidebar {
+    width: 11rem!important;
+}
+.sidebar .nav-item .collapse .collapse-inner, .sidebar .nav-item .collapsing .collapse-inner {
+    padding: .5rem 0;
+    min-width: auto !important;
+    font-size: .85rem;
+    margin: 0 0 1rem 0;
+}
