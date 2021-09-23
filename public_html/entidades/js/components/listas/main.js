@@ -22,25 +22,56 @@ let transitionFlag = true
 
 searchEntitysinList = (text) => {
   
-  //console.log("Texto:", text)  
-  let list = Object.values(nodosActuales)
-  list = list.filter(element => element.visitado)
-  //console.log("Nodos Actuales:", list)
+  if(legendTagSearch){
+    searchLegends(text)
+  }
+  else
+    searchEntitys1(text)
+ 
+}
+
+searchLegends = (text) => {
+  let partidosList = Object.values(partidosInfo)
+  let list = partidosList.map( p => p.name)
 
   const regex = new RegExp(`\\b.*${text}.*?\\b`, "gi");
-
-  let matches = Object.values(nodosActuales).filter((pais) => {
-    return pais.name.match(regex) && pais.visitado == true
+ 
+  let matches = newnodesLegends.filter((group) => {
+      //console.log(group)
+      //return group.codpartido.match(regex)
+      return  partidosInfo[group.codpartido].name.match(regex)
   });
 
-  //console.log("matches:", matches)
-  
-  let html = getListEntitys(matches, colorMap, transitionFlag)
-  entityList.innerHTML += html
-  divTootltip()
+  console.log("matches:", matches)  
+  //drawLegends([], colorMap)
+  legends.selectAll("g").remove()
+  drawLegends(matches, colorMap)
 
-  if (transitionFlag)d3.selectAll('.circle_entity').transition().duration(durationRect).style("opacity", 1);
-  
+}
+
+searchEntitys1 = (text) => {
+   //console.log("Texto:", text)  
+   let list = Object.values(nodosActuales)
+   list = list.filter(element => element.visitado)
+   //console.log("Nodos Actuales:", list)
+ 
+   const regex = new RegExp(`\\b.*${text}.*?\\b`, "gi");
+ 
+   let matches = Object.values(nodosActuales).filter((pais) => {
+     //console.log("Entidad:", pais)
+     if(organismoOp == 1)
+       return pais.id.match(regex) && pais.visitado == true
+     else if (organismoOp == 2)
+       return pais.name.match(regex) && pais.visitado == true
+   
+   });
+   //console.log("matches:", matches)  
+   let html = getListEntitys(matches, colorMap, transitionFlag)
+   entityList.innerHTML += html
+   divTootltip()
+ 
+   if (transitionFlag)d3.selectAll('.circle_entity').transition().duration(durationRect).style("opacity", 1);
+   
 }
 
 //Lista de asambleistas ubicado a la derecha
@@ -113,7 +144,7 @@ function getListEntitys(list, _colorMap, _transitionFlag){
     `<div id="e${element.numeroId}" class="card-list asamb-list nodrag noselect" 
         style="margin-bottom: 10px;  border: ${!element.labelFlag ? '2px solid white' : '2px solid orange' }  ">
         <div class="d-flex flex-row justify-content-between">
-          <div style="align-items: center;">
+          <div id="el${element.numeroId}" style="align-items: center;" class="elist" >
 
             <svg height="22" width="22" style="margin-right: 2px;">
               <circle class="circle_entity" cx="9" cy="10" r="8" fill="${color(element, _colorMap)}" 
@@ -198,9 +229,7 @@ function overEntity(id){
     if(nodosAcumuladosFlag){
       element = entidades[id]
       if(element.visitado){
-        d3.select("#e"+id).style("border", "2px solid orange")
-        d3.select("#node"+id).attr("stroke", "orange").attr("stroke-width", 3.0)
-        //d3.select('#text' + id).attr("visibility", "visible")
+        opacarNodos(element)
       }  
     }
     else{
@@ -208,15 +237,51 @@ function overEntity(id){
       if(organismoOp == 1)element = nodosActuales[id]
       else element = paisesUN[id]
 
-      LOGLI && console.log("element de nodos actuales:", element)
+      //console.log("element de nodos actuales:", element)
       if(element.visitado){
-        d3.select("#e"+id).style("border", "2px solid orange")
-        d3.select("#node"+id).attr("stroke", "orange").attr("stroke-width", 3.0)
-        //d3.select('#text' + id).attr("visibility", "visible")
+        opacarNodos(element)
       }
     }
   }
   //tip3.attr('class', 'd3-tip animate').show(element)
+}
+
+resaltarNodo = (id) => {
+  d3.select("#e"+id).style("border", "2px solid orange")
+  d3.select("#node"+id).attr("stroke", "orange").attr("stroke-width", 3.0)
+  //d3.select('#text' + id).attr("visibility", "visible")
+}
+
+desresaltarNodo = (id) => {
+  var _color = d3.select("#node"+id).attr('fill')
+  d3.select("#e"+id).style("border", "2px solid white")
+  d3.select("#node"+id).attr("stroke", d3.rgb(_color).darker(1) ).attr("stroke-width", 1)
+  //d3.select('#text' + id).attr("visibility", "hidden")
+}
+
+opacarNodos = (e) => {
+  idsOpacidad = {}
+  circles.attr("opacity", "0.25")
+  d3.select("#group").selectAll("text").style("opacity", "0.3")
+  d3.select("#node"+e.numeroId).attr("opacity", "1")
+  d3.select("#text" + e.numeroId).style("opacity", "1")
+  idsOpacidad[e.numeroid] = 1
+  opacarLista(e)
+}
+
+opacidad1Nodos = () => {
+  circles.attr("opacity", "1")
+  texts.style("opacity", "1")
+  desopacarLista()
+}
+
+opacarLista = (e) => {
+  d3.select("#entity-list").selectAll(".elist").style("opacity", "0.25")
+  d3.select("#el"+e.numeroId).style("opacity", "1")
+}
+
+desopacarLista = () => {
+  d3.select("#entity-list").selectAll(".elist").style("opacity", "1")
 }
 
 function onLeaveEntity(id){
@@ -226,20 +291,14 @@ function onLeaveEntity(id){
     if(nodosAcumuladosFlag){
       element = entidades[id]
       if(element.visitado && !element.labelFlag){
-        var _color = d3.select("#node"+id).attr('fill')
-        d3.select("#e"+id).style("border", "2px solid white")
-        d3.select("#node"+id).attr("stroke", d3.rgb(_color).darker(1) ).attr("stroke-width", 1)
-        //d3.select('#text' + id).attr("visibility", "hidden")
+        opacidad1Nodos()
       } 
     }
     else{
       if(organismoOp == 1)element = nodosActuales[id]
       else element = paisesUN[id]
       if(element.visitado && !element.labelFlag){
-        var _color = d3.select("#node"+id).attr('fill')
-        d3.select("#e"+id).style("border", "2px solid white")
-        d3.select("#node"+id).attr("stroke", d3.rgb(_color).darker(1) ).attr("stroke-width", 1)
-        //d3.select('#text' + id).attr("visibility", "hidden")
+        opacidad1Nodos()
       }
     }
   }

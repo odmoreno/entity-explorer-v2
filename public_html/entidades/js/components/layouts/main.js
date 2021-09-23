@@ -90,8 +90,9 @@ const svg = d3.select("#chart").append("svg").attr('id', 'svg1')
   //.attr("transform", "translate(" + (-50) + "," + (-30 ) + ")");
   .on("click", ()=> {
     console.log("SVG CLICK")
-    d3.selectAll("circle").attr("opacity", "1")
+    circles.attr("opacity", "1")
     texts.style("opacity", "1")
+    desopacarLista()
   })
 
 var rect = svg.append("rect")
@@ -291,7 +292,7 @@ function optionColor2() {
     }
   }
   else if(organismoOp == 2){
-    //colorMap = "voto";
+    colorMap = "region";
   }
 
   

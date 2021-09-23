@@ -49,7 +49,7 @@ function searchSesiones(searchText) {
     //outputSesiones(word)
     
     //if(searchText == '') 
-    //outputSesiones2(matchesSes)
+    //outputSesiones2(matches)
     outputVotes(matches)
     addListeners()
 }
@@ -168,7 +168,8 @@ function filterData(text, ses, set) {
 
 function outputSesiones2(matches){
     
-    LOGBS && console.log(dictIds)
+    LOGBS && console.log('Dict IDs',dictIds)
+    console.log("sesion matches:", matches)
 
     if (matches.length > 0) {
       const header = `<div class="card-listU">
@@ -277,6 +278,7 @@ function outputVotes(matches) {
         //listaResultadosV.innerHTML += header
         listaResultados.innerHTML += header
 
+        //'Votación '+ element.votacion
         const html = matches.map(element =>
                 `<div  id="v${element.sesId}"  class="card-listU itemVotes py-1 ${!element.visitado ? 'draggme' : 'nodrag2 noselect'}"
           draggable="${!element.visitado ? true : false}"  
@@ -288,7 +290,7 @@ function outputVotes(matches) {
               <div class="d-flex flex-column" onmouseover="overVotes(${element.sesId})" onmouseleave="onLeaveVote(${element.sesId})">
                 <div class="d-flex flex-row">
                   ${ sesFlag ? ' ' : `<span class='mr-2'  style="color: #034EA2; font-weight: bold;"> Sesión ${organismoOp == 1? element.sesion : element.anio}</span>`}
-                  <span class='mr-2' style="color: #034EA2; font-weight: bold;"> ${organismoOp == 1? 'Votación '+ element.votacion : element.unres }</span>
+                  <span class='mr-2' style="color: #034EA2; font-weight: bold;"> ${organismoOp == 1? element.name : element.unres }</span> 
                 </div>
                 <span style="color: #54575b;"> (${organismoOp == 1? (element.fecha +' '+ element.hora): element.date }) : </span>
                 <span> ${ element.bold ? element.bold : element.asunto } ... </span> 
@@ -400,7 +402,7 @@ function handleDragEnd(e) {
         'title': organismoOp == 1 ? item.name : item.unres,
         "type": "box",
         'start': startDateSelec(fecha, hora),
-        'end': new Date(parseInt(fecha[0]), parseInt(fecha[1] - 1), parseInt(fecha[2]), 23, 59),
+        'end': endDateSelect(fecha, hora), 
     }
 
     datas.add(node)
@@ -447,6 +449,14 @@ startDateSelec = (fecha, hora) =>{
     }
 }
 
+endDateSelect = (fecha, hora) => {
+    if(organismoOp == 1){
+       return  new Date(parseInt(fecha[0]), parseInt(fecha[1] - 1), parseInt(fecha[2]), 23, 59)
+    }
+    else {
+        return new Date(parseInt(fecha[0]), parseInt(fecha[1] - 1), parseInt(fecha[2]), 0, 0)
+    } 
+}
 
 function handleDragStart2(event) {
     var dragSrcEl = event.target;
@@ -552,7 +562,7 @@ function addListeners() {
 
       for (var i = itemsSes.length - 1; i >= 0; i--) {
         var item2 = itemsSes[i];
-        LOGBS && console.log("D:", item);
+        //LOGBS && console.log("D:", item);
         item2.addEventListener("dragstart", handleDragStart4.bind(this), false);
         item2.addEventListener("dragend", handleDragEnd4.bind(this), false);
       }
@@ -623,13 +633,7 @@ function addAllVotesHeader() {
       title: organismoOp == 1 ? item.name : item.unres,
       type: "box",
       start: startDateSelec(fecha, hora),
-      end: new Date(
-        parseInt(fecha[0]),
-        parseInt(fecha[1] - 1),
-        parseInt(fecha[2]),
-        23,
-        59
-      ),
+      end: endDateSelect(fecha, hora), 
     };
 
     datas.add(node);
@@ -706,7 +710,7 @@ function addAllSesions(id){
             'title': item.name,
             "type": "box",
             'start': new Date(parseInt(fecha[0]), parseInt(fecha[1] - 1), parseInt(fecha[2]), parseInt(hora[0]), parseInt(hora[1])),
-            'end': new Date(parseInt(fecha[0]), parseInt(fecha[1] - 1), parseInt(fecha[2]), 23, 59),
+            'end': endDateSelect(fecha, hora), 
         }
         //console.log(node)
         datas.add(node)

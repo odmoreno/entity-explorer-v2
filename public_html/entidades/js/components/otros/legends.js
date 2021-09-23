@@ -1,5 +1,5 @@
 /**Zona de leyendas */
-var LOGLY = false;
+var LOGLY = true;
 
 let legendsSvg = d3.select("#legend-area")
     .append("svg")
@@ -12,6 +12,10 @@ let legends = legendsSvg.append("g")
 
 let dictLeg = {}
 let legendFlag = true
+
+let legendTagSearch = false
+
+let newnodesLegends;
 
 let cods = {
   creo: "creo",
@@ -35,6 +39,8 @@ let cods = {
 
 function updateLegends(){
 
+  newnodesLegends = []
+  
   LOGLY && console.log("current color Map:", colorMap)
   LOGLY && console.log("current nodos", entidades)
 
@@ -44,7 +50,7 @@ function updateLegends(){
 
   dictLeg = {}
 
-  let newnodes = nodosActuales.map( d => {
+  newnodesLegends = nodosActuales.map( d => {
     //console.log(d)
     if(colorMap == "partidos"){
       if(!dictLeg[d.codpartido]){
@@ -61,12 +67,13 @@ function updateLegends(){
     
   })
 
-  newnodes = newnodes.filter(function(el) { return el; });
+  newnodesLegends = newnodesLegends.filter(function(el) { return el; });
   
-  LOGLY && console.log("Nuevas leyendas:", newnodes)
+  LOGLY && console.log("Nuevas leyendas:", newnodesLegends)
 
+  LOGLY && console.log("Leyendas:", dictLeg)
   //nodosActuales
-  drawLegends(newnodes, colorMap)
+  drawLegends(newnodesLegends, colorMap)
 }
 
 function drawLegends(elements, option) {
@@ -111,15 +118,19 @@ function drawLegends(elements, option) {
       .attr("x", 25)
       .attr("y", 14)
       .attr("class", "legendTag")
-      .text(option == "voto" ? element.voto : cods[element.codpartido])
+      .text(option == "voto" ? element.voto : partidosInfo[element.codpartido].name)//cods[element.codpartido
       .call(wrapLegend);
 
     
   });
 }
 
-function handleLegend() {
+function handleLegend(value) {
   LOGLY && console.log("HOLAAA");
+  if(value == 2)
+    legendTagSearch = true
+  else 
+    legendTagSearch = false
 }
 
 /**Ajustar texto */

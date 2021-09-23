@@ -3,7 +3,7 @@
  * Grafico para dibujar las cvns junto con sus funciones [Update]
  */
 
- var LOGCV = false
+ var LOGCV = true
 
  LOGCV && console.log("Tam:", width)
  

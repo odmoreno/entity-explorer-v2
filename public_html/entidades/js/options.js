@@ -2,7 +2,7 @@
 
 
 //opciones de mapeo
-let colorMap= $('#colores-select').val()
+let colorMap= 'partidos' //$('#colores-select').val()
 
 let shiftPressed = false;
 /**
@@ -10,7 +10,7 @@ let shiftPressed = false;
  * 1 = Asamblea Nacional
  * 2 = Naciones Unidas 
  */
-let organismoOp = 2
+let organismoOp = 1
 
 /** Data Asamblea */
 // Informacion de la asamblea nacional

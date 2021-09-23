@@ -112,17 +112,22 @@ $("#searchEntityList")
 .on("click", function () {
   //console.log("On click")
   entityList.innerHTML = ''
-  searchEntitysinList(this.value)
+  this.value = ''
+  $("#searchEntityList")[0].innerHTML = ''
+  searchEntitysinList('')
+
 })
 
 
 window.addEventListener('click', function(e){    
-  if (document.getElementById('resultadosDiv').contains(e.target) || document.getElementById('searchEntity').contains(e.target)){
+  if (document.getElementById('div-entity').contains(e.target) || document.getElementById('searchEntity').contains(e.target)){
     // Clicked in box
     //console.log("Inside")
   } else{
-    //console.log("outside")
-    
+    console.log("outside")
+    entityList.innerHTML = ''
+    this.value = ''
+    searchEntitysinList('')
     // Clicked outside the box
   }
   $(document).keydown(function(e) {
@@ -384,9 +389,12 @@ handleDataset = (value) =>{
   console.log("HANDLE DATASET:", value)
   if(value == 1){
     organismoOp = 1
+    colorMap = 'partido'
   }
   else if(value == 2){
     organismoOp = 2
+    colorMap = 'region'
+    console.log("COLORMAP:", colorMap)
   }
 
   //initChart()

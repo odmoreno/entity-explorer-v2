@@ -148,6 +148,7 @@ function clusters() {
                 return d.id;
               })
               .attr("stroke", (d) => {
+                console.log("COLOR UPDATE:", colorMap)
                 var _color = color(d, colorMap);
                 return d3.rgb(_color).darker(1);
               })
@@ -189,7 +190,7 @@ function clusters() {
           .attr("fill", (d) => {
 
             var _color = color(d, colorMap)
-            LOGC && console.log("COLOR UPDATE:", _color)
+            console.log("COLOR UPDATE:", _color)
             return _color
           }),
       (exit) =>
@@ -219,25 +220,32 @@ function clusters() {
       idsOpacidad[e.id] = 1
       let values = Object.keys(idsOpacidad)
       console.log("Values:", values)
-      d3.selectAll("circle").attr("opacity", "0.3")
-      texts.style("opacity", "0.3")
+      d3.selectAll("circle").attr("opacity", "0.25")
+      texts.style("opacity", "0.25")
+      d3.select("#entity-list").selectAll(".elist").style("opacity", "0.25")
+      
       values.forEach((element)=>{
         d3.select("#"+element).attr("opacity", "1")
         d3.select("#text" + element.substring(4)).style("opacity", "1")
+        d3.select("#el"+element.substring(4)).style("opacity", "1")
       })
     }
     else {
       console.log("uhh", e)
       idsOpacidad = {}
-      d3.selectAll("circle").attr("opacity", "0.3")
-      d3.select("#group").selectAll("text").style("opacity", "0.3")
+      d3.selectAll("circle").attr("opacity", "0.25")
+      d3.select("#group").selectAll("text").style("opacity", "0.25")
+      d3.select("#entity-list").selectAll(".elist").style("opacity", "0.25")
       //texts.style("opacity", "0.3")
       d3.select("#"+e.id).attr("opacity", "1")
       d3.select("#text" + e.numeroid).style("opacity", "1")
       idsOpacidad[e.id] = 1
+      d3.select("#el"+e.numeroid).style("opacity", "1")
     }
     d3.event.stopPropagation();
   }
+
+  
 
   circles.on('contextmenu', d3.contextMenu(menu));
   //circles.on('contextmenu', d3.contextMenu(menu, {

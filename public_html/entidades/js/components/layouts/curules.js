@@ -155,8 +155,8 @@ function calculateData(validNodesCurul){
   } else {
     let test2 = test.map((n, i) => {
       //console.log(n,i)
-      n.cx = points[i].cx;
-      n.cy = points[i].cy;
+      n.cx = points[i].cx + 550;
+      n.cy = points[i].cy + 700;
       n.r = 10; //points[i].r
       return n;
     });
