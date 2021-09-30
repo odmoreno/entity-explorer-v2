@@ -155,7 +155,7 @@ function createTimelineEvents() {
 }
 
 
-function removeAllSessionsTimeline() {
+function removeAllSessionsTimeline2() {
 
   console.log("Removiendo todas las votaciones del timeline");
 

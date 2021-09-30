@@ -59,6 +59,9 @@ let idSesiones = {}
 let lastIdS; 
 let firstIds;
 
+//Dias del rango
+let datesRange = {}
+
 /**Data UN */
 // Informacion de las naciones unidas
 let unResolutions = []

@@ -19,7 +19,11 @@
         <link rel="stylesheet" href="../shared/ionRangeSlider/ion.rangeSlider.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.2/rangeslider.css" />
 
+        <!--Datepicker-->
+        <link rel="stylesheet" href="../shared/bootstrap-datepicker/bootstrap-datepicker.min.css" />
+        
         <!--Multiselect-->
+        <link rel="stylesheet" href="../shared/bootstrap-multiselect/bootstrap-multiselect.css" />
         <link rel="stylesheet" href="../shared/bootstrap-multiselect/bootstrap-multiselect.css" />
         <!--D3 tips-->
         <link rel="stylesheet" href="../shared/d3/d3-tip.css" />
@@ -466,20 +470,36 @@
                             <!---->
                             <div class="six" style="float: left; width: 15%; visibility: hidden;">
                                 6
+                                
                             </div>
 
 
                             <div class="five" style="float: left; width: 70%; margin-top: 4px;">
 
-                                <div class="card" style="border: none;">
-                                    <div class="card-body d-flex flex-row">
-                                        <div id="pointTimeline" style="border: #3d3d3d solid 1px;" ></div>
-                                        <button type="button" class="btn btn-primary btn-sm">Primary</button>
-                                        <button type="button" class="btn btn-primary btn-sm">Secondary</button>
+                                <div class="container-points">
+                                    <div class="card" style="border: none;">
+                                        <div class="card-body">
+                                            <div id="pointTimeline" style="border: #3d3d3d solid 1px;" ></div>
+                                        </div>
                                     </div>
-                                    
+                                    <div class="fecha-rango">
+                                       <!--
+                                            <input id="datepicker1" type="text" class="form-control" value="">
+                                        <div class="input-group-addon">to</div>
+                                        <input id="datepicker2" type="text" class="form-control" value="">
+                                       
+                                       --> 
+                                        
+                                            <div class="input-group input-daterange">
+                                            <input id="datepicker1" type="text" class="form-control" value="2012-04-05">
+                                            <div class="input-group-addon">to</div>
+                                            <input id="datepicker2" type="text" class="form-control" value="2012-04-19">
+                                            </div>
+                                        
+                                        <!--<button type="button" class="btn btn-primary btn-sm">Secondary</button>-->
+                                    </div>
                                 </div>
-
+                                
                                 <div class="card" style="border: none;">
                                     <div class="card-body">
                                         <div id="timelineVis" style="border: #3d3d3d solid 1px;" ondrop="drop2(event)" ondragover="allowDrop2(event)"></div>
@@ -531,6 +551,10 @@
         <!--Multiselect-->
         <script src="../shared/bootstrap-multiselect/bootstrap-multiselect.js"></script>
 
+        <!--Datepicker-->
+        <script src="../shared/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+        <script src="../shared/bootstrap-datepicker/bootstrap-datepicker.es.min.js"></script>
+
         <!-- D3 js core-->
         <script src="../shared/d3/d3.min.js"></script>
         <script src="../shared/d3/d3-tip.js"></script>
@@ -572,6 +596,7 @@
         <script src="js/components/layouts/cvn.js"></script>
         <script src="js/components/slider/main.js"></script>
         <script src="js/components/timeline/timelinevis.js"></script>
+        <script src="js/components/timeline/timelineShort.js"></script>
         <script src="js/components/buscadores/busqueda.js"></script>
         <script src="js/components/buscadores/busquedaSes.js"></script>
         <script src="js/components/listas/main.js"></script>

@@ -57,6 +57,7 @@ function manageData() {
   initChart();
   //udpateChartCvn(0)
   createTimelineEvents();
+  createTimelineEvents2();
 
   console.log("Current dataset", organismoOp)
 }
@@ -118,6 +119,42 @@ $("#searchEntityList")
 
 })
 
+$('.input-daterange input').each(function() {
+  $(this).datepicker('clearDates');
+  
+  $(this).datepicker()
+    .on('changeDate', function(e) {
+      console.log($(this).attr('id'))
+      console.log('changeDate:', e.date)
+      datesRange[$(this).attr('id')] = e.date
+      //console.log($(this).datepicker())  
+      console.log(datesRange)
+
+      setWindowsTimeline()
+  })
+
+});
+
+$('#datepicker1')
+  .datepicker()
+  .on('changeDate', function (e) {
+    console.log('changeDate1:', e.date)
+  });
+
+  $('#datepicker2')
+  .datepicker()
+  .on('changeDate', function (e) {
+    console.log('changeDate2:', e.date)
+  });
+
+function setWindowsTimeline () {
+  let values = Object.values(datesRange)
+
+  if(values.length == 2 ){
+    timeline.setWindow(values[0], values[1]);
+  }
+
+}
 
 window.addEventListener('click', function(e){    
   if (document.getElementById('div-entity').contains(e.target) || document.getElementById('searchEntity').contains(e.target)){
