@@ -1055,7 +1055,7 @@ function updateEmptyChart(){
 }
 
 fillOp1 = (e) => {
-  console.log("opcion 1")
+  console.log("opcion 1", e)
   d3.select('#node' + e.numeroId).attr('fill', '#ffffff');
   let value = {
     element: e,
@@ -1065,6 +1065,7 @@ fillOp1 = (e) => {
   d3.select('#el' + e.numeroId)
     .select('circle')
     .attr('fill', '#ffffff');
+  console.log(idsOpacidad[e.numeroId])
 };
 
 fillOp2 = (e) => {

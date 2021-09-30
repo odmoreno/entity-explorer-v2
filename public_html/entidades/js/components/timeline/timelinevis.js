@@ -282,6 +282,8 @@ function removeAllSessionsTimeline() {
   console.log("a:", valuesDICT, idSesiones);
   console.log(datas)
   datas.remove(0)
+  //d3.select("#pointTimeline").selectAll("div").remove()
+  shortTimeline.destroy();
   for(let key in valuesDICT){
     let id = parseInt(valuesDICT[key])
     console.log(id)

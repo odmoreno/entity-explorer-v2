@@ -151,7 +151,7 @@ function setWindowsTimeline () {
   let values = Object.values(datesRange)
 
   if(values.length == 2 ){
-    timeline.setWindow(values[0], values[1]);
+    shortTimeline.setWindow(values[0], values[1]);
   }
 
 }
@@ -441,6 +441,7 @@ handleDataset = (value) =>{
   //initChart()
   updateEmptyChart();
   
+  
   circles
     .transition()
     .duration(durationRect)
@@ -467,7 +468,7 @@ handleDataset = (value) =>{
   firstIds;
 
   resetValuesSlider();
-      
+  createTimelineEvents2()
 }
 
 function fillemptyicons(){

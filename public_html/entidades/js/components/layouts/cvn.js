@@ -30,15 +30,15 @@ simulation.on("tick", () => {
     circles
       //.attr("cx", d => d.x)
       //.attr("cy", d => d.y)
-      //.transition()
-      //.duration(durationRect)
+      .transition()
+      .duration(100)
       .attr("transform", (d) => "translate(" + d.x + "," + d.y + ")");
 
     texts
       //.attr('x', d => d.x)
       //.attr('y', d => d.y + 20)
-      //.transition()
-      //.duration(durationRect)
+      .transition()
+      .duration(100)
       .attr("transform", (d) => "translate(" + d.x + "," + (d.y + 20) + ")");
 
     links

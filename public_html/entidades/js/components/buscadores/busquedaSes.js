@@ -2,7 +2,7 @@
  * Busqueda de sesiones
  */
 
-var LOGBS = true
+var LOGBS = false
 
 //let listaResultadosV = document.getElementById('busquedaDiv');
 

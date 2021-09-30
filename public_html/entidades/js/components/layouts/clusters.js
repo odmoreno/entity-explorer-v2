@@ -240,7 +240,7 @@ function clusters() {
 
 
 
-  circles.on('contextmenu', d3.contextMenu(menu));
+  //circles.on('contextmenu', d3.contextMenu(menu));
   //circles.on('contextmenu', d3.contextMenu(menu, {
   //	onOpen: function() {
   //		console.log('Quick! Before the menu appears!');

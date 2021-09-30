@@ -4,11 +4,12 @@
  var LOGVS = true
 
  var datas2;
-
+  var shortTimeline;
+  var defaultOptions2;
 
  function createTimelineEvents2() {
 
-  console.log("Ses LIST:", Object.values(sesiones))
+  //console.log("Ses LIST:", Object.values(sesiones))
 
   datas2 = createDataset()
 
@@ -16,16 +17,16 @@
 
   var container = document.getElementById("pointTimeline");
 
-  defaultOptions = {
-    //showMajorLabels: false,
-    //showMinorLabels: false,
+  defaultOptions2 = {
+    showMajorLabels: false,
+    showMinorLabels: false,
     stack: false,
     showCurrentTime: false,
     horizontalScroll: true,
-    height: "100px",
+    height: "50px",
     maxHeight: "300px",
     orientation: "bot",
-    min: new Date(2021, 5, 1), // lower limit of visible range
+    min: new Date(1954, 5, 1), // lower limit of visible range
     max: new Date(2021, 10, 20),
     //zoomMin: 1000 * 60 * 60 * 24 *31, // one day in milliseconds
     //zoomMax: 1000 * 60 * 60 * 24 * 31 * 9, // about three months in milliseconds
@@ -38,14 +39,16 @@
     
   };
 
-  timeline = new vis.Timeline(container);
-  timeline.setOptions(defaultOptions);
-  timeline.setItems(datas2);
-  timeline.fit()
+  shortTimeline = new vis.Timeline(container);
+  shortTimeline.setOptions(defaultOptions2);
+  shortTimeline.setItems(datas2);
+  //shortTimeline.setWindow(values[0], values[1]);
+  shortTimeline.fit()
 
-  timeline.on("click", function (properties) {
+
+  shortTimeline.on("click", function (properties) {
     var id = properties.item;
-    //timeline.setSelection(id, { focus: false });
+    //shortTimeline.setSelection(id, { focus: false });
     if ((id || id == 0) && !flagClickbuttonItem) {
       LOGV && console.log("Click", properties);
       LOGV && console.log(id);
@@ -110,7 +113,7 @@
   });
 
   //mouseOver
-  timeline.on("mouseOver", function (properties) {
+  shortTimeline.on("mouseOver", function (properties) {
     var id = properties.item;
     if (id || id == 0) {
       LOGV && console.log(id);
@@ -142,7 +145,7 @@
   } else if (organismoOp == 2) {
     list = Object.values(unResolutions);
   }
-
+  console.log("List")
 
   list.map((item) => {
     let fecha;
@@ -157,26 +160,14 @@
 
     let node = {
       id: item.sesId,
-      className: 'timelineElement' + ' m_' + item.sesId,
+      className: 'stimelineElement' + ' m_' + item.sesId,
       group: item.anio,
       //content: getContent(item),
       asunto: item.asunto,
-      title: item.name,
+      title: organismoOp == 1 ? item.name : item.unres,
       type: 'point',
-      start: new Date(
-        parseInt(fecha[0]),
-        parseInt(fecha[1] - 1),
-        parseInt(fecha[2]),
-        parseInt(hora[0]),
-        parseInt(hora[1])
-      ),
-      end: new Date(
-        parseInt(fecha[0]),
-        parseInt(fecha[1] - 1),
-        parseInt(fecha[2]),
-        20,
-        59
-      ),
+      start: startDateSelec(fecha, hora),
+      end: endDateSelect(fecha, hora), 
     };
 
     elements.push(node);

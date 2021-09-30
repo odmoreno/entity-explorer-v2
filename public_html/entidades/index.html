@@ -476,30 +476,16 @@
 
                             <div class="five" style="float: left; width: 70%; margin-top: 4px;">
 
-                                <div class="container-points">
-                                    <div class="card" style="border: none;">
+                                <div class="d-flex flex-row">
+                                    <div class="card" style="border: none; width: 100%;">
                                         <div class="card-body">
                                             <div id="pointTimeline" style="border: #3d3d3d solid 1px;" ></div>
                                         </div>
                                     </div>
-                                    <div class="fecha-rango">
-                                       <!--
-                                            <input id="datepicker1" type="text" class="form-control" value="">
-                                        <div class="input-group-addon">to</div>
-                                        <input id="datepicker2" type="text" class="form-control" value="">
-                                       
-                                       --> 
-                                        
-                                            <div class="input-group input-daterange">
-                                            <input id="datepicker1" type="text" class="form-control" value="2012-04-05">
-                                            <div class="input-group-addon">to</div>
-                                            <input id="datepicker2" type="text" class="form-control" value="2012-04-19">
-                                            </div>
-                                        
-                                        <!--<button type="button" class="btn btn-primary btn-sm">Secondary</button>-->
-                                    </div>
+                                    
                                 </div>
                                 
+
                                 <div class="card" style="border: none;">
                                     <div class="card-body">
                                         <div id="timelineVis" style="border: #3d3d3d solid 1px;" ondrop="drop2(event)" ondragover="allowDrop2(event)"></div>
@@ -518,8 +504,28 @@
                                 </div>
                             </div>
 
-                            <div class="one" style="float: left; width: 15%; visibility: hidden;">
-                                1
+                            <div class="one" style="float: left; width: 15%; visibility: visible;">
+                                <div class="fecha-rango" style="
+                                                position: relative;
+                                                left: 10px; 
+                                                top: 10px;
+                                                width: 90%;
+                                            ">
+                                       <!--
+                                            <input id="datepicker1" type="text" class="form-control" value="">
+                                        <div class="input-group-addon">to</div>
+                                        <input id="datepicker2" type="text" class="form-control" value="">
+                                       
+                                       --> 
+                                        
+                                            <div class="input-group input-daterange">
+                                            <input id="datepicker1" type="text" class="form-control" value="2012-04-05">
+                                            <div class="input-group-addon">to</div>
+                                            <input id="datepicker2" type="text" class="form-control" value="2012-04-19">
+                                            </div>
+                                        
+                                        <!--<button type="button" class="btn btn-primary btn-sm">Secondary</button>-->
+                                </div>
                             </div>
 
                         </div>
