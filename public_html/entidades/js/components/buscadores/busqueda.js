@@ -377,14 +377,14 @@ function outputAsambleistas (nodos) {
     let html = list.map(element => 
       `<div  id="e${ organismoOp == 1? element.numeroId : element.ccode}"  class="card-listU py-1 ${!element.visitado ? 'draggme' : 'nodrag2 noselect'}"
           draggable="${!element.visitado ? true : false}" ondragstart="drag(event)" 
-          style="border-bottom-color: ${element.visitado ? color(element, colorMap) : '#e3e6f0'};">
+          style="border-bottom-color: ${element.visitado ? color(element, globalThis.colorMap) : '#e3e6f0'};">
 
           <div class="d-flex flex-row ml-1 justify-content-between">
             <div  class=" d-flex flex-row l mb-1" style=" width: 100%; align-items: center;">
 
             <svg height="15" width="15" class="mr-1" style="width: 15px; overflow: visible;">
-                <circle cx="6" c="6"  r="6" fill="${color(element, colorMap)}" 
-                  stroke="${d3.rgb(color(element, colorMap)).darker(1)}" stroke-width="1"/></svg>
+                <circle cx="6" c="6"  r="6" fill="${color(element, globalThis.colorMap)}" 
+                  stroke="${d3.rgb(color(element, globalThis.colorMap)).darker(1)}" stroke-width="1"/></svg>
         
               <span class="${element.visitado ? 'entitySelected': 'entityAway'}" style="width: 85%;">
                       ${organismoOp == 1 ? element.nombre  : element.name}</span>
@@ -716,7 +716,7 @@ function updateNodes () {
 
       let list = sortByOption(optionSort, nodosActuales)
       entityList.innerHTML = ''
-      ListEntitys(list, colorMap, false)
+      ListEntitys(list, globalThis.colorMap, false)
       updateLegends()
 
       if (!flagEmptyChart) {
@@ -730,7 +730,7 @@ function updateNodes () {
       
       d3.timeout(updateCvn, 500);
       let listEntity = Object.values(entidades);
-      sortFunction(listEntity, colorMap);
+      sortFunction(listEntity, globalThis.colorMap);
       updateLegends()
     }else if(currentOptChart == "4"){
       createSet()

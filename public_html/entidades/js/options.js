@@ -4,6 +4,8 @@
 //opciones de mapeo
 let colorMap= 'partidos' //$('#colores-select').val()
 
+globalThis.colorMap = 'partidos';
+
 let shiftPressed = false;
 /**
  * Tipo de organismo
@@ -176,7 +178,8 @@ colorPartidos2 = (d) => {
       "jp",
       "mat",
       "midc",
-      "unes"
+      "unes",
+      "sp",
     ])
     .range([
       "#d3d92b", //Alianza pais
@@ -199,7 +202,8 @@ colorPartidos2 = (d) => {
       "#90f703", // jp (juntos podemos)
       "#f3f703", // mat (movimiento alianza tsáchila)
       "#59adba", // midc (movimiento integración democrática del carchi)
-      "#FF4500"//Union por la esperanza
+      "#FF4500",//Union por la esperanza
+      "grey"//sin partido
     ]);
   //console.log("Color:", scale(d))
   return scale(d) 

@@ -148,15 +148,15 @@ function clusters() {
                 return d.id;
               })
               .attr("stroke", (d) => {
-                console.log("COLOR UPDATE:", colorMap)
-                var _color = color(d, colorMap);
+                console.log("COLOR UPDATE:", globalThis.colorMap)
+                var _color = color(d, globalThis.colorMap);
                 return d3.rgb(_color).darker(1);
               })
               //.attr("cx", (d) => d.x) //Offset)
               //.attr("cy", (d) => d.y) //Offset)
               .attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
               .attr("r", circleRadius)
-              .attr("fill", (d) => color(d, colorMap))
+              .attr("fill", (d) => color(d, globalThis.colorMap))
               .attr("opacity", 1)
           )
           .call((enter) =>
@@ -179,7 +179,7 @@ function clusters() {
           .transition()
           .duration(durationRect)
           .attr("stroke", (d) => {
-            var _color = color(d, colorMap);
+            var _color = color(d, globalThis.colorMap);
             return d3.rgb(_color).darker(1);
           })
           .attr("stroke-width", (d) => (d.labelFlag ? 3.0 : 1))
@@ -189,7 +189,7 @@ function clusters() {
           .attr("r", circleRadius)
           .attr("fill", (d) => {
 
-            var _color = color(d, colorMap)
+            var _color = color(d, globalThis.colorMap)
             console.log("COLOR UPDATE:", _color)
             return _color
           }),
@@ -211,41 +211,34 @@ function clusters() {
   circles.on("click", function(e){
     
     validateKeypress(e)
+    d3.event.stopPropagation()
     
   })
 
-  validateKeypress = (e) => {
-    if(shiftPressed){
-      //console.log("click node shift:", e)
-      idsOpacidad[e.id] = 1
-      let values = Object.keys(idsOpacidad)
-      console.log("Values:", values)
-      d3.selectAll("circle").attr("opacity", "0.25")
-      texts.style("opacity", "0.25")
-      d3.select("#entity-list").selectAll(".elist").style("opacity", "0.25")
-      
-      values.forEach((element)=>{
-        d3.select("#"+element).attr("opacity", "1")
-        d3.select("#text" + element.substring(4)).style("opacity", "1")
-        d3.select("#el"+element.substring(4)).style("opacity", "1")
-      })
-    }
-    else {
-      console.log("uhh", e)
-      idsOpacidad = {}
-      d3.selectAll("circle").attr("opacity", "0.25")
-      d3.select("#group").selectAll("text").style("opacity", "0.25")
-      d3.select("#entity-list").selectAll(".elist").style("opacity", "0.25")
-      //texts.style("opacity", "0.3")
-      d3.select("#"+e.id).attr("opacity", "1")
-      d3.select("#text" + e.numeroid).style("opacity", "1")
-      idsOpacidad[e.id] = 1
-      d3.select("#el"+e.numeroid).style("opacity", "1")
-    }
-    d3.event.stopPropagation();
-  }
 
-  
+
+
+  validateKeypress = (e) => {
+    if (shiftPressed) {
+      //idsOpacidad = {}
+      if (!(e.id in idsOpacidad) || idsOpacidad[e.id].value == 2) {
+        fillOp1(e);
+      } else if (idsOpacidad[e.id].value == 1) {
+        fillOp2(e);
+      }
+    } else {
+      
+      loopIdsOpacidad()
+      if (!(e.id in idsOpacidad) || idsOpacidad[e.id].value == 2) {
+        fillOp1(e);
+      } else {
+        fillOp2(e);
+      }
+      console.log(idsOpacidad);
+    }
+  };
+
+
 
   circles.on('contextmenu', d3.contextMenu(menu));
   //circles.on('contextmenu', d3.contextMenu(menu, {
@@ -317,19 +310,19 @@ selectClass = (d) => {
   //console.log("colormap:", colorMap)
   
   if(organismoOp == 1){      
-    if(colorMap == "partidos"){
+    if(globalThis.colorMap == "partidos"){
       return d.codpartido + " nodeCircle"
     }
-    else if(colorMap == "voto"){
+    else if(globalThis.colorMap == "voto"){
       if (d.visitado) 
         return d.voto + " nodeCircle"
     }
   }
   else if(organismoOp == 2){
-    if(colorMap == "partidos"){
+    if(globalThis.colorMap == "partidos"){
       return "nodeCircle"
     }
-    else if(colorMap == "voto"){
+    else if(globalThis.colorMap == "voto"){
       if (d.visitado) 
         return d.voto + " nodeCircle"
     }
@@ -338,10 +331,10 @@ selectClass = (d) => {
 }
 
 selectClassTextLabels = (d) => {
-  if(colorMap == "partidos"){
+  if(globalThis.colorMap == "partidos"){
     return d.codpartido + " labeltext"
   }
-  else if(colorMap == "voto"){
+  else if(globalThis.colorMap == "voto"){
     if (d.visitado) 
       return d.voto + " labeltext"
     else

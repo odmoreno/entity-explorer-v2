@@ -32,7 +32,7 @@ function updateCurules(){
   console.log("nodos curul:", validcurulnodes)
   
   optionColor2()
-  LOGCU && console.log("colorMap:", colorMap, currentSes)
+  LOGCU && console.log("colorMap:", globalThis.colorMap, currentSes)
   //colorMap = 'voto'
 
   if(!flagEmptySes && !flagEmptyChart)
@@ -196,7 +196,7 @@ function drawCurules(test){
           .attr("fill", (d) => {
             //console.log("enter curul:", d);
             if (d.visitado) {
-              var _color = color(d, colorMap)
+              var _color = color(d, globalThis.colorMap)
               LOGCU && console.log(_color)
               return _color
             } else {
@@ -221,7 +221,7 @@ function drawCurules(test){
                 }
               })
               .attr("stroke", (d) => {
-                var _color = color(d, colorMap);
+                var _color = color(d, globalThis.colorMap);
                 return d3.rgb(_color).darker(1);
               })
               .attr("stroke-width", 1)
@@ -234,14 +234,14 @@ function drawCurules(test){
           .transition()
           .duration(durationRect)
           .attr("stroke", (d) => {
-            var _color = color(d, colorMap);
+            var _color = color(d, globalThis.colorMap);
             return d3.rgb(_color).darker(1);
           })
           .attr("stroke-width", 1)
           .attr("fill", (d) => {
             if (d.visitado) {
               LOGCU && console.log("update curul");
-              return color(d, colorMap);
+              return color(d, globalThis.colorMap);
             } else {
               return "#fff";
             }
@@ -324,9 +324,9 @@ function drawCurules(test){
             .text((d) => getNameAsamb(d))
             .attr("transform", (d) => "translate(" + d.cx + "," + (d.cy+25+offsetY) + ")")
           .style("opacity", (d) => {
-            LOGCU && console.log("Opacidad:", d)
+            //LOGCU && console.log("Opacidad:", d)
             if (d.visitado) {
-              LOGCU && console.log("Opacidad:", d)
+             // LOGCU && console.log("Opacidad:", d)
               return d.opacidad;
             } else {
               return 0.3;

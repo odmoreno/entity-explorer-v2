@@ -386,45 +386,50 @@ $('.dropdown2 .dropdown-menu2 li').click(function () {
 
 
 handleDataset = (value) =>{
-  console.log("HANDLE DATASET:", value)
-  if(value == 1){
-    organismoOp = 1
-    colorMap = 'partido'
-  }
-  else if(value == 2){
-    organismoOp = 2
-    colorMap = 'region'
-    console.log("COLORMAP:", colorMap)
-  }
 
-  //initChart()
-  updateEmptyChart()
+  console.log('HANDLE DATASET:', value);
   
-  circles.transition()
-          .duration(durationRect)
-          .style("opacity", () => {
-            LOGC && console.log("eliminar");
-            return 0;
-          })
-          .remove()
+  if (value == 1) {
+    organismoOp = 1;
+    colorMap = 'partido';
+    globalThis.colorMap = 'partido';
+  } else if (value == 2) {
+    organismoOp = 2;
+    colorMap = 'region';
+    console.log('COLORMAP:', colorMap);
+    globalThis.colorMap = 'region';
+  }
+  
+  console.log('Global:', globalThis.colorMap, globalThis);
+  //initChart()
+  updateEmptyChart();
+  
+  circles
+    .transition()
+    .duration(durationRect)
+    .style('opacity', () => {
+      LOGC && console.log('eliminar');
+      return 0;
+    })
+    .remove();
 
-  texts.remove()
-  grptexts.selectAll(".grp").remove()
+  texts.remove();
+  grptexts.selectAll('.grp').remove();
 
   let listEntity = Object.values(entidades);
-  let list = sortByOption(optionSort, listEntity)
-  entityList.innerHTML = ''
-  ListEntitys(list, colorMap, false)
+  let list = sortByOption(optionSort, listEntity);
+  entityList.innerHTML = '';
+  ListEntitys(list, colorMap, false);
 
-  fueradelbuscadorEntidades()
-  
-  removeAllSessionsTimeline()
-  
-  idSesiones = {}
-  lastIdS; 
+  fueradelbuscadorEntidades();
+
+  removeAllSessionsTimeline();
+
+  idSesiones = {};
+  lastIdS;
   firstIds;
 
-  resetValuesSlider()
+  resetValuesSlider();
       
 }
 

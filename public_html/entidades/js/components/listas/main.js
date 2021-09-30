@@ -45,7 +45,7 @@ searchLegends = (text) => {
   console.log("matches:", matches)  
   //drawLegends([], colorMap)
   legends.selectAll("g").remove()
-  drawLegends(matches, colorMap)
+  drawLegends(matches, globalThis.colorMap)
 
 }
 
@@ -66,7 +66,7 @@ searchEntitys1 = (text) => {
    
    });
    //console.log("matches:", matches)  
-   let html = getListEntitys(matches, colorMap, transitionFlag)
+   let html = getListEntitys(matches, globalThis.colorMap, transitionFlag)
    entityList.innerHTML += html
    divTootltip()
  
@@ -75,7 +75,7 @@ searchEntitys1 = (text) => {
 }
 
 //Lista de asambleistas ubicado a la derecha
-function ListEntitys (nodos, _colorMap = colorMap, _transitionFlag = transitionFlag) {
+function ListEntitys (nodos, _colorMap = globalThis.colorMap, _transitionFlag = transitionFlag) {
   let list = Object.values(nodos)
   list = list.filter(element => element.visitado) 
   LOGLI && console.log("LIST:", list, _colorMap)
@@ -260,19 +260,33 @@ desresaltarNodo = (id) => {
 }
 
 opacarNodos = (e) => {
-  idsOpacidad = {}
-  circles.attr("opacity", "0.25")
-  d3.select("#group").selectAll("text").style("opacity", "0.3")
-  d3.select("#node"+e.numeroId).attr("opacity", "1")
-  d3.select("#text" + e.numeroId).style("opacity", "1")
-  idsOpacidad[e.numeroid] = 1
-  opacarLista(e)
+  //idsOpacidad = {}
+  //circles.attr("opacity", "0.25")
+  //d3.select("#group").selectAll("text").style("opacity", "0.3")
+  //d3.select("#node"+e.numeroId).attr("opacity", "1")
+  //d3.select("#text" + e.numeroId).style("opacity", "1")
+  ////idsOpacidad[e.numeroid] = 1
+  //opacarLista(e)
+  if (!(e.id in idsOpacidad) ) {
+    d3.select('#node' + e.numeroId).attr('fill', '#ffffff');
+    let value = {
+      element: e,
+      value: 1,
+    };
+    idsOpacidad[e.numeroId] = value;
+    d3.select('#el' + e.numeroId)
+      .select('circle')
+      .attr('fill', '#ffffff');
+  } 
+
 }
 
 opacidad1Nodos = () => {
-  circles.attr("opacity", "1")
-  texts.style("opacity", "1")
-  desopacarLista()
+  //circles.attr("opacity", "1")
+  //texts.style("opacity", "1")
+  //desopacarLista()
+
+  loopIdsOpacidad()
 }
 
 opacarLista = (e) => {
@@ -376,7 +390,7 @@ function sortHandler(val){
   sortFunction(nodosActuales)
 }
 
-function sortFunction(nodos, _colorMap = colorMap){
+function sortFunction(nodos, _colorMap = globalThis.colorMap){
   let list = sortByOption(optionSort, nodos)
   entityList.innerHTML = ''
   ListEntitys(list, _colorMap)

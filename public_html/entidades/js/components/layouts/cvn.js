@@ -30,11 +30,15 @@ simulation.on("tick", () => {
     circles
       //.attr("cx", d => d.x)
       //.attr("cy", d => d.y)
+      //.transition()
+      //.duration(durationRect)
       .attr("transform", (d) => "translate(" + d.x + "," + d.y + ")");
 
     texts
       //.attr('x', d => d.x)
       //.attr('y', d => d.y + 20)
+      //.transition()
+      //.duration(durationRect)
       .attr("transform", (d) => "translate(" + d.x + "," + (d.y + 20) + ")");
 
     links
@@ -76,12 +80,14 @@ function updateCvn() {
   //console.log("Elementos actuales en el canvas:", elements)
   let genlace = gEnlaces[currentSes];
 
-  let newnodos = updateSesion(sesiones[currentSes]);
+  //let newnodos = updateSesion(sesiones[currentSes]);
   //nodosCvn = createNodes(newnodos, groups)
-  const nodosCvn = createNodesForCvn(newnodos, groups);
+  //const nodosCvn = createNodesForCvn(newnodos, groups);
 
   nodosTotal = [];
   let total = Object.values(entidades);
+
+
   //nodosTotal = createNodes(total, groups)
   nodosTotal = createNodesForCvn(total, groups);
 
@@ -113,6 +119,7 @@ function wrangleData(data, grupoEnlaces, sesId) {
 
   updateChartCvn(newnodes, newLinks);
   //console.log('links asam', newlinks2)
+  LOGCV && console.log("Valuesdict:", dictValues);
 }
 
 function updateChartCvn(newnodes, newlinks) {
@@ -271,17 +278,18 @@ function createLinksCodesSesions(nodosSesion, linksSesion) {
   //verificacion de nodos para los links
   for (let i = 0; i < nodosSesion.length; i++) {
     let _asamb = nodosSesion[i];
-
+    //console.log("ASANMB:", _asamb)
     let linksofAsamb = linksSesion[_asamb.numeroid];
+    //console.log("LINKS ASANMB:", linksofAsamb)
     if (linksofAsamb != null) {
       //console.log("Info links", linksofAsamb)
       filtroLinks1.push(linksofAsamb);
       for (var key in linksofAsamb) {
-        //console.log(key, dictionary[key])
+        //console.log(key, linksofAsamb[key])
         let valueLink = linksofAsamb[key];
         //LOGCV && console.log("key:", key)
         if (entidades[key]) {
-          //LOGCV && console.log("pertenece: ", key, "Value:", valueLink, "Asamb:", entidades[key])
+          LOGCV && console.log("pertenece: ", key, "Value:", valueLink, "Asamb:", entidades[key])
           filtroLinks2.push(valueLink);
         }
       }
@@ -289,7 +297,7 @@ function createLinksCodesSesions(nodosSesion, linksSesion) {
   }
 
 
-
+  console.log("Codelinks:", filtroLinks2)
   return filtroLinks2;
 }
 
@@ -337,20 +345,18 @@ function getLinks(codelinks) {
         let sesLinkId = sliceKeys[k];
         LOGCV && console.log("current key link sesion:", sesLinkId);
         let dictLinkSes = dictLinks[sesLinkId];
-
+        //console.log("Dict link ses:", dictLinkSes)
         let list = Object.values(dictLinkSes);
-        LOGCV &&
-          console.log(
-            "Sesion Anterior:",
-            sesLinkId,
-            "Links:",
-            list.length,
-            list
-          );
+        LOGCV && console.log('Sesion Anterior:', sesLinkId, 'Links:', list.length, list);
+        
         //console.log("merge before:", dictTmpLinks)
         //dictTmpLinks = Object.assign({}, dictTmpLinks, dictLinkSes)
-        dictTmpLinks = { ...dictLinkSes, ...dictTmpLinks };
-        //console.log("merge after:", dictTmpLinks)
+        var deep1 = _.cloneDeep(dictTmpLinks);
+        var deep2 = _.cloneDeep(dictLinkSes);
+
+
+        dictTmpLinks = { ...deep1, ...deep2 };
+        console.log("merge after:", dictTmpLinks)
 
         /**Verificamos enlaces */
         for (let key in dictTmpLinks) {
@@ -359,7 +365,7 @@ function getLinks(codelinks) {
           let newid = sesLinkId + "s" + id;
           if (dictValues[newid] && !link.flag) {
             //console.log("id:", newid)
-            //console.log("existe", dictValues[newid])
+            console.log("existe", dictValues[newid])
             link.value = dictValues[newid];
             link.flag = true;
           }
@@ -369,13 +375,14 @@ function getLinks(codelinks) {
     }
   }
 
-  //console.log("diccionario para la sesion :", currentSes, dictTmpLinks)
+  console.log("diccionario para la sesion :", currentSes, dictTmpLinks)
   dictLinks[currentSes] = dictTmpLinks;
 
   let listoflinks = [];
   listoflinks = Object.values(dictLinks[currentSes]);
 
-  newlinks = [...listoflinks];
+  //newlinks = [...listoflinks];
+  newlinks = _.cloneDeep(listoflinks)
 
   //console.log("map Links:", newlinks)
 
@@ -442,9 +449,13 @@ function getAllLinks() {
   groups = _groups();
   let _genlace = gEnlaces[firstID];
   let _linksSesion = _genlace.links;
-  let _nodosCvn = createNodes(_total, groups);
+  let _nodosCvn = createNodesForCvn(_total, groups);
+
+  LOGCV && console.log("NOdos cvn", _nodosCvn, " Links:", _linksSesion);
 
   let _codelinks = createLinksCodesSesions(_nodosCvn, _linksSesion);
+  LOGCV && console.log("_Code links", _codelinks);
+
   dictTmpLinks = loopCodeLinks(_codelinks, firstID);
 
   dictLinks[firstID] = dictTmpLinks;
@@ -468,16 +479,19 @@ function getAllLinks() {
       console.log("Sesion Anterior:", sesLinkId, "Links:", list.length, list);
 
     let actualDict = {};
-    //dictTmpLinks = Object.assign({}, dictLinkSes, dictTmpLinks)
-    actualDict = { ...dictLinkSes, ...dictTmpLinks };
+    var deep1 = _.cloneDeep(dictTmpLinks);
+    var deep2 = _.cloneDeep(dictLinkSes);
 
-    LOGCV && console.log("ID:", sesLinkId);
+    //dictTmpLinks = Object.assign({}, dictLinkSes, dictTmpLinks)
+    actualDict = { ...deep2, ...deep1 };
+
+    LOGCV && console.log("ID:", sesLinkId, "COUNT:", count);
     count += 1;
 
     dictLinks[sesLinkId] = actualDict;
     calculateValues(actualDict, dictLinkSes, sesLinkId, count);
 
-    dictTmpLinks = { ...actualDict };
+    dictTmpLinks =  _.cloneDeep(actualDict)
     LOGCV && console.log("Conjunto agrupado de enlaces:", dictTmpLinks);
   }
 
@@ -493,6 +507,8 @@ function getAllLinks() {
     .scaleLinear()
     .domain([1, count]) // unit
     .range([0.1, 2]); // unit: value
+
+  
 }
 
 function calculateValues(dictTmpLinks, dictLinkSes, sesLinkId, count) {

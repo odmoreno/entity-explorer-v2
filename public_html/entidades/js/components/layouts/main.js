@@ -2,7 +2,7 @@
  * Controlador de todos los layouts
  */
 
-let LOGL = true;
+let LOGL = false;
 
 
 var nodes;
@@ -90,9 +90,19 @@ const svg = d3.select("#chart").append("svg").attr('id', 'svg1')
   //.attr("transform", "translate(" + (-50) + "," + (-30 ) + ")");
   .on("click", ()=> {
     console.log("SVG CLICK")
-    circles.attr("opacity", "1")
-    texts.style("opacity", "1")
-    desopacarLista()
+    //circles.attr("opacity", "1")
+    //texts.style("opacity", "1")
+    //desopacarLista()
+    //Object.keys(idsOpacidad).forEach((id)=>{
+    //  let element = idsOpacidad[id]
+    //  d3.select("#"+ id).attr("fill", (element) => color(element, globalThis.colorMap))
+    //  idsOpacidad[id].value = 2
+    //})
+
+    loopIdsOpacidad()
+
+    d3.event.stopPropagation();
+
   })
 
 var rect = svg.append("rect")
@@ -153,7 +163,7 @@ svg.call(tip);
 
 showTipBy = (d) => {
   if(organismoOp == 1){
-    console.log(d)
+    //console.log(d)
     let html = `<div class="d-flex flex-column" id="tooltip">
         <strong class="p-1 textTip"><span style="color: #1375b7" >${
           d.nombre
@@ -266,15 +276,17 @@ function optionColor1() {
   
   if(organismoOp == 1){      
     if (defaultColorFlag) {
-      colorMap = "partidos";
+      //colorMap = "partidos";
+      globalThis.colorMap = "partidos"
       optionSort = 1;
       console.log("default", colorMap)
     } else {
-      colorMap = $("#colores-select").val();
+      //colorMap = $("#colores-select").val();
+      globalThis.colorMap = $("#colores-select").val();
     }  
   }
   else if(organismoOp == 2){
-    colorMap = "region";
+    globalThis.colorMap = "region";
   }
 
 }
@@ -284,15 +296,15 @@ function optionColor2() {
 
   if(organismoOp == 1){      
     if (defaultColorFlag) {
-      colorMap = "voto";
+      globalThis.colorMap = "voto";
       optionSort = 1;
       console.log("default", colorMap)
     } else {
-      colorMap = $("#colores-select").val();
+      globalThis.colorMap = $("#colores-select").val();
     }
   }
   else if(organismoOp == 2){
-    colorMap = "region";
+    globalThis.colorMap = "voto";
   }
 
   
@@ -328,7 +340,7 @@ function handlechart(value) {
       let listEntity = Object.values(entidades);
       let list = sortByOption(optionSort, listEntity)
       entityList.innerHTML = ''
-      ListEntitys(list, colorMap, false)
+      ListEntitys(list, globalThis.colorMap, false)
 
       d3.timeout(updateCvn, 500);
       currentOptChart = value;
@@ -359,7 +371,7 @@ function handlechart(value) {
       //sortFunction(nodosActuales)
       let list = sortByOption(optionSort, nodosActuales)
       entityList.innerHTML = ''
-      ListEntitys(list, colorMap, false)
+      ListEntitys(list, globalThis.colorMap, false)
       updateLegends()
 
     } else if (value == "3") {
@@ -376,7 +388,7 @@ function handlechart(value) {
 
       let list = sortByOption(optionSort, nodosActuales)
       entityList.innerHTML = ''
-      ListEntitys(list, colorMap, false)
+      ListEntitys(list, globalThis.colorMap, false)
       
       updateLegends()
     }
@@ -468,9 +480,11 @@ createNodes = (nodos, groups) => {
 };
 
 sortByOptionVotes = (votoNo, votoBla, votoAbs, votoSi, votoAus) => {
-  colorMap = $("#colores-select").val();
-
-  if (colorMap == "provincia") {
+  //colorMap = $("#colores-select").val();
+  //if (colorMap == "provincia") {
+  let colorOption = globalThis.colorMap
+  console.log("Color opt sort:", colorOption)
+  if (colorOption == "provincia") {
     optionSort = 4;
     votoNo.sort((a, b) =>
       a.provincia > b.provincia? 1: b.provincia > a.provincia? -1
@@ -520,7 +534,7 @@ sortByOptionVotes = (votoNo, votoBla, votoAbs, votoSi, votoAus) => {
         ? 1
         : 0
     );
-  } else if (colorMap == "region") {
+  } else if (colorOption == "region") {
     optionSort = 3;
     votoNo.sort((a, b) =>
       a.region > b.region
@@ -686,12 +700,11 @@ pointsForMatrix = (votos, groups, nodes, opc) => {
 
     let nodeu = {
       id: "node" + d.numeroId,
-      numeroid: d.numeroId,
+      numeroId: d.numeroId,
       x: tmp + dictM[i].x, //Math.random() * (-10 - 60) + (-10),
       y: groups[d.voto].y + dictM[i].y,
       oldx: tmp + dictM[i].x, //Math.random() * (-10 - 60) + (-10),
       oldy: groups[d.voto].y + dictM[i].y,
-
       xOffset: d.xOffset,
       yOffset: d.yOffset,
       voto: d.voto,
@@ -902,7 +915,7 @@ pointsForMatrixCenter = (votos, nodes) => {
 
     let nodeu = {
       id: "node" + d.numeroId,
-      numeroid: d.numeroId,
+      numeroId: d.numeroId,
       x: width / 2 + offsetV + dictM[i].x,
       y: height / 2 + offsetY + dictM[i].y,
       xOffset: d.xOffset,
@@ -1040,3 +1053,43 @@ function updateEmptyChart(){
   //updateEmptyInfo()
   console.log("entidades enceradas;", entidades, nodosActuales)
 }
+
+fillOp1 = (e) => {
+  console.log("opcion 1")
+  d3.select('#node' + e.numeroId).attr('fill', '#ffffff');
+  let value = {
+    element: e,
+    value: 1,
+  };
+  idsOpacidad[e.numeroId] = value;
+  d3.select('#el' + e.numeroId)
+    .select('circle')
+    .attr('fill', '#ffffff');
+};
+
+fillOp2 = (e) => {
+  console.log("opcion 2")
+  d3.select('#node' + e.numeroId).attr('fill', color(e, globalThis.colorMap));
+  idsOpacidad[e.numeroId].value = 2;
+  d3.select('#el' + e.numeroId)
+    .selectAll('circle')
+    .attr('fill', color(e, globalThis.colorMap));
+};
+
+loopIdsOpacidad = () => {
+  let values = Object.keys(idsOpacidad);
+  console.log(values);
+  if (values.length > 0) {
+    Object.keys(idsOpacidad).forEach((id) => {
+      let el = idsOpacidad[id].element;
+      //console.log('el:', el);
+      d3.select('#node' + el.numeroId).attr('fill', (el) =>
+        color(el, globalThis.colorMap)
+      );
+      idsOpacidad[id].value = 2;
+      let circle = d3.select('#el' + el.numeroId).select('circle');
+      //console.log('circle:', circle);
+      circle.attr('fill', color(el, globalThis.colorMap));
+    });
+  }
+};
