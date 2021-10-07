@@ -132,7 +132,7 @@ function createTimelineEvents2() {
   shortTimeline.on('mouseOver', function (properties) {
     var id = properties.item;
     if(globalThis.hasOpenBrush){
-      console.log("mouseOVER:", properties)
+      //console.log("mouseOVER:", properties)
       if(!datesLimit['first']){
         datesLimit['first'] = properties.time
       }

@@ -3,7 +3,7 @@
  *    Explorador de entidades
  */
 
-var LOG = true;
+var LOG = false;
 
 /*** Datos a cargar */
 const promises = [

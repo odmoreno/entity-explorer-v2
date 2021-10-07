@@ -36,8 +36,8 @@ function createTimelineEvents() {
     height: "285px",
     maxHeight: "240px",
     orientation: "top",
-    min: new Date(2017, 4, 1), // lower limit of visible range
-    max: new Date(2021, 5, 20),
+    //min: new Date(2017, 4, 1), // lower limit of visible range
+    //max: new Date(2021, 5, 20),
     //max: new Date(2021, 6, 24), // upper limit of visible range
     zoomFriction: 4,
     moveable: true,
@@ -69,7 +69,6 @@ function createTimelineEvents() {
 
   timeline.on("click", function (properties) {
     var id = properties.item;
-    //timeline.setSelection(id, { focus: false });
     if ((id || id == 0) && !flagClickbuttonItem) {
       LOGV && console.log("Click", properties);
       LOGV && console.log(id);
@@ -79,6 +78,7 @@ function createTimelineEvents() {
       console.log("flag:", flagClickbuttonItem);
       currentId = reverseDIVotes[id];
       currentSes = dictIVotes[currentId];
+      timeline.setSelection(id, { focus: false });
 
       if (currentOptChart == "2") {
         console.log("CVN");
