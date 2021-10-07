@@ -15,10 +15,11 @@ class Component {
     }
   }
 
-  attach() {
+  attach(insertBefore = false) {
+    this.insertBefore = insertBefore
     this.hostElement.insertAdjacentElement(
-      //this.insertBefore ? 'afterbegin' : 'beforeend',
-      'afterbegin',
+      this.insertBefore ? 'afterbegin' : 'beforeend',
+      //'afterbegin',
       this.element
     );
   }
@@ -115,6 +116,7 @@ class SelectionArea {
     if(this.hasActiveBrush){
       this.drawArea.style.cursor = "default"
       this.hasActiveBrush = false
+      this.brush.attach(false);
       return;
     }
     if(!this.hasOneBrush){
@@ -125,7 +127,7 @@ class SelectionArea {
       });
       this.brush.eventHandler(e)
       this.brush.create();
-      this.brush.attach();
+      this.brush.attach(true);
       //this.brush.init( () => { this.hasActiveBrush = false;}, e )
   
       this.drawArea.style.cursor = 'crosshair';
