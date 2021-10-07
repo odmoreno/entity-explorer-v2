@@ -126,6 +126,7 @@ function createTimelineEvents2() {
   //mouseOver
   shortTimeline.on('mouseOver', function (properties) {
     var id = properties.item;
+    console.log("mouseOVER:", properties)
     if (id || id == 0) {
       LOGV && console.log(id);
       var element = d3.select('#h' + id);

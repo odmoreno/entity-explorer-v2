@@ -17,7 +17,8 @@ class Component {
 
   attach() {
     this.hostElement.insertAdjacentElement(
-      this.insertBefore ? 'afterbegin' : 'beforeend',
+      //this.insertBefore ? 'afterbegin' : 'beforeend',
+      'afterbegin',
       this.element
     );
   }
@@ -49,6 +50,7 @@ class Brush extends Component{
     //console.log('created...', this.eventMouse);
     let selectedArea = document.createElement('div');
     selectedArea.className = 'selection-area';
+    selectedArea.setAttribute("draggable", "true")
     const areaTemplate = document.getElementById('selected-area');
     const areaBody = document.importNode(areaTemplate.content, true);
     selectedArea.append(areaBody);
