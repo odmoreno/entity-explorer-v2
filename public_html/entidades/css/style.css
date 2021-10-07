@@ -675,3 +675,9 @@ body{
     font-size: .85rem;
     margin: 0 0 1rem 0;
 }
+
+
+.selection-area {
+    border: 1px solid #FF0000;
+    position: absolute;
+}
