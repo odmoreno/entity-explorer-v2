@@ -7,6 +7,11 @@ var datas2;
 var shortTimeline;
 var defaultOptions2;
 
+var datesLimit = {}
+
+globalThis.hasOpenBrush = false
+
+
 const drawArea = document.getElementById('canvas');
 //drawArea.addEventListener('click', startRect);
 //drawArea.addEventListener('mousemove', setMousePos)
@@ -126,22 +131,31 @@ function createTimelineEvents2() {
   //mouseOver
   shortTimeline.on('mouseOver', function (properties) {
     var id = properties.item;
-    console.log("mouseOVER:", properties)
-    if (id || id == 0) {
-      LOGV && console.log(id);
-      var element = d3.select('#h' + id);
-      //console.log(element)
-
-      let parent = element.select(function () {
-        return this.closest('.vis-readonly'); // Get the closest parent matching the selector string.
-      });
-
-      //console.log(parent)
-
-      let visdelete = parent.select('.vis-delete');
-      //console.log(visdelete)
-      //console.log("Mouseover,", properties)
+    if(globalThis.hasOpenBrush){
+      console.log("mouseOVER:", properties)
+      if(!datesLimit['first']){
+        datesLimit['first'] = properties.time
+      }
+      else{
+        datesLimit['last'] = properties.time
+      }
+      globalThis.datesTimeline = datesLimit
     }
+    //if (id || id == 0) {
+    //  LOGV && console.log(id);
+    //  var element = d3.select('#h' + id);
+    //  //console.log(element)
+//
+    //  let parent = element.select(function () {
+    //    return this.closest('.vis-readonly'); // Get the closest parent matching the selector string.
+    //  });
+//
+    //  //console.log(parent)
+//
+    //  let visdelete = parent.select('.vis-delete');
+    //  //console.log(visdelete)
+    //  //console.log("Mouseover,", properties)
+    //}
   });
 }
 

@@ -116,7 +116,10 @@ class SelectionArea {
     if(this.hasActiveBrush){
       this.drawArea.style.cursor = "default"
       this.hasActiveBrush = false
+      globalThis.hasOpenBrush = false
       this.brush.attach(false);
+      console.log("Dates:", globalThis.datesTimeline)
+      this.getSessionsInRange()
       return;
     }
     if(!this.hasOneBrush){
@@ -133,6 +136,7 @@ class SelectionArea {
       this.drawArea.style.cursor = 'crosshair';
       this.hasActiveBrush = true;
       this.hasOneBrush = true
+      globalThis.hasOpenBrush = true
 
     }
     
@@ -144,6 +148,28 @@ class SelectionArea {
       this.brush.update(e)
     }
   
+  }
+
+  getSessionsInRange = () => {
+    let firstDay = globalThis.datesTimeline['first']
+    let LastDay = globalThis.datesTimeline['last']
+
+    //console.log(firstDay, LastDay)
+    //console.log(sesiones)
+    this.votaciones = []
+
+    Object.values(sesiones).forEach(v => {
+      //console.log(votacion)
+      let fecha = v.fecha.split("-"); 
+      let vDate = new Date(fecha[0], fecha[1]- 1, fecha[2]); 
+      if(vDate>= firstDay && vDate<= LastDay){
+        console.log(vDate)
+        this.votaciones.push(v)
+      }
+    })
+    console.log(this.votaciones)
+    outputVotes(this.votaciones)
+
   }
 
   connectClickEvent(){

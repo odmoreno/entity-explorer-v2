@@ -3,7 +3,7 @@
  */
 
 var LOGBS = false
-
+var sesFlag = false
 //let listaResultadosV = document.getElementById('busquedaDiv');
 
 
