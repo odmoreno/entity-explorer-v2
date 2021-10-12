@@ -7,19 +7,19 @@ var datas2;
 var shortTimeline;
 var defaultOptions2;
 
-const drawArea = document.getElementById('canvas');
+//const drawArea = document.getElementById('canvas');
 //drawArea.addEventListener('click', startRect);
 //drawArea.addEventListener('mousemove', setMousePos)
 
-function startRect(ev) {
-  console.log("Click in canvas")
-  console.log(ev)
-}
-
-function setMousePos(ev){
-  console.log("mouse move in canvas")
-  //console.log(ev)
-}
+//function startRect(ev) {
+//  console.log("Click in canvas")
+//  console.log(ev)
+//}
+//
+//function setMousePos(ev){
+//  console.log("mouse move in canvas")
+//  //console.log(ev)
+//}
 
 function createTimelineEvents2() {
   //console.log("Ses LIST:", Object.values(sesiones))
@@ -50,13 +50,16 @@ function createTimelineEvents2() {
       followMouse: true,
     },
   };
-
+  
   shortTimeline = new vis.Timeline(container);
   shortTimeline.setOptions(defaultOptions2);
   shortTimeline.setItems(datas2);
   //shortTimeline.setWindow(values[0], values[1]);
   shortTimeline.fit();
-
+  
+  //console.log("DATOS SHORTTIMELINE:",datas2)
+  //console.log("DATOS SHORTTIMELINE:",shortTimeline)
+  
   shortTimeline.on('click', function (properties) {
     var id = properties.item;
     //shortTimeline.setSelection(id, { focus: false });
@@ -126,7 +129,7 @@ function createTimelineEvents2() {
   //mouseOver
   shortTimeline.on('mouseOver', function (properties) {
     var id = properties.item;
-    console.log("mouseOVER:", properties)
+    //console.log("mouseOVER:", properties)
     if (id || id == 0) {
       LOGV && console.log(id);
       var element = d3.select('#h' + id);
