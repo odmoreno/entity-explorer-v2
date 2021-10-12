@@ -104,9 +104,11 @@ class SelectionArea {
 
   constructor(id){
     this.id = id;
+    this.datesLimit = {}
     this.drawArea = document.getElementById('canvas');
     this.connectClickEvent();
     this.connectMouseEvent();
+    this.connectDraggable();
     this.brush = new Brush(this.id);
   }
 
@@ -116,7 +118,10 @@ class SelectionArea {
     if(this.hasActiveBrush){
       this.drawArea.style.cursor = "default"
       this.hasActiveBrush = false
+      globalThis.hasOpenBrush = false
       this.brush.attach(false);
+      console.log("Dates:", this.datesLimit)
+      this.getSessionsInRange()
       return;
     }
     if(!this.hasOneBrush){
@@ -133,17 +138,83 @@ class SelectionArea {
       this.drawArea.style.cursor = 'crosshair';
       this.hasActiveBrush = true;
       this.hasOneBrush = true
+      globalThis.hasOpenBrush = true
 
     }
+    e.stopPropagation()
     
   }
 
   setMousePos = (e) => {
     if(this.hasActiveBrush && this.hasOneBrush){
       console.log("mouse move in canvas")
+      var properties = shortTimeline.getEventProperties(e);
+      // properties contains things like node id, group, x, y, time, etc.
+      console.log('mousemove properties:', properties.time);
+      this.getDatesRange(properties)
       this.brush.update(e)
     }
   
+  }
+
+  getDatesRange(properties) {
+    if(!this.datesLimit['first']){
+      this.datesLimit['first'] = properties.time
+    }
+    else{
+      this.datesLimit['last'] = properties.time
+    }
+  }
+
+  getSessionsInRange = () => {
+    
+    let firstDay, lastDay 
+
+    //if(globalThis.datesTimeline['first']<globalThis.datesTimeline['last']){
+    //  firstDay = globalThis.datesTimeline['first']
+    //  lastDay = globalThis.datesTimeline['last']
+    //}
+    //else{
+    //  firstDay = globalThis.datesTimeline['last']
+    //  lastDay = globalThis.datesTimeline['first']
+    //}
+    firstDay = this.datesLimit['first']
+    lastDay = this.datesLimit['last']
+    
+    console.log(firstDay)
+    console.log(lastDay)
+    //console.log(sesiones)
+    this.votaciones = []
+
+    Object.values(sesiones).forEach(v => {
+      //console.log(v)
+      let fecha = v.fecha.split("-"); 
+      let vDate = new Date(fecha[0], fecha[1]- 1, fecha[2]); 
+      if(vDate>= firstDay && vDate<= lastDay){
+        //console.log(vDate)
+        this.votaciones.push(v)
+      }
+    })
+    console.log(this.votaciones)
+    listaResultados.innerHTML = ''
+    outputVotes(this.votaciones)
+    dictIds["yVotos"] = this.votaciones
+    delete this.datesLimit['first']
+
+    console.log(this.datesLimit)
+  }
+
+  connectDraggable(){
+    this.drawArea.addEventListener('dragstart', event => {
+      event.dataTransfer.setData('text', 'yVotos');
+      event.dataTransfer.effectAllowed = 'move';
+    });
+
+    this.drawArea.addEventListener('dragend', event => {
+      console.log("Drag END")
+      console.log(event);
+
+    });
   }
 
   connectClickEvent(){

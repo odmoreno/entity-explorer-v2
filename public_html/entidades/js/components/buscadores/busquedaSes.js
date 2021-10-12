@@ -3,7 +3,7 @@
  */
 
 var LOGBS = false
-
+var sesFlag = false
 //let listaResultadosV = document.getElementById('busquedaDiv');
 
 
@@ -336,21 +336,78 @@ function allowDrop2(ev) {
 
 function drop2(ev) {
     ev.preventDefault();
-    LOGBS && console.log("Hola, ingreso de entidad en el timeline")
+    console.log("Hola, ingreso de entidad en el timeline")
     var data = ev.dataTransfer.getData("text")
     //var id = document.getElementById(data)
     //console.log(id)
-    LOGBS && console.log(data)
-    let idnew = data.substring(1)
-    let item = sesiones[idnew]
+    console.log(data)
+    let idnew = data.substring(0,1)
+    //let item = sesiones[idnew]
 
     if (idnew  == "w"){
         LOGBS && console.log("Votaciones")
         LOGBS && console.log(dictIds)
     }
-
+    else if(idnew == "y"){
+        console.log(dictIds)
+        addVotesInArea()
+    }
+    ev.stopPropagation()
 }
 
+function addVotesInArea() {
+  let votos = dictIds["yVotos"]; //Object.values(dictIds["yVotos"])
+  console.log("votos pusheados", votos);
+
+  timeline.setOptions({
+    showMajorLabels: true,
+    showMinorLabels: true,
+  });
+
+  for (let key in votos) {
+    //console.log(votos[key]);
+
+    let item, fecha, hora;
+    item = votos[key];
+    if (organismoOp == 1) {
+      fecha = item.fecha.split("-");
+      hora = item.hora.split(":");
+    } else if (organismoOp == 2) {
+      fecha = item.date.split("-");
+    }
+    
+    //console.log(fecha, hora)
+    let node = {
+      id: item.sesId,
+      className: "timelineElement" + " m_" + item.sesId,
+      group: item.anio,
+      content: getContent2(item),
+      asunto: item.asunto,
+      title: organismoOp == 1 ? item.name : item.unres,
+      type: "box",
+      start: startDateSelec(fecha, hora),
+      end: endDateSelect(fecha, hora),
+    };
+
+    datas.add(node);
+    addSesion2(item.sesId)
+
+    console.log(node)
+  }
+  console.log(datas)
+  if (!flagEmptySes) 
+    getAllLinks();
+
+    selectChart()
+    setRangeTimeline();
+    LOGBS && console.log("FIRST ID:", firstIds)
+    currentSes = firstIds
+    //currentId = firstIds
+    currentId = reverseDIVotes[firstIds]
+    timeline.setSelection(firstIds, { focus: false });
+
+    d3.select("#btn-remove-all").style("display", "block")
+}
 
 function handleDragStart(event) {
     var dragSrcEl = event.target;
@@ -358,6 +415,7 @@ function handleDragStart(event) {
     LOGBS && console.log("drag:", dragSrcEl)
     LOGBS && console.log(dragSrcEl.id)
 
+    
 }
 
 function handleDragEnd(e) {
@@ -791,7 +849,8 @@ function setRangeTimeline() {
         lastSesionList = sesiones[lastIdS]
         fecha = lastSesionList.fecha.split('-')
         hora = lastSesionList.hora.split(':')
-        newMax = new Date(parseInt(fecha[0]), parseInt(fecha[1] - 1), parseInt(fecha[2]), parseInt(hora[0]) + 1, 59)
+        console.log(fecha)
+        newMax = new Date(parseInt(fecha[0]), parseInt(fecha[1] -1 ), parseInt(fecha[2] ), parseInt(hora[0]) + 1, 59)
     }
     else if(organismoOp == 2){
         lastSesionList = unResolutions[lastIdS]
@@ -802,10 +861,16 @@ function setRangeTimeline() {
 
     LOGBS && console.log("LastSes:", lastIdS ,lastSesionList)
 
-
+    console.log(minTl)
+    console.log(newMax)
+    newMax.setDate(newMax.getDate() + 2)
+    minTl.setDate(minTl.getDate() - 2)
     //console.log("NEWMAX:", newMax,  parseInt(fecha[0]), parseInt(fecha[1]-1), parseInt(fecha[2]), parseInt(hora[0]) +1,  59)
     timeline.setWindow(minTl, newMax, {animation: false});
-
+    timeline.setOptions({
+        min: minTl,
+        max: newMax
+    })
     
 }
 
