@@ -359,14 +359,14 @@ function addVotesInArea() {
   let votos = dictIds["yVotos"]; //Object.values(dictIds["yVotos"])
   console.log("votos pusheados", votos);
 
-  //timeline.setOptions({
-  //  showMajorLabels: true,
-  //  showMinorLabels: true,
-  //});
-  timelineLarge.timeline.setOptions({
+  timeline.setOptions({
     showMajorLabels: true,
     showMinorLabels: true,
-  })
+  });
+  //timelineLarge.timeline.setOptions({
+  //  showMajorLabels: true,
+  //  showMinorLabels: true,
+  //})
 
   for (let key in votos) {
     //console.log(votos[key]);
@@ -408,8 +408,8 @@ function addVotesInArea() {
     currentSes = firstIds
     //currentId = firstIds
     currentId = reverseDIVotes[firstIds]
-    //timeline.setSelection(firstIds, { focus: false });
-    timelineLarge.timeline.setSelection(firstIds, { focus: false });
+    timeline.setSelection(firstIds, { focus: false });
+    //timelineLarge.timeline.setSelection(firstIds, { focus: false });
 
     d3.select("#btn-remove-all").style("display", "block")
 }
@@ -838,7 +838,8 @@ function selectChart() {
 }
 
 function setRangeTimeline() {
-    let range = timelineLarge.timeline.getItemRange()
+    let range = timeline.getItemRange()
+    //let range = timelineLarge.timeline.getItemRange()
     LOGBS && console.log("RANGE:", range)
 
     let minTl = range.min
@@ -877,8 +878,8 @@ function setRangeTimeline() {
     //    max: newMax
     //})
     
-    timelineLarge.timeline.setWindow(minTl, newMax, {animation: false});
-    timelineLarge.timeline.setOptions({
+    timeline.setWindow(minTl, newMax, {animation: false});
+    timeline.setOptions({
         min: minTl,
         max: newMax
     })
@@ -894,9 +895,11 @@ function findsesion(id) {
     let newMin = new Date(parseInt(fecha[0]), parseInt(fecha[1] - 1), parseInt(fecha[2]), parseInt(hora[0]) - 4, 59)
 
     //console.log("NEWMAX:", newMax,  parseInt(fecha[0]), parseInt(fecha[1]-1), parseInt(fecha[2]), parseInt(hora[0]) +1,  59)
-    timelineLarge.timeline.setWindow(newMin, newMax, {animation: true});
+    //timelineLarge.timeline.setWindow(newMin, newMax, {animation: true});
+    timeline.setWindow(newMin, newMax, {animation: true});
 
-    timelineLarge.timeline.setSelection(id, {focus: false});
+    //timelineLarge.timeline.setSelection(id, {focus: false});
+    timeline.setSelection(id, {focus: false});
     //flagClickbuttonItem = false
     //timeline.focus(id);
 }

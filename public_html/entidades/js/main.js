@@ -69,6 +69,7 @@ function manageData() {
     'box'
   );
   console.log(timelineLarge)
+  timeline = timelineLarge.timeline
 
   console.log("Current dataset", organismoOp)
 }
