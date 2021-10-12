@@ -7,16 +7,12 @@ var datas2;
 var shortTimeline;
 var defaultOptions2;
 
-<<<<<<< HEAD
-//const drawArea = document.getElementById('canvas');
-=======
 var datesLimit = {}
 
 globalThis.hasOpenBrush = false
 
 
 const drawArea = document.getElementById('canvas');
->>>>>>> 840c77937a190d2c2b1db6e04740429b0fce83cc
 //drawArea.addEventListener('click', startRect);
 //drawArea.addEventListener('mousemove', setMousePos)
 
@@ -138,23 +134,6 @@ function createTimelineEvents2() {
   //mouseOver
   shortTimeline.on('mouseOver', function (properties) {
     var id = properties.item;
-<<<<<<< HEAD
-    //console.log("mouseOVER:", properties)
-    if (id || id == 0) {
-      LOGV && console.log(id);
-      var element = d3.select('#h' + id);
-      //console.log(element)
-
-      let parent = element.select(function () {
-        return this.closest('.vis-readonly'); // Get the closest parent matching the selector string.
-      });
-
-      //console.log(parent)
-
-      let visdelete = parent.select('.vis-delete');
-      //console.log(visdelete)
-      //console.log("Mouseover,", properties)
-=======
     if(globalThis.hasOpenBrush){
       //console.log("mouseOVER:", properties)
       if(!datesLimit['first']){
@@ -164,7 +143,6 @@ function createTimelineEvents2() {
         datesLimit['last'] = properties.time
       }
       globalThis.datesTimeline = datesLimit
->>>>>>> 840c77937a190d2c2b1db6e04740429b0fce83cc
     }
     //if (id || id == 0) {
     //  LOGV && console.log(id);

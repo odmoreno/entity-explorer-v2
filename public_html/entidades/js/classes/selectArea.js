@@ -147,10 +147,10 @@ class SelectionArea {
 
   setMousePos = (e) => {
     if(this.hasActiveBrush && this.hasOneBrush){
-      console.log("mouse move in canvas")
+      //console.log("mouse move in canvas")
       var properties = shortTimeline.getEventProperties(e);
       // properties contains things like node id, group, x, y, time, etc.
-      console.log('mousemove properties:', properties.time);
+      //console.log('mousemove properties:', properties.time);
       this.getDatesRange(properties)
       this.brush.update(e)
     }
@@ -206,7 +206,7 @@ class SelectionArea {
 
   connectDraggable(){
     this.drawArea.addEventListener('dragstart', event => {
-      event.dataTransfer.setData('text', 'yVotos');
+      event.dataTransfer.setData('text/plain', 'yVotos');
       event.dataTransfer.effectAllowed = 'move';
     });
 

@@ -56,8 +56,19 @@ function manageData() {
   //testChart()
   initChart();
   //udpateChartCvn(0)
-  createTimelineEvents();
+  //createTimelineEvents();
   createTimelineEvents2();
+  //id, option, flag, height, maxHeight, orientation) {
+  timelineLarge = new TimelineObj(
+    'timelineVis',
+    organismoOp,
+    false,
+    '275px',
+    '285px',
+    'top',
+    'box'
+  );
+  console.log(timelineLarge)
 
   console.log("Current dataset", organismoOp)
 }

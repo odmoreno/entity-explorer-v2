@@ -324,7 +324,7 @@ body{
 /* create a custom sized dot at the bottom of the red item */
 
 .vis-item.vis-box {
-    /*height: 200px !important;*/
+    max-height: 200px !important;
     max-width: 250px;
     overflow-y: auto;
     opacity: 1;
@@ -680,4 +680,8 @@ body{
 .selection-area {
     border: 1px solid #FF0000;
     position: absolute;
+}
+
+.droppable {
+  background: #f8f9fc;
 }

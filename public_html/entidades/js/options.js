@@ -77,7 +77,7 @@ let groupCodes = {
   "7" : "Observadores"
 }
 
-
+let timelineLarge;
 
 function color (d, option){
   
