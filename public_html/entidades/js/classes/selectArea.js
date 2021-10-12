@@ -25,6 +25,25 @@ class Component {
   }
 }
 
+class DatePicker {
+  constructor(id){
+    this.id = id
+      this.datepicker = document.getElementById(this.id)
+      //$(`#${id}`).datepicker();
+  }
+
+  update = (currentDate) => {
+      console.log("picker:", this.datepicker)
+      const value = currentDate.toLocaleDateString("es-ES")
+      console.log(currentDate)
+      console.log(value)
+      this.datepicker.value = value
+      $(`#${this.id}`).datepicker('update', currentDate)
+      //this.datepicker.setDate(currentDate)
+      //this.datepicker('update', '');
+  }
+}
+
 class Brush extends Component{
   constructor(hostElementId){
     super(hostElementId);
@@ -106,6 +125,8 @@ class SelectionArea {
     this.id = id;
     this.datesLimit = {}
     this.drawArea = document.getElementById('canvas');
+    this.startDate = new DatePicker('datepicker1')
+    this.endDate = new DatePicker('datepicker2')
     this.connectClickEvent();
     this.connectMouseEvent();
     this.connectDraggable();
@@ -150,7 +171,7 @@ class SelectionArea {
       //console.log("mouse move in canvas")
       var properties = shortTimeline.getEventProperties(e);
       // properties contains things like node id, group, x, y, time, etc.
-      //console.log('mousemove properties:', properties.time);
+      console.log('mousemove properties:', properties.time);
       this.getDatesRange(properties)
       this.brush.update(e)
     }
@@ -160,9 +181,11 @@ class SelectionArea {
   getDatesRange(properties) {
     if(!this.datesLimit['first']){
       this.datesLimit['first'] = properties.time
+      this.startDate.update(properties.time)
     }
     else{
       this.datesLimit['last'] = properties.time
+      this.endDate.update(properties.time)
     }
   }
 
@@ -229,3 +252,6 @@ class SelectionArea {
 }
 
 const divArea = new SelectionArea('canvas')
+
+const rangeData = divArea.getDatesRange()
+console.log(rangeData)
