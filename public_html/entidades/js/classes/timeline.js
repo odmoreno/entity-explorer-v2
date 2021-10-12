@@ -3,6 +3,7 @@ class TimelineObj {
   defaultOptions = {};
   items = {};
   //timeline = {};
+  votosId = {}
 
   constructor(id, option, flag, height, maxHeight, orientation, type) {
     this.height = height; // 285px normal, 50px el corto
@@ -91,6 +92,10 @@ class TimelineObj {
   }
 
   connectDroppable() {
+    //console.log(this.container.closest('div div'))
+    //console.log(this.container.firstChild)
+    //this.timelineE = this.container.firstChild
+    this.container.style.zIndex = 999;
     this.container.addEventListener('dragenter', (event) => {
       if (event.dataTransfer.types[0] === 'text/plain') {
         this.container.classList.add('droppable');
@@ -145,10 +150,14 @@ class TimelineObj {
       const item = votos[key];
       let fecha = item.fecha.split('-');
       let hora = item.hora ? item.hora.split(':') : '';
-      const node = this.createNodeItem(item, fecha, hora);
-      this.items.add(node);
-      addSesion2(item.sesId);
-      logFiles(`Node item ${item.sesId} `, node);
+      //console.log("Antes")
+      const flag = this.validateId(item)
+      if(flag){
+        const node = this.createNodeItem(item, fecha, hora);
+        this.items.add(node);
+        addSesion2(item.sesId);
+        logFiles(`Node item ${item.sesId} `, node);
+      }
     }
     logFiles('Items', this.items);
     
@@ -161,6 +170,16 @@ class TimelineObj {
     currentSes = firstIds
     currentId = reverseDIVotes[firstIds]
     this.timeline.setSelection(firstIds, { focus: false });
+  }
+
+  validateId(item){
+    if(!(item.sesId in this.votosId)){
+      //console.log("no existe alli")
+      this.votosId[item.sesId] = 1
+      return true
+    }
+    console.log("YA EXISTE")
+    return false
   }
 
   setRangeTl() {
