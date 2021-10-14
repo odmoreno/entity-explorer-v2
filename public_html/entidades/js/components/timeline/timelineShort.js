@@ -6,25 +6,14 @@ var LOGVS = true;
 var datas2;
 var shortTimeline;
 var defaultOptions2;
-
 var datesLimit = {}
+var shortTlDiv = document.getElementById('pointTimeline')
+shortTlDiv.style.pointerEvents = 'none'
 
 globalThis.hasOpenBrush = false
 
 
 const drawArea = document.getElementById('canvas');
-//drawArea.addEventListener('click', startRect);
-//drawArea.addEventListener('mousemove', setMousePos)
-
-//function startRect(ev) {
-//  console.log("Click in canvas")
-//  console.log(ev)
-//}
-//
-//function setMousePos(ev){
-//  console.log("mouse move in canvas")
-//  //console.log(ev)
-//}
 
 function createTimelineEvents2() {
   //console.log("Ses LIST:", Object.values(sesiones))
@@ -36,14 +25,14 @@ function createTimelineEvents2() {
   var container = document.getElementById('pointTimeline');
 
   defaultOptions2 = {
-    showMajorLabels: false,
+    showMajorLabels: true,
     showMinorLabels: false,
     stack: false,
     showCurrentTime: false,
     horizontalScroll: true,
-    height: '50px',
+    height: '90px',
     maxHeight: '300px',
-    orientation: 'bot',
+    orientation: 'top',
     min: new Date(1954, 5, 1), // lower limit of visible range
     max: new Date(2021, 10, 20),
     //zoomMin: 1000 * 60 * 60 * 24 *31, // one day in milliseconds
@@ -130,6 +119,15 @@ function createTimelineEvents2() {
       updateSliderStyle();
     }
   });
+
+  shortTimeline.on('mouseDown', function(properties){
+    console.log("MOUSE DOWN", properties)
+    //shortTlDiv.style.pointerEvents = 'none'
+  })
+  shortTimeline.on('mouseUp', function(properties){
+    console.log("MOUSE UP", properties)
+    //shortTlDiv.style.pointerEvents = 'auto'
+  })
 
   //mouseOver
   shortTimeline.on('mouseOver', function (properties) {

@@ -35,7 +35,7 @@ function createTimelineEvents() {
 
     height: "285px",
     maxHeight: "240px",
-    orientation: "top",
+    orientation: "bot",
     //min: new Date(2017, 4, 1), // lower limit of visible range
     //max: new Date(2021, 5, 20),
     //max: new Date(2021, 6, 24), // upper limit of visible range

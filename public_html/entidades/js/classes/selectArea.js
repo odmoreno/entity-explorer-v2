@@ -73,6 +73,7 @@ class Brush extends Component{
 
   create(){
     //console.log('created...', this.eventMouse);
+
     let selectedArea = document.createElement('div');
     selectedArea.className = 'selection-area';
     selectedArea.setAttribute("draggable", "true")
@@ -91,15 +92,17 @@ class Brush extends Component{
       Math.abs(getBounding.bottom - this.eventMouse.y - this.hostElHeight) + 5;
     console.log('Y:', this.y);
 
+    
     selectedArea.style.position = 'absolute';
     selectedArea.style.left = this.x + 'px'; // 500px
     selectedArea.style.top = this.y + 'px';
     selectedArea.style.width = 0;
     selectedArea.style.height = 0;
-    
+    selectedArea.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
 
     this.hostElement.addEventListener('dblclick', this.closeTooltip);
     this.element = selectedArea;
+    this.connectDraggable()
   }
 
   update = (e) =>{
@@ -120,33 +123,56 @@ class Brush extends Component{
                 .style('height', Math.abs(newY - this.y) + 'px')
   }
 
-  connectMouseEvent = () => {
-    console.log(this);
-    console.log(this.element);
-
-    this.element.addEventListener("mousedown", function (e) {
-      this.isDown = true;
-      console.log("mouse down")
+  connectDraggable() {
+    this.element.addEventListener("dragstart", (event) => {
+      event.dataTransfer.setData("text/plain", "yVotos");
+      event.dataTransfer.effectAllowed = "move";
+      console.log("drag start", event);
       //this.offset = [
-        //  divOverlay.offsetLeft - e.clientX,
-        //  divOverlay.offsetTop - e.clientY,
-        //];
-      });
-    
-    this.element.addEventListener("mouseup", function () {
-        this.isDown = false;
-        console.log("mouse up")
+      //  this.element.offsetLeft - event.clientX,
+      //  this.element.offsetTop - event.clientY,
+      //];
+      //let value = event.x + this.offset[0] + "px";
+      //console.log(value)
+      //this.element.style.left = value
+      //this.element.style.top = event.y + "px";
+      
     });
 
-    this.element.addEventListener("mousemove", function (e) {
-      e.preventDefault();
-      if (this.isDown) {
-        console.log("mouse move")
-        //divOverlay.style.left = e.clientX + offset[0] + "px";
-        //divOverlay.style.top = e.clientY + offset[1] + "px";
-      }
+    this.element.addEventListener("dragend", (event) => {
+      console.log("Drag END", event);
+      console.log(event);
     });
   }
+
+  connectMouseEventBrush = () => {
+    //console.log(this);
+    //console.log(this.element);
+
+    this.element.addEventListener('mousedown', (e) => {
+      this.isDown = true;
+      console.log('mouse down');
+      this.offset = [
+        this.element.offsetLeft - e.clientX,
+        this.element.offsetTop - e.clientY,
+      ];
+      return false;
+    });
+
+    this.element.addEventListener('mouseup', () => {
+      this.isDown = false;
+      console.log('mouse up');
+    });
+
+    this.element.addEventListener('mousemove', (e) => {
+      e.preventDefault();
+      if (this.isDown) {
+        console.log('mouse move');
+        this.element.style.left = e.clientX + this.offset[0] + "px";
+        this.element.style.top = e.clientY + this.offset[1  ] + "px";
+      }
+    });
+  };
   
 }
 
@@ -163,7 +189,7 @@ class SelectionArea {
     this.endDate = new DatePicker("datepicker2");
     this.connectClickEvent();
     this.connectMouseEvent();
-    this.connectDraggable();
+    //this.connectDraggable();
     this.brush = new Brush(this.id);
   }
 
@@ -175,7 +201,8 @@ class SelectionArea {
       this.hasActiveBrush = false;
       globalThis.hasOpenBrush = false;
       this.brush.attach(false);
-      this.brush.connectMouseEvent()
+      //this.brush.connectMouseEventBrush()
+      //this.brush.connectDraggable()
       //console.log("Dates:", this.datesLimit)
       this.getSessionsInRange();
       return;
@@ -257,18 +284,7 @@ class SelectionArea {
     console.log(this.datesLimit);
   };
 
-  connectDraggable() {
-    this.drawArea.addEventListener("dragstart", (event) => {
-      event.dataTransfer.setData("text/plain", "yVotos");
-      event.dataTransfer.effectAllowed = "move";
-      console.log("drag start", event);
-    });
-
-    this.drawArea.addEventListener("dragend", (event) => {
-      console.log("Drag END", event);
-      console.log(event);
-    });
-  }
+  
 
   connectClickEvent() {
     this.drawArea.addEventListener("click", this.startRect);
@@ -281,5 +297,58 @@ class SelectionArea {
 
 const divArea = new SelectionArea('canvas')
 
-const rangeData = divArea.getDatesRange()
-console.log(rangeData)
+//const rangeData = divArea.getDatesRange()
+//console.log(rangeData)
+
+/**
+ *  connectDraggable() {
+    this.element.addEventListener("dragstart", (event) => {
+      event.dataTransfer.setData("text/plain", "yVotos");
+      event.dataTransfer.effectAllowed = "move";
+      console.log("drag start", event);
+      //this.offset = [
+      //  this.element.offsetLeft - event.clientX,
+      //  this.element.offsetTop - event.clientY,
+      //];
+      //let value = event.x + this.offset[0] + "px";
+      //console.log(value)
+      //this.element.style.left = value
+      //this.element.style.top = event.y + "px";
+      
+    });
+
+    this.element.addEventListener("dragend", (event) => {
+      console.log("Drag END", event);
+      console.log(event);
+    });
+  }
+
+  connectMouseEventBrush = () => {
+    //console.log(this);
+    //console.log(this.element);
+
+    this.element.addEventListener('mousedown', (e) => {
+      this.isDown = true;
+      console.log('mouse down');
+      this.offset = [
+        this.element.offsetLeft - e.clientX,
+        this.element.offsetTop - e.clientY,
+      ];
+      return false;
+    });
+
+    this.element.addEventListener('mouseup', () => {
+      this.isDown = false;
+      console.log('mouse up');
+    });
+
+    this.element.addEventListener('mousemove', (e) => {
+      e.preventDefault();
+      if (this.isDown) {
+        console.log('mouse move');
+        this.element.style.left = e.clientX + this.offset[0] + "px";
+        this.element.style.top = e.clientY + this.offset[1  ] + "px";
+      }
+    });
+  };
+ */

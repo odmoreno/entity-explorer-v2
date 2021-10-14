@@ -65,7 +65,7 @@ function manageData() {
     false,
     '275px',
     '285px',
-    'top',
+    'bot', //orientacion
     'box'
   );
   console.log(timelineLarge)

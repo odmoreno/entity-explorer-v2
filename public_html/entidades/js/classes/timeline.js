@@ -100,6 +100,7 @@ class TimelineObj {
       if (event.dataTransfer.types[0] === 'text/plain') {
         this.container.classList.add('droppable');
         event.preventDefault();
+        //console.log("DragEnter")
       }
     });
 
@@ -115,6 +116,7 @@ class TimelineObj {
       if (event.relatedTarget.closest('div') == this.container) {
         this.container.classList.remove('droppable');
         //event.preventDefault();
+        //console.log('drag leave')
       }
     });
 
