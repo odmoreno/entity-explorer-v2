@@ -290,7 +290,7 @@ function outputVotes(matches) {
               <div class="d-flex flex-column" onmouseover="overVotes(${element.sesId})" onmouseleave="onLeaveVote(${element.sesId})">
                 <div class="d-flex flex-row">
                   ${ sesFlag ? ' ' : `<span class='mr-2'  style="color: #034EA2; font-weight: bold;"> Sesión ${organismoOp == 1? element.sesion : element.anio}</span>`}
-                  <span class='mr-2' style="color: #034EA2; font-weight: bold;"> ${organismoOp == 1? element.name : element.unres }</span> 
+                  <span class='mr-2' style="color: #034EA2; font-weight: bold;"> ${organismoOp == 1? ('v' + element.votacion + ' ' + element.codDate) : element.unres }</span> 
                 </div>
                 <span style="color: #54575b;"> (${organismoOp == 1? (element.fecha +' '+ element.hora): element.date }) : </span>
                 <span> ${ element.bold ? element.bold : element.asunto } ... </span> 

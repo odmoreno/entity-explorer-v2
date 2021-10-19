@@ -65,7 +65,7 @@ function manageData() {
     false,
     '275px',
     '285px',
-    'bot', //orientacion
+    'top', //orientacion
     'box'
   );
   console.log(timelineLarge)
@@ -131,33 +131,29 @@ $("#searchEntityList")
 
 })
 
+$('.input-daterange').datepicker({
+  orientation: "bottom auto",
+  language: "es",
+});
+
 $('.input-daterange input').each(function() {
   $(this).datepicker('clearDates');
   
-  $(this).datepicker()
-    .on('changeDate', function(e) {
-      console.log($(this).attr('id'))
-      console.log('changeDate:', e.date)
-      datesRange[$(this).attr('id')] = e.date
-      //console.log($(this).datepicker())  
-      console.log(datesRange)
+  $(this)
+    .datepicker()
+    .on("changeDate", function (e) {
+      console.log($(this).attr("id"));
+      console.log("changeDate:", e.date);
+      datesRange[$(this).attr("id")] = e.date;
+      //console.log($(this).datepicker())
+      console.log(datesRange);
 
-      setWindowsTimeline()
-  })
+      setWindowsTimeline();
+    });
 
 });
 
-$('#datepicker1')
-  .datepicker()
-  .on('changeDate', function (e) {
-    console.log('changeDate1:', e.date)
-  });
 
-  $('#datepicker2')
-  .datepicker()
-  .on('changeDate', function (e) {
-    console.log('changeDate2:', e.date)
-  });
 
 function setWindowsTimeline () {
   let values = Object.values(datesRange)

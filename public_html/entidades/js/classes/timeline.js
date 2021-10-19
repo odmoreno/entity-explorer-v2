@@ -122,7 +122,7 @@ class TimelineObj {
 
     this.container.addEventListener('drop', (event) => {
       const prjId = event.dataTransfer.getData('text/plain');
-      //event.dataTransfer.dropEffect = 'copy';
+      event.dataTransfer.dropEffect = 'copy';
 
       const firstKey = prjId.substring(0, 1);
       logFiles('drop', prjId);

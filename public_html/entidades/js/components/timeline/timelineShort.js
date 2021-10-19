@@ -12,6 +12,8 @@ shortTlDiv.style.pointerEvents = 'none'
 
 globalThis.hasOpenBrush = false
 
+var activateTl = false;
+
 
 const drawArea = document.getElementById('canvas');
 
@@ -32,7 +34,7 @@ function createTimelineEvents2() {
     horizontalScroll: true,
     height: '90px',
     maxHeight: '300px',
-    orientation: 'top',
+    orientation: 'bot',
     min: new Date(1954, 5, 1), // lower limit of visible range
     max: new Date(2021, 10, 20),
     //zoomMin: 1000 * 60 * 60 * 24 *31, // one day in milliseconds
@@ -127,6 +129,18 @@ function createTimelineEvents2() {
   shortTimeline.on('mouseUp', function(properties){
     console.log("MOUSE UP", properties)
     //shortTlDiv.style.pointerEvents = 'auto'
+  })
+
+  shortTimeline.on('doubleClick', function(properties){
+    console.log("double click", properties)
+    if(activateTl){
+      activateTl = false
+      shortTlDiv.style.pointerEvents = 'auto'
+    }
+    else{
+      activateTl = true
+      shortTlDiv.style.pointerEvents = 'none'
+    }
   })
 
   //mouseOver
