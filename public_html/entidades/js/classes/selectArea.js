@@ -125,9 +125,17 @@ class Brush extends Component{
 
   connectDraggable() {
     this.element.addEventListener("dragstart", (event) => {
-      event.dataTransfer.setData("text/plain", "yVotos");
-      event.dataTransfer.effectAllowed = "move";
       console.log("drag start", event);
+      event.dataTransfer.effectAllowed = "move";
+
+      var item = {
+        id: new Date(),
+        content: 'yVotos',
+      };
+      
+      event.dataTransfer.setData("text/plain", JSON.stringify(item));
+      //event.dataTransfer.setData("text/plain", "yVotos");
+      
       //this.offset = [
       //  this.element.offsetLeft - event.clientX,
       //  this.element.offsetTop - event.clientY,

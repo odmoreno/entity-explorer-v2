@@ -95,35 +95,52 @@ class TimelineObj {
     //console.log(this.container.closest('div div'))
     //console.log(this.container.firstChild)
     //this.timelineE = this.container.firstChild
-    this.container.style.zIndex = 999;
+    //this.container.style.zIndex = 999;
     this.container.addEventListener('dragenter', (event) => {
       if (event.dataTransfer.types[0] === 'text/plain') {
         this.container.classList.add('droppable');
-        event.preventDefault();
-        //console.log("DragEnter")
+        //event.preventDefault();
+        console.log('DragEnter');
       }
     });
 
     this.container.addEventListener('dragover', (event) => {
       if (event.dataTransfer.types[0] === 'text/plain') {
-        //console.log("Dragover")
         event.preventDefault();
+        //console.log("Dragover")
+        //return false
       }
       //console.log(event)
     });
 
     this.container.addEventListener('dragleave', (event) => {
+      //event.preventDefault();
       if (event.relatedTarget.closest('div') == this.container) {
         this.container.classList.remove('droppable');
-        //event.preventDefault();
-        //console.log('drag leave')
+        console.log(event.target.nodeName);
+        console.log(event.target.id);
+        console.log(event.target.href);
+        console.log(event.target.className);
+        console.log(event.target.innerHtml);
+        console.log(event.relatedTarget.closest('div'));
+        console.log('DRAGGG leave');
       }
     });
 
+    this.timeline.on('drop', function (properties) {
+      console.log('DROP');
+      const prjId = event.dataTransfer.getData('text/plain');
+      const obj = JSON.parse(prjId);
+      console.log(prjId);
+      console.log(obj);
+      console.log(obj.content);
+    });
+
     this.container.addEventListener('drop', (event) => {
+      event.preventDefault();
       const prjId = event.dataTransfer.getData('text/plain');
       event.dataTransfer.dropEffect = 'copy';
-
+      console.log('DROP');
       const firstKey = prjId.substring(0, 1);
       logFiles('drop', prjId);
       if (firstKey == 'w') {
@@ -133,7 +150,7 @@ class TimelineObj {
         this.addVotesInArea();
       }
       this.container.classList.remove('droppable');
-      //event.preventDefault();
+      //return false;
     });
   }
 
@@ -141,7 +158,7 @@ class TimelineObj {
     this.hasContent = true
     this.connectDroppable()
     const votos = dictIds['yVotos']; //Object.values(dictIds["yVotos"])
-    logFiles('votos pusheados', votos);
+    //logFiles('votos pusheados', votos);
 
     this.timeline.setOptions({
       showMajorLabels: true,
@@ -156,12 +173,13 @@ class TimelineObj {
       const flag = this.validateId(item)
       if(flag){
         const node = this.createNodeItem(item, fecha, hora);
+        //this.timeline.add(node)
         this.items.add(node);
         addSesion2(item.sesId);
-        logFiles(`Node item ${item.sesId} `, node);
+        //logFiles(`Node item ${item.sesId} `, node);
       }
     }
-    logFiles('Items', this.items);
+    //logFiles('Items', this.items);
     
     if (!flagEmptySes) 
       getAllLinks();
@@ -188,12 +206,12 @@ class TimelineObj {
     const range = this.timeline.getItemRange();
     let minTl = range.min;
     const maxTl = range.max;
-    logFiles('ranges', [minTl, maxTl]);
+    //logFiles('ranges', [minTl, maxTl]);
     const lastSesion =
       this.orgOption === 1 ? sesiones[lastIdS] : unResolutions[lastIdS];
     const fecha = lastSesion.fecha.split('-');
     const hora = lastSesion.hora ? lastSesion.hora.split(':') : '';
-    logFiles(`Sesion ultima ${lastIdS}`, lastSesion);
+    //logFiles(`Sesion ultima ${lastIdS}`, lastSesion);
     let newMax = new Date(
       parseInt(fecha[0]),
       parseInt(fecha[1] - 1),

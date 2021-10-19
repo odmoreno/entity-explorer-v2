@@ -68,6 +68,15 @@ class Brush extends Component {
     this.eventMouse = e;
   };
 
+  getTotalVotes = (votos) => {
+    console.log("votos:", votos)
+    this.size = Object.values(votos).length
+  }
+
+  getDates = (datesFunction) =>{
+    this.datesTl = datesFunction
+  }
+
   closeTooltip = () => {
     //console.log("DOUBLE")
     this.detach();
@@ -102,29 +111,48 @@ class Brush extends Component {
     //this.y =
     //  Math.abs(getBounding.bottom - this.eventMouse.y - this.hostElHeight) + 5;
     this.y = '30'
+    this.bottomArea = Math.abs(getBounding.right - this.eventMouse.x) + 5;
 
     console.log("Y:", this.y);
 
     selectedArea.style.position = "absolute";
     selectedArea.style.left = this.x + "px"; // 500px
-    selectedArea.style.top = '30px'//this.y + "px";
+    selectedArea.style.top = this.y + "px";
     selectedArea.style.width = 0;
     selectedArea.style.height = 0;
     selectedArea.style.backgroundColor = "rgba(255, 0, 0, 0.3)";
 
     dragZone.style.position = "absolute";
     dragZone.style.left = this.x + "px"; // 500px
-    dragZone.style.top = '15px'//this.y - 15 + "px";
+    dragZone.style.top = this.y - 20 + "px";
     dragZone.style.width = 0;
-    dragZone.style.height = "15px";
+    dragZone.style.height = "20px";
     dragZone.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
-    dragZone.style.borderTopLeftRadius = "5px";
-    dragZone.style.borderTopRightRadius = "5px";
+    //dragZone.style.borderTopLeftRadius = "5px";
+    //dragZone.style.borderTopRightRadius = "5px";
+    let leftSide = document.createElement("div");
+    let rigthSide = document.createElement("div");
+    leftSide.id = "leftArea"
+    leftSide.className = 'textZone'
+    rigthSide.className = 'textZone'
+    rigthSide.id = "rigthArea"
+
+    leftSide.style.left = this.x - 36 + "px";
+    leftSide.style.top = this.y - 20 + "px";
+    //rigthSide.style.left = this.bottomArea + "px"
+    rigthSide.style.top = this.y - 20 + "px";
+  
+    divArea.appendChild(leftSide);
+    divArea.appendChild(rigthSide);
 
     this.element = divArea;
     this.selectArea = selectedArea;
     this.dragZone = dragZone;
     this.connectDraggable();
+
+    this.rigthSide = rigthSide;
+    this.leftSide = leftSide;
+    
   }
 
   update = (e) => {
@@ -150,7 +178,41 @@ class Brush extends Component {
     //.style("height", Math.abs(newY - this.y) + "px");
 
     d3.select(".dragzone").style("width", Math.abs(newX - this.x) + "px");
+    //console.log("LEFT:", d3.select("#leftArea"))
+    //this.leftSide.style.left = this.x - 36 + "px";
+    d3.select("#leftArea").style("left", ()=> {
+      //console.log(this.x -36 + "px")
+      return this.x -30 + "px";
+    })
+    const text = this.getDateText()
+    this.leftSide.innerHTML = text
+
   };
+
+  getDateText (){
+    console.log("DAATES:", this.datesTl,  this.datesTl['first'])
+    let first = this.datesTl['first']
+    console.log(first.getDate(), first.getMonth())
+    let text = ('0'+first.getDate()).slice(-2) +'/'+ (first.getMonth()+1)
+    return text
+  }
+
+  hideTextInfo(){
+    this.rigthSide.style.display ="none"
+    this.leftSide.style.display = "none"
+  }
+
+  showTextInfo(){
+    this.rigthSide.style.display ="block"
+    this.leftSide.style.display = "block"
+  }
+
+  changeDateInfo(first, last){
+
+    let textFirst = ('0'+first.getDate()).slice(-2) +'/'+ (first.getMonth()+1)
+    let textLast = ('0'+last.getDate()).slice(-2) +'/'+ (last.getMonth()+1)
+    return [textFirst, textLast]
+  }
 
   connectMouseEventsOnBrush = () => {
     //console.log(this);
@@ -159,6 +221,7 @@ class Brush extends Component {
       e.stopPropagation();
       this.isDown = true;
       console.log("mouse down");
+      this.hideTextInfo();
       this.offset = [
         this.selectArea.offsetLeft - e.clientX,
         this.selectArea.offsetTop - e.clientY,
@@ -171,6 +234,12 @@ class Brush extends Component {
       console.log("mouse up");
       //console.log(this.p1.time, this.p2.time)
       this.setDatesRange(this.p1.time, this.p2.time)
+      this.showTextInfo()
+      const info = this.changeDateInfo(this.p1.time, this.p2.time)
+      console.log("TOTAL", this.size)
+      this.dragZone.innerHTML = `${this.size}  votaciones`
+      this.leftSide.innerHTML = info[0]
+      this.rigthSide.innerHTML = info[1]
       e.stopPropagation();
     });
 
@@ -188,17 +257,16 @@ class Brush extends Component {
         //console.log(boundBoxDiv)
 
         if (leftside - 5 <= leftCanvas) {
-          this.selectArea.style.left = e.clientX + this.offset[0] + "px";
+          this.selectArea.style.left = e.clientX + this.offset[0] + 'px';
+        } else {
+          this.selectArea.style.left = e.clientX + this.offset[0] + 'px';
+          this.dragZone.style.left = e.clientX + this.offset[0] + 'px';
+          this.leftSide.style.left = e.clientX + this.offset[0] - 36 + 'px';
+          this.rigthSide.style.left =
+            e.clientX + this.offset[0] + boundBoxDiv.width+ 8 + 'px';
         }
-        else {
-          this.selectArea.style.left = e.clientX + this.offset[0] + "px";
-          this.dragZone.style.left = e.clientX + this.offset[0] + "px";
-        }
-        //this.selectArea.style.top = e.clientY + this.offset[1] + "px";
-        //this.dragZone.style.top = e.clientY - 15 + this.offset[1] + "px";
 
         const getBounding = this.selectArea.getBoundingClientRect();
-        //console.log(getBounding)
 
         var x1 = document.createEvent("MouseEvent");
         x1.initMouseEvent(
@@ -251,14 +319,19 @@ class Brush extends Component {
   connectDraggable() {
     console.log(this)
     this.dragZone.addEventListener('dragstart', (event) => {
-      event.dataTransfer.setData("text/plain", "yVotos");
       event.dataTransfer.effectAllowed = "move";
-      console.log("drag start", event);
+      var item = {
+        id: new Date(),
+        content: 'yVotos',
+      };
+      //event.dataTransfer.setData("text/plain", JSON.stringify(item));
+      event.dataTransfer.setData("text/plain", "yVotos");
+      //console.log("drag start", event);
     })
 
     this.dragZone.addEventListener("dragend", (event) => {
       console.log("Drag END", event);
-      console.log(event);
+      //console.log(event);
     });
   }
 }
@@ -280,23 +353,6 @@ class SelectionArea {
   }
 
   startRect = (e) => {
-<<<<<<< HEAD
-    //console.log('down')
-    if (this.hasOneBrush) {
-      //Si hay uno eliminar el anterior, y crear uno nuevo
-      //d3.selectAll('.div-area').remove();
-      this.hasActiveBrush = false;
-      this.hasOneBrush = false;
-      //this.startRect(e);
-      return;
-    }
-    console.log('DOWN');
-    this.createBrush(e);
-    this.drawArea.style.cursor = 'crosshair';
-    this.hasActiveBrush = true;
-    this.hasOneBrush = true;
-=======
->>>>>>> 21441366308dced9a62e19946756928e4518c501
     e.stopPropagation();
     const currentBrush = document.elementFromPoint(e.clientX, e.clientY);
     console.log(currentBrush.className);
@@ -330,10 +386,6 @@ class SelectionArea {
   };
 
   createBrush(e) {
-    this.brush.closeNotifierHandler(() => {
-      this.hasActiveBrush = false;
-      this.hasOneBrush = false;
-    });
     this.brush.eventHandler(e);
     this.brush.getDatesRangeHandler(this.setDatesWhenMoveBrush)
     this.brush.create();
@@ -346,36 +398,49 @@ class SelectionArea {
     this.drawArea.style.cursor = "default";
     this.hasActiveBrush = false;
     this.hasOneBrush = true;
-    this.brush.connectMouseEventsOnBrush();
     this.getSessionsInRange();
+    this.setDateright()
+    this.brush.connectMouseEventsOnBrush();
   };
+
+  setDateright(){
+    this.brush.dragZone.innerHTML = `${this.lengthVotaciones}  votaciones`
+    
+    const total = this.getRigthSide()
+    this.brush.rigthSide.style.left = total + 8 +'px'
+    
+    let text =
+      ('0' + this.datesLimit['last'].getDate()).slice(-2) +
+      '/' +
+      (this.datesLimit['last'].getMonth()+1);
+    this.brush.rigthSide.innerHTML = text
+  
+  }
+
+  getRigthSide() {
+    let left = this.brush.selectArea.style.left
+    let height = this.brush.selectArea.style.width
+    left = left.replace('px', '')
+    height = height.replace('px', '')
+    let total = parseInt(left) + parseInt(height)
+    console.log(left, height, total)
+    return total
+  }
 
   setMousePos = (e) => {
     if (this.hasActiveBrush) {
-<<<<<<< HEAD
-      console.log('mouse move in canvas');
-      e.preventDefault();
-=======
-      console.log("mouse move in canvas");
+      //console.log("mouse move in canvas");
       //e.preventDefault();
->>>>>>> 21441366308dced9a62e19946756928e4518c501
       var properties = shortTimeline.getEventProperties(e);
       // properties contains things like node id, group, x, y, time, etc.
       //console.log('mousemove properties:', properties.time);
       this.getDatesRange(properties);
+      this.brush.getDates(this.datesLimit)
       this.brush.update(e);
+      
     }
   };
 
-<<<<<<< HEAD
-  clickEvent = (e) => {
-    //console.log("click")
-    if (!this.mousedownFired) {
-      console.log("CLICK")
-      this.mousedownFired = true;
-      //e.stopPropagation();
-      return;
-=======
   connectEvents() {
     //this.drawArea.addEventListener("click", this.clickEvent);
     this.drawArea.addEventListener("mousedown", this.startRect);
@@ -384,31 +449,24 @@ class SelectionArea {
   }
 
   getDatesRange = (properties) => {
-    console.log("get dates range", this)
+    //console.log("get dates range", this)
     if (!this.datesLimit["first"]) {
       this.datesLimit["first"] = properties.time;
       this.startDate.update(properties.time);
     } else {
       this.datesLimit["last"] = properties.time;
       this.endDate.update(properties.time);
->>>>>>> 21441366308dced9a62e19946756928e4518c501
     }
   }
 
-<<<<<<< HEAD
-  connectEvents() {
-    //this.drawArea.addEventListener('click', this.clickEvent);
-    this.drawArea.addEventListener('mousedown', this.startRect);
-    this.drawArea.addEventListener('mouseup', this.finishRect);
-    this.drawArea.addEventListener('mousemove', this.setMousePos);
-=======
   setDatesWhenMoveBrush = (first, last) => {
     this.datesLimit["first"] = first
     this.datesLimit["last"] = last
     this.startDate.update(first);
     this.endDate.update(last);
     this.getSessionsInRange();
->>>>>>> 21441366308dced9a62e19946756928e4518c501
+    this.brush.getTotalVotes(this.votaciones)
+    //this.brush.getTotalVotes(this.votaciones)
   }
 
   getSessionsInRange = () => {
@@ -435,8 +493,8 @@ class SelectionArea {
     outputVotes(this.votaciones);
     dictIds["yVotos"] = this.votaciones;
     delete this.datesLimit["first"];
-
     console.log(this.datesLimit);
+    this.lengthVotaciones = Object.values(this.votaciones).length
   };
 }
 
@@ -458,33 +516,6 @@ const divArea = new SelectionArea("canvas");
     this.hasActiveBrush = true;
 
     e.stopPropagation();
-<<<<<<< HEAD
- */
-
-    /**
-     * if (this.hasActiveBrush) {
-      this.hasActiveBrush = false;
-      //this.getSessionsInRange();
-      return;
-    }
-    if (!this.hasOneBrush) {
-      this.brush.closeNotifierHandler(() => {
-        this.hasActiveBrush = false;
-        this.hasOneBrush = false;
-      });
-      this.brush.eventHandler(e);
-      this.brush.create();
-      this.brush.attach(true);
-      
-      //this.brush.init( () => { this.hasActiveBrush = false;}, e )
-
-      this.drawArea.style.cursor = "crosshair";
-      this.hasActiveBrush = true;
-      this.hasOneBrush = true;
-      //globalThis.hasOpenBrush = true;
-    }
-     */
-=======
 
 
 
@@ -498,4 +529,3 @@ const divArea = new SelectionArea("canvas");
     }
   };
  */
->>>>>>> 21441366308dced9a62e19946756928e4518c501

@@ -686,3 +686,19 @@ body{
   background: #f8f9fc;
 }
 
+.dragzone{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; /* Don't forget this one */
+    text-overflow: ellipsis;
+    color: black;
+}
+
+.textZone{
+    font-size: 11px;
+    color: black;
+    position: absolute;
+    user-select: none; 
+}
