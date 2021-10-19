@@ -140,35 +140,28 @@ class SelectionArea {
   }
 
   startRect = (e) => {
-    if(!this.mousedownFired){
-      console.log('down');
-      if (this.hasActiveBrush) {
-        this.hasActiveBrush = false;
-        //this.getSessionsInRange();
-        return;
-      }
-      if (!this.hasOneBrush) {
-        this.brush.closeNotifierHandler(() => {
-          this.hasActiveBrush = false;
-          this.hasOneBrush = false;
-        });
-        this.brush.eventHandler(e);
-        this.brush.create();
-        this.brush.attach(true);
-
-        //this.brush.init( () => { this.hasActiveBrush = false;}, e )
-
-        this.drawArea.style.cursor = 'crosshair';
-        this.hasActiveBrush = true;
-        this.hasOneBrush = true;
-        //globalThis.hasOpenBrush = true;
-      }
-      this.mousedownFired = true
+    //console.log('down')
+    if (this.hasOneBrush) {
+      //Si hay uno eliminar el anterior, y crear uno nuevo
+      //d3.selectAll('.div-area').remove();
+      this.hasActiveBrush = false;
+      this.hasOneBrush = false;
+      //this.startRect(e);
+      return;
     }
+    console.log('DOWN');
+    this.createBrush(e);
+    this.drawArea.style.cursor = 'crosshair';
+    this.hasActiveBrush = true;
+    this.hasOneBrush = true;
     e.stopPropagation();
   };
 
   createBrush(e) {
+    this.brush.closeNotifierHandler(() => {
+      this.hasActiveBrush = false;
+      this.hasOneBrush = false;
+    });
     this.brush.eventHandler(e);
     this.brush.create();
     this.brush.attach(true);
@@ -185,7 +178,7 @@ class SelectionArea {
   setMousePos = (e) => {
     if (this.hasActiveBrush) {
       console.log('mouse move in canvas');
-      //e.preventDefault();
+      e.preventDefault();
       var properties = shortTimeline.getEventProperties(e);
       // properties contains things like node id, group, x, y, time, etc.
       //console.log('mousemove properties:', properties.time);
@@ -199,13 +192,13 @@ class SelectionArea {
     if (!this.mousedownFired) {
       console.log("CLICK")
       this.mousedownFired = true;
-      e.stopPropagation();
+      //e.stopPropagation();
       return;
     }
   };
 
   connectEvents() {
-    this.drawArea.addEventListener('click', this.clickEvent);
+    //this.drawArea.addEventListener('click', this.clickEvent);
     this.drawArea.addEventListener('mousedown', this.startRect);
     this.drawArea.addEventListener('mouseup', this.finishRect);
     this.drawArea.addEventListener('mousemove', this.setMousePos);
@@ -231,3 +224,27 @@ const divArea = new SelectionArea('canvas')
 
     e.stopPropagation();
  */
+
+    /**
+     * if (this.hasActiveBrush) {
+      this.hasActiveBrush = false;
+      //this.getSessionsInRange();
+      return;
+    }
+    if (!this.hasOneBrush) {
+      this.brush.closeNotifierHandler(() => {
+        this.hasActiveBrush = false;
+        this.hasOneBrush = false;
+      });
+      this.brush.eventHandler(e);
+      this.brush.create();
+      this.brush.attach(true);
+      
+      //this.brush.init( () => { this.hasActiveBrush = false;}, e )
+
+      this.drawArea.style.cursor = "crosshair";
+      this.hasActiveBrush = true;
+      this.hasOneBrush = true;
+      //globalThis.hasOpenBrush = true;
+    }
+     */
