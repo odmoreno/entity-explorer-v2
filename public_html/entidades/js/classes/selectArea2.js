@@ -218,6 +218,7 @@ class Brush extends Component {
     //console.log(this);
     //console.log(this.selectArea);
     this.selectArea.addEventListener("mousedown", (e) => {
+      e.preventDefault();
       e.stopPropagation();
       this.isDown = true;
       console.log("mouse down");
@@ -229,7 +230,10 @@ class Brush extends Component {
       return false;
     });
 
-    this.selectArea.addEventListener("mouseup", (e) => {
+    //this.selectArea.addEventListener("mouseup", (e) => {
+    window.addEventListener("mouseup", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       this.isDown = false;
       console.log("mouse up");
       //console.log(this.p1.time, this.p2.time)
@@ -243,9 +247,11 @@ class Brush extends Component {
       e.stopPropagation();
     });
 
-    this.selectArea.addEventListener("mousemove", (e) => {
+    window.addEventListener("mousemove", (e) => {
+    //this.selectArea.addEventListener("mousemove", (e) => {
       e.preventDefault();
       e.stopPropagation();
+      //console.log("mouseMOve")
       if (this.isDown) {
         //console.log("mouse move", e);
         const boundBoxCanvas = this.hostElement.getBoundingClientRect();
