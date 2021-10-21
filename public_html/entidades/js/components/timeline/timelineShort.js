@@ -204,7 +204,7 @@ function createDataset() {
       //content: getContent(item),
       asunto: item.asunto,
       title: organismoOp == 1 ? item.name : item.unres,
-      type: 'point',
+      type: 'box',
       start: startDateSelec(fecha, hora),
       end: endDateSelect(fecha, hora),
     };

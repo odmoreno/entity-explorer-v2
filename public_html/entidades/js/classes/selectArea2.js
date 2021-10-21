@@ -26,22 +26,22 @@ class Component {
 }
 
 class DatePicker {
-  constructor(id){
-    this.id = id
-      this.datepicker = document.getElementById(this.id)
-      //$(`#${id}`).datepicker();
+  constructor(id) {
+    this.id = id;
+    this.datepicker = document.getElementById(this.id);
+    //$(`#${id}`).datepicker();
   }
 
   update = (currentDate) => {
-      //console.log("picker:", this.datepicker)
-      const value = currentDate.toLocaleDateString("es-ES")
-      //console.log(currentDate)
-      //console.log(value)
-      this.datepicker.value = value
-      $(`#${this.id}`).datepicker('update', currentDate)
-      //this.datepicker.setDate(currentDate)
-      //this.datepicker('update', '');
-  }
+    //console.log("picker:", this.datepicker)
+    const value = currentDate.toLocaleDateString("es-ES");
+    //console.log(currentDate)
+    //console.log(value)
+    this.datepicker.value = value;
+    $(`#${this.id}`).datepicker("update", currentDate);
+    //this.datepicker.setDate(currentDate)
+    //this.datepicker('update', '');
+  };
 }
 
 class Brush extends Component {
@@ -69,13 +69,13 @@ class Brush extends Component {
   };
 
   getTotalVotes = (votos) => {
-    console.log("votos:", votos)
-    this.size = Object.values(votos).length
-  }
+    console.log("votos:", votos);
+    this.size = Object.values(votos).length;
+  };
 
-  getDates = (datesFunction) =>{
-    this.datesTl = datesFunction
-  }
+  getDates = (datesFunction) => {
+    this.datesTl = datesFunction;
+  };
 
   closeTooltip = () => {
     //console.log("DOUBLE")
@@ -110,7 +110,7 @@ class Brush extends Component {
     this.x = Math.abs(getBounding.left - this.eventMouse.x) + 5;
     //this.y =
     //  Math.abs(getBounding.bottom - this.eventMouse.y - this.hostElHeight) + 5;
-    this.y = '30'
+    this.y = "30";
     this.bottomArea = Math.abs(getBounding.right - this.eventMouse.x) + 5;
 
     console.log("Y:", this.y);
@@ -132,16 +132,16 @@ class Brush extends Component {
     //dragZone.style.borderTopRightRadius = "5px";
     let leftSide = document.createElement("div");
     let rigthSide = document.createElement("div");
-    leftSide.id = "leftArea"
-    leftSide.className = 'textZone'
-    rigthSide.className = 'textZone'
-    rigthSide.id = "rigthArea"
+    leftSide.id = "leftArea";
+    leftSide.className = "textZone";
+    rigthSide.className = "textZone";
+    rigthSide.id = "rigthArea";
 
     leftSide.style.left = this.x - 36 + "px";
     leftSide.style.top = this.y - 20 + "px";
     //rigthSide.style.left = this.bottomArea + "px"
     rigthSide.style.top = this.y - 20 + "px";
-  
+
     divArea.appendChild(leftSide);
     divArea.appendChild(rigthSide);
 
@@ -152,7 +152,6 @@ class Brush extends Component {
 
     this.rigthSide = rigthSide;
     this.leftSide = leftSide;
-    
   }
 
   update = (e) => {
@@ -180,39 +179,129 @@ class Brush extends Component {
     d3.select(".dragzone").style("width", Math.abs(newX - this.x) + "px");
     //console.log("LEFT:", d3.select("#leftArea"))
     //this.leftSide.style.left = this.x - 36 + "px";
-    d3.select("#leftArea").style("left", ()=> {
+    d3.select("#leftArea").style("left", () => {
       //console.log(this.x -36 + "px")
-      return this.x -30 + "px";
-    })
-    const text = this.getDateText()
-    this.leftSide.innerHTML = text
-
+      return this.x - 30 + "px";
+    });
+    const text = this.getDateText();
+    this.leftSide.innerHTML = text;
   };
 
-  getDateText (){
-    console.log("DAATES:", this.datesTl,  this.datesTl['first'])
-    let first = this.datesTl['first']
-    console.log(first.getDate(), first.getMonth())
-    let text = ('0'+first.getDate()).slice(-2) +'/'+ (first.getMonth()+1)
-    return text
+  getDateText() {
+    //console.log("DAATES:", this.datesTl,  this.datesTl['first'])
+    let first = this.datesTl["first"];
+    //console.log(first.getDate(), first.getMonth())
+    let text = ("0" + first.getDate()).slice(-2) + "/" + (first.getMonth() + 1);
+    return text;
   }
 
-  hideTextInfo(){
-    this.rigthSide.style.display ="none"
-    this.leftSide.style.display = "none"
+  hideTextInfo() {
+    this.rigthSide.style.display = "none";
+    this.leftSide.style.display = "none";
   }
 
-  showTextInfo(){
-    this.rigthSide.style.display ="block"
-    this.leftSide.style.display = "block"
+  showTextInfo() {
+    this.rigthSide.style.display = "block";
+    this.leftSide.style.display = "block";
   }
 
-  changeDateInfo(first, last){
-
-    let textFirst = ('0'+first.getDate()).slice(-2) +'/'+ (first.getMonth()+1)
-    let textLast = ('0'+last.getDate()).slice(-2) +'/'+ (last.getMonth()+1)
-    return [textFirst, textLast]
+  changeDateInfo(first, last) {
+    let textFirst =
+      ("0" + first.getDate()).slice(-2) + "/" + (first.getMonth() + 1);
+    let textLast =
+      ("0" + last.getDate()).slice(-2) + "/" + (last.getMonth() + 1);
+    return [textFirst, textLast];
   }
+
+  mouseUpBrush = (e) => {
+    //window.addEventListener("mouseup", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.isDown = false;
+    console.log("mouse up");
+    //console.log(this.p1.time, this.p2.time)
+    this.setDatesRange(this.p1.time, this.p2.time);
+    this.showTextInfo();
+    const info = this.changeDateInfo(this.p1.time, this.p2.time);
+    console.log("TOTAL", this.size);
+    this.dragZone.innerHTML = `${this.size}  votaciones`;
+    this.leftSide.innerHTML = info[0];
+    this.rigthSide.innerHTML = info[1];
+    this.connectDraggable();
+  };
+
+  mouseMoveBrush = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    //console.log("mouseMOve")
+    if (this.isDown) {
+      //console.log("mouse move", e);
+      const boundBoxCanvas = this.hostElement.getBoundingClientRect();
+      const leftCanvas = boundBoxCanvas.left;
+      //console.log(boundBoxCanvas)
+
+      const boundBoxDiv = this.selectArea.getBoundingClientRect();
+      const leftside = boundBoxDiv.left;
+      //console.log(boundBoxDiv)
+
+      if (leftside - 5 <= leftCanvas) {
+        this.selectArea.style.left = e.clientX + this.offset[0] + "px";
+      } else {
+        this.selectArea.style.left = e.clientX + this.offset[0] + "px";
+        this.dragZone.style.left = e.clientX + this.offset[0] + "px";
+        this.leftSide.style.left = e.clientX + this.offset[0] - 36 + "px";
+        this.rigthSide.style.left =
+          e.clientX + this.offset[0] + boundBoxDiv.width + 8 + "px";
+      }
+
+      const getBounding = this.selectArea.getBoundingClientRect();
+
+      var x1 = document.createEvent("MouseEvent");
+      x1.initMouseEvent(
+        "mousemove",
+        true,
+        true,
+        window,
+        0,
+        0,
+        0,
+        getBounding.left,
+        getBounding.top,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null
+      );
+      //console.log(x1.x);
+
+      var x2 = document.createEvent("MouseEvent");
+      x2.initMouseEvent(
+        "mousemove",
+        true,
+        true,
+        window,
+        0,
+        0,
+        0,
+        getBounding.right,
+        getBounding.bottom,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null
+      );
+      //console.log(x2.x);
+
+      this.p1 = shortTimeline.getEventProperties(x1);
+      this.p2 = shortTimeline.getEventProperties(x2);
+      //console.log(this.p1.time, this.p2.time)
+      //this.setDatesRange(this.p1.time, this.p2.time)
+    }
+  };
 
   connectMouseEventsOnBrush = () => {
     //console.log(this);
@@ -230,110 +319,25 @@ class Brush extends Component {
       return false;
     });
 
-    //this.selectArea.addEventListener("mouseup", (e) => {
-    window.addEventListener("mouseup", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      this.isDown = false;
-      console.log("mouse up");
-      //console.log(this.p1.time, this.p2.time)
-      this.setDatesRange(this.p1.time, this.p2.time)
-      this.showTextInfo()
-      const info = this.changeDateInfo(this.p1.time, this.p2.time)
-      console.log("TOTAL", this.size)
-      this.dragZone.innerHTML = `${this.size}  votaciones`
-      this.leftSide.innerHTML = info[0]
-      this.rigthSide.innerHTML = info[1]
-      e.stopPropagation();
-    });
+    //window.addEventListener("mouseup", this.mouseUpBrush)
+    this.selectArea.addEventListener("mouseup", this.mouseUpBrush);
 
-    window.addEventListener("mousemove", (e) => {
-    //this.selectArea.addEventListener("mousemove", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      //console.log("mouseMOve")
-      if (this.isDown) {
-        //console.log("mouse move", e);
-        const boundBoxCanvas = this.hostElement.getBoundingClientRect();
-        const leftCanvas = boundBoxCanvas.left
-        //console.log(boundBoxCanvas)
-
-        const boundBoxDiv = this.selectArea.getBoundingClientRect();
-        const leftside = boundBoxDiv.left
-        //console.log(boundBoxDiv)
-
-        if (leftside - 5 <= leftCanvas) {
-          this.selectArea.style.left = e.clientX + this.offset[0] + 'px';
-        } else {
-          this.selectArea.style.left = e.clientX + this.offset[0] + 'px';
-          this.dragZone.style.left = e.clientX + this.offset[0] + 'px';
-          this.leftSide.style.left = e.clientX + this.offset[0] - 36 + 'px';
-          this.rigthSide.style.left =
-            e.clientX + this.offset[0] + boundBoxDiv.width+ 8 + 'px';
-        }
-
-        const getBounding = this.selectArea.getBoundingClientRect();
-
-        var x1 = document.createEvent("MouseEvent");
-        x1.initMouseEvent(
-          "mousemove",
-          true,
-          true,
-          window,
-          0,
-          0,
-          0,
-          getBounding.left,
-          getBounding.top,
-          false,
-          false,
-          false,
-          false,
-          0,
-          null
-        );
-        //console.log(x1.x);
-
-        var x2 = document.createEvent("MouseEvent");
-        x2.initMouseEvent(
-          "mousemove",
-          true,
-          true,
-          window,
-          0,
-          0,
-          0,
-          getBounding.right,
-          getBounding.bottom,
-          false,
-          false,
-          false,
-          false,
-          0,
-          null
-        );
-        //console.log(x2.x);
-
-        this.p1 = shortTimeline.getEventProperties(x1);
-        this.p2 = shortTimeline.getEventProperties(x2);
-        //console.log(this.p1.time, this.p2.time)
-        //this.setDatesRange(this.p1.time, this.p2.time)
-      }
-    });
+    //window.addEventListener("mousemove", this.mouseMoveBrush)
+    this.selectArea.addEventListener("mousemove", this.mouseMoveBrush);
   };
 
   connectDraggable() {
-    console.log(this)
-    this.dragZone.addEventListener('dragstart', (event) => {
+    console.log("Connect Drag");
+    this.dragZone.addEventListener("dragstart", (event) => {
       event.dataTransfer.effectAllowed = "move";
       var item = {
         id: new Date(),
-        content: 'yVotos',
+        content: "yVotos",
       };
       //event.dataTransfer.setData("text/plain", JSON.stringify(item));
       event.dataTransfer.setData("text/plain", "yVotos");
       //console.log("drag start", event);
-    })
+    });
 
     this.dragZone.addEventListener("dragend", (event) => {
       console.log("Drag END", event);
@@ -393,7 +397,7 @@ class SelectionArea {
 
   createBrush(e) {
     this.brush.eventHandler(e);
-    this.brush.getDatesRangeHandler(this.setDatesWhenMoveBrush)
+    this.brush.getDatesRangeHandler(this.setDatesWhenMoveBrush);
     this.brush.create();
     this.brush.attach(true);
   }
@@ -405,32 +409,31 @@ class SelectionArea {
     this.hasActiveBrush = false;
     this.hasOneBrush = true;
     this.getSessionsInRange();
-    this.setDateright()
+    this.setDateright();
     this.brush.connectMouseEventsOnBrush();
   };
 
-  setDateright(){
-    this.brush.dragZone.innerHTML = `${this.lengthVotaciones}  votaciones`
-    
-    const total = this.getRigthSide()
-    this.brush.rigthSide.style.left = total + 8 +'px'
-    
+  setDateright() {
+    this.brush.dragZone.innerHTML = `${this.lengthVotaciones}  votaciones`;
+
+    const total = this.getRigthSide();
+    this.brush.rigthSide.style.left = total + 8 + "px";
+
     let text =
-      ('0' + this.datesLimit['last'].getDate()).slice(-2) +
-      '/' +
-      (this.datesLimit['last'].getMonth()+1);
-    this.brush.rigthSide.innerHTML = text
-  
+      ("0" + this.datesLimit["last"].getDate()).slice(-2) +
+      "/" +
+      (this.datesLimit["last"].getMonth() + 1);
+    this.brush.rigthSide.innerHTML = text;
   }
 
   getRigthSide() {
-    let left = this.brush.selectArea.style.left
-    let height = this.brush.selectArea.style.width
-    left = left.replace('px', '')
-    height = height.replace('px', '')
-    let total = parseInt(left) + parseInt(height)
-    console.log(left, height, total)
-    return total
+    let left = this.brush.selectArea.style.left;
+    let height = this.brush.selectArea.style.width;
+    left = left.replace("px", "");
+    height = height.replace("px", "");
+    let total = parseInt(left) + parseInt(height);
+    console.log(left, height, total);
+    return total;
   }
 
   setMousePos = (e) => {
@@ -441,9 +444,8 @@ class SelectionArea {
       // properties contains things like node id, group, x, y, time, etc.
       //console.log('mousemove properties:', properties.time);
       this.getDatesRange(properties);
-      this.brush.getDates(this.datesLimit)
+      this.brush.getDates(this.datesLimit);
       this.brush.update(e);
-      
     }
   };
 
@@ -463,17 +465,17 @@ class SelectionArea {
       this.datesLimit["last"] = properties.time;
       this.endDate.update(properties.time);
     }
-  }
+  };
 
   setDatesWhenMoveBrush = (first, last) => {
-    this.datesLimit["first"] = first
-    this.datesLimit["last"] = last
+    this.datesLimit["first"] = first;
+    this.datesLimit["last"] = last;
     this.startDate.update(first);
     this.endDate.update(last);
     this.getSessionsInRange();
-    this.brush.getTotalVotes(this.votaciones)
+    this.brush.getTotalVotes(this.votaciones);
     //this.brush.getTotalVotes(this.votaciones)
-  }
+  };
 
   getSessionsInRange = () => {
     let firstDay, lastDay;
@@ -500,7 +502,7 @@ class SelectionArea {
     dictIds["yVotos"] = this.votaciones;
     delete this.datesLimit["first"];
     console.log(this.datesLimit);
-    this.lengthVotaciones = Object.values(this.votaciones).length
+    this.lengthVotaciones = Object.values(this.votaciones).length;
   };
 }
 
