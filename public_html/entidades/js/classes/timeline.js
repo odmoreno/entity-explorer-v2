@@ -127,7 +127,8 @@ class TimelineObj {
       }
     });
 
-    this.timeline.on('drop', function (properties) {
+    /**
+     * this.timeline.on('drop', function (properties) {
       console.log('DROP');
       const prjId = event.dataTransfer.getData('text/plain');
       const obj = JSON.parse(prjId);
@@ -135,11 +136,12 @@ class TimelineObj {
       console.log(obj);
       console.log(obj.content);
     });
+     */
 
     this.container.addEventListener('drop', (event) => {
       event.preventDefault();
       const prjId = event.dataTransfer.getData('text/plain');
-      event.dataTransfer.dropEffect = 'copy';
+      //event.dataTransfer.dropEffect = 'copy';
       console.log('DROP');
       const firstKey = prjId.substring(0, 1);
       logFiles('drop', prjId);
@@ -156,7 +158,7 @@ class TimelineObj {
 
   addVotesInArea() {
     this.hasContent = true
-    this.connectDroppable()
+    //this.connectDroppable()
     const votos = dictIds['yVotos']; //Object.values(dictIds["yVotos"])
     //logFiles('votos pusheados', votos);
 
