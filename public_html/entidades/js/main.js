@@ -57,7 +57,7 @@ function manageData() {
   initChart();
   //udpateChartCvn(0)
   //createTimelineEvents();
-  createTimelineEvents2();
+  //createTimelineEvents2();
   //id, option, flag, height, maxHeight, orientation) {
   timelineLarge = new TimelineObj(
     'timelineVis',
@@ -71,6 +71,7 @@ function manageData() {
   console.log(timelineLarge)
   timeline = timelineLarge.timeline
 
+  startShortTl()
   console.log("Current dataset", organismoOp)
 }
 

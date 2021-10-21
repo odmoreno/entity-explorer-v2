@@ -702,3 +702,9 @@ body{
     position: absolute;
     user-select: none; 
 }
+
+.subBar { 
+    fill: gray;
+    opacity: 0.5;
+  }
+  

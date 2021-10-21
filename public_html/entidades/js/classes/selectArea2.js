@@ -504,7 +504,7 @@ class SelectionArea {
   };
 }
 
-const divArea = new SelectionArea("canvas");
+//const divArea = new SelectionArea("canvas");
 
 /**
  * this.mousedownFired = true;
