@@ -12,7 +12,8 @@ let svgTl = d3
   .append('svg')
   .attr('width', width1)
   .attr('height', height2 + marginx.left +30)
-  .append('g')
+
+let gmain = svgTl.append('g')
   .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
 
 let xDom;
@@ -21,6 +22,7 @@ let dataTls;
 let brushTl; //= d3.brushX(xDom).on("brush", brushed)
 let xAxis2;
 let hasSelectArea = false;
+let xDom2;
 
 function getDomTl() {
   dataTls = [];
@@ -57,7 +59,7 @@ function getDomTl() {
 }
 
 function createBarsTl() {
-  let subBars = svgTl.selectAll('.subBar').data(dataTls);
+  let subBars = gmain.selectAll('.subBar').data(dataTls);
   console.log('create subbars', dataTls);
 
   subBars
@@ -118,7 +120,7 @@ function startShortTl() {
   //svgTl.call(xAxis2)
 
   svgTl.append("g")
-  .attr("class", "x axis")
+  .attr("class", "x-axis")
   .attr("transform",  `translate(0,${height2 + marginx.left})`)
   .call(xAxis2);
 
@@ -126,11 +128,63 @@ function startShortTl() {
     .brushX(xDom)
     .on('start', brushstart)
     .on('brush', brushed)
-    .on('end', brushended);
+    .on('end', brushended)
+   
 
   svgTl.call(brushTl);
+
+  //zoomTl()
+
 }
 
+
+function zoomTl() {
+  //const extent = [xDom.invert, xDom]
+  const extent = d3.extent(dataTls.map((item) => item.date));
+  console.log(xDom.range())
+  xDom2 = d3.scaleTime().range([0, width1]).domain(xDom.domain());
+
+  xAxis2 = d3.axisBottom(xDom2);
+
+  svgTl.call(
+    d3
+      .zoom()
+      .scaleExtent([1, 8])
+      .translateExtent(extent)
+      .extent(extent)
+      .on('zoom', zoomed)
+  );
+}
+
+function zoomed() {
+  console.log('zoomed');
+  console.log(d3.event);
+  xDom.range(
+    xDom.range().map((d) => {
+      console.log(d);
+      console.log(d3.event);
+      //d3.event.transform.x = d3.event.sourceEvent.x;
+      console.log(d3.event.transform);
+      console.log(d3.event.transform.applyX(d3.event.sourceEvent.x));
+      return d3.event.transform.applyX(d);
+    })
+  );
+  xBand.range(
+    xBand.range().map((d) => {
+      //d3.event.transform.x = d3.event.sourceEvent.x;
+      return d3.event.transform.applyX(d);
+    })
+  );
+
+  gmain
+    .selectAll('.subBar')
+    .attr('x', (d) => {
+      //console.log((d.date), xDom2(d.date))
+      return xDom(d.date);
+    })
+    .attr('width', xBand.bandwidth());
+  gmain.selectAll('.x-axis').call(xAxis2);
+}
 
 function getSessionsInRange(dates) {
   let filterDates = dataTls.filter(
