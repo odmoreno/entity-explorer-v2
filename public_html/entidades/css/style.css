@@ -678,7 +678,7 @@ body{
 
 
 .selection-area {
-    border: 1px solid #FF0000;
+    border: 1px solid #777;
     position: absolute;
 }
 
@@ -705,6 +705,6 @@ body{
 
 .subBar { 
     fill: gray;
-    opacity: 0.5;
+    opacity: 0.3;
   }
   

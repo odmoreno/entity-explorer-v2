@@ -25,6 +25,26 @@ class Component {
   }
 }
 
+class DatePicker {
+  constructor(id) {
+    this.id = id;
+    this.datepicker = document.getElementById(this.id);
+    //$(`#${id}`).datepicker();
+  }
+
+  update = (currentDate) => {
+    //console.log("picker:", this.datepicker)
+    const value = currentDate.toLocaleDateString("es-ES");
+    //console.log(currentDate)
+    //console.log(value)
+    this.datepicker.value = value;
+    $(`#${this.id}`).datepicker("update", currentDate);
+    //this.datepicker.setDate(currentDate)
+    //this.datepicker('update', '');
+  };
+}
+
+
 class Brush extends Component {
   constructor(hostElementId) {
     super(hostElementId);
@@ -49,7 +69,7 @@ class Brush extends Component {
     selectedArea.style.top = e.clientY + 'px';
     selectedArea.style.width = 0;
     selectedArea.style.height = 0;
-    selectedArea.style.backgroundColor = 'rgba(255, 0, 0, 0.3)';
+    selectedArea.style.backgroundColor = 'rgba(177, 177, 177, 0.5)';
 
     this.element = selectedArea
     this.connectDraggable()
@@ -89,3 +109,6 @@ class Brush extends Component {
 }
 
 let selectArea = new Brush('canvas')
+
+let startDate = new DatePicker("datepicker1");
+let endDate = new DatePicker("datepicker2");

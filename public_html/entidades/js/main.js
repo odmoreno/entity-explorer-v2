@@ -133,7 +133,7 @@ $("#searchEntityList")
 })
 
 $('.input-daterange').datepicker({
-  orientation: "bottom auto",
+  orientation: "top auto",
   language: "es",
 });
 
@@ -159,9 +159,10 @@ $('.input-daterange input').each(function() {
 function setWindowsTimeline () {
   let values = Object.values(datesRange)
 
-  if(values.length == 2 ){
-    shortTimeline.setWindow(values[0], values[1]);
-  }
+  oninputDates(values)
+  //if(values.length == 2 ){
+  //  shortTimeline.setWindow(values[0], values[1]);
+  //}
 
 }
 
@@ -349,7 +350,7 @@ function updateChartByOption(){
 }
 
 
-createGroups = () => {
+function createGroups (){
   let list = Object.values(asambleistas)
   partidosG = dataGroup(list, 'partido')
   regionesG = dataGroup(list, 'region')
@@ -362,7 +363,7 @@ createGroups = () => {
   LOG && console.log('Cluster Comision: ', comG) 
 }
 
-_groups = () => {
+function  _groups ()  {
   const groups = {
     si: { x: (1.5 * width) / 6, y: height / 6, cnt: 0, fullname: "Sí" },
     no: { x: (3 * width) / 4, y: height / 6, cnt: 0, fullname: "No" },
@@ -390,7 +391,7 @@ _groups = () => {
 
 
 // funcion para obtener grupos
-dataGroup = (newnodes, groupMap) => {
+function dataGroup (newnodes, groupMap) {
   let group;
   if (groupMap == 'region')
       group = Array.from(d3.group(newnodes, d=> d.region))

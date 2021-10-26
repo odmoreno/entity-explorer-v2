@@ -1,9 +1,12 @@
 //Modelo para los timeline Vis js
+
+let items;
+
 class TimelineObj {
   defaultOptions = {};
-  items = {};
+  //items = {};
   //timeline = {};
-  votosId = {}
+  votosId = {};
 
   constructor(id, option, flag, height, maxHeight, orientation, type) {
     this.height = height; // 285px normal, 50px el corto
@@ -21,6 +24,7 @@ class TimelineObj {
 
   create() {
     this.items = this.hasDataset ? this.createItems() : new vis.DataSet([]);
+    //items = this.hasDataset ? this.createItems() : new vis.DataSet([]);
     //Configuracion por defecto
     this.defaultOptions = {
       showMajorLabels: false,
@@ -44,6 +48,7 @@ class TimelineObj {
     this.timeline = new vis.Timeline(this.container);
     this.timeline.setOptions(this.defaultOptions);
     this.timeline.setItems(this.items);
+    //this.timeline.setItems(items);
   }
 
   createItems() {
@@ -52,16 +57,16 @@ class TimelineObj {
     let list = [];
 
     list = this.selectSesions();
-    logFiles('list sesiones', list);
+    logFiles("list sesiones", list);
 
     list.map((item) => {
-      let fecha = item.fecha.split('-');
-      let hora = item.hora ? item.hora.split(':') : '';
+      let fecha = item.fecha.split("-");
+      let hora = item.hora ? item.hora.split(":") : "";
       const node = this.createNodeItem(item, fecha, hora);
       elements.push(node);
     });
 
-    logFiles('items timeline', elements);
+    logFiles("items timeline", elements);
     items = new vis.Dataset(elements);
     return items;
   }
@@ -69,9 +74,9 @@ class TimelineObj {
   createNodeItem(item, fecha, hora) {
     const node = {
       id: item.sesId,
-      className: 'stimelineElement' + ' m_' + item.sesId,
+      className: "stimelineElement" + " m_" + item.sesId,
       group: item.anio,
-      content: this.hasContent ? this.getContent(item) : '',
+      content: this.hasContent ? this.getContent(item) : "",
       asunto: item.asunto,
       title: this.orgOption == 1 ? item.name : item.unres,
       type: this.type,
@@ -96,16 +101,16 @@ class TimelineObj {
     //console.log(this.container.firstChild)
     //this.timelineE = this.container.firstChild
     //this.container.style.zIndex = 999;
-    this.container.addEventListener('dragenter', (event) => {
-      if (event.dataTransfer.types[0] === 'text/plain') {
-        this.container.classList.add('droppable');
+    this.container.addEventListener("dragenter", (event) => {
+      if (event.dataTransfer.types[0] === "text/plain") {
+        this.container.classList.add("droppable");
         //event.preventDefault();
-        console.log('DragEnter');
+        console.log("DragEnter");
       }
     });
 
-    this.container.addEventListener('dragover', (event) => {
-      if (event.dataTransfer.types[0] === 'text/plain') {
+    this.container.addEventListener("dragover", (event) => {
+      if (event.dataTransfer.types[0] === "text/plain") {
         event.preventDefault();
         //console.log("Dragover")
         //return false
@@ -113,17 +118,17 @@ class TimelineObj {
       //console.log(event)
     });
 
-    this.container.addEventListener('dragleave', (event) => {
+    this.container.addEventListener("dragleave", (event) => {
       //event.preventDefault();
-      if (event.relatedTarget.closest('div') == this.container) {
-        this.container.classList.remove('droppable');
+      if (event.relatedTarget.closest("div") == this.container) {
+        this.container.classList.remove("droppable");
         console.log(event.target.nodeName);
         console.log(event.target.id);
         console.log(event.target.href);
         console.log(event.target.className);
         console.log(event.target.innerHtml);
-        console.log(event.relatedTarget.closest('div'));
-        console.log('DRAGGG leave');
+        console.log(event.relatedTarget.closest("div"));
+        console.log("DRAGGG leave");
       }
     });
 
@@ -138,28 +143,32 @@ class TimelineObj {
     });
      */
 
-    this.container.addEventListener('drop', (event) => {
-      event.preventDefault();
-      const prjId = event.dataTransfer.getData('text/plain');
-      //event.dataTransfer.dropEffect = 'copy';
-      console.log('DROP');
-      const firstKey = prjId.substring(0, 1);
-      logFiles('drop', prjId);
-      if (firstKey == 'w') {
-        //votaciones
-      } else if (firstKey == 'y') {
-        logFiles('Votos', dictIds);
-        this.addVotesInArea();
-      }
-      this.container.classList.remove('droppable');
-      //return false;
-    });
+    this.container.addEventListener("drop", this.dropevent);
+  }
+
+  dropevent = (event) => {
+    event.preventDefault();
+    const prjId = event.dataTransfer.getData("text/plain");
+    //event.dataTransfer.dropEffect = 'copy';
+    console.log("DROP");
+    const firstKey = prjId.substring(0, 1);
+    logFiles("drop", prjId);
+    if (firstKey == "w") {
+      //votaciones
+    } else if (firstKey == "y") {
+      logFiles("Votos", dictIds);
+      this.addVotesInArea();
+    }
+    this.container.classList.remove("droppable");
+    //return false;
+    //this.container.removeEventListener("drop", this.dropevent);
+    this.container.addEventListener("drop", this.dropevent);
   }
 
   addVotesInArea() {
-    this.hasContent = true
+    this.hasContent = true;
     //this.connectDroppable()
-    const votos = dictIds['yVotos']; //Object.values(dictIds["yVotos"])
+    const votos = dictIds["yVotos"]; //Object.values(dictIds["yVotos"])
     //logFiles('votos pusheados', votos);
 
     this.timeline.setOptions({
@@ -169,39 +178,40 @@ class TimelineObj {
 
     for (let key in votos) {
       const item = votos[key];
-      let fecha = item.fecha.split('-');
-      let hora = item.hora ? item.hora.split(':') : '';
+      let fecha = item.fecha.split("-");
+      let hora = item.hora ? item.hora.split(":") : "";
       //console.log("Antes")
-      const flag = this.validateId(item)
-      if(flag){
+      const flag = this.validateId(item);
+      if (flag) {
         const node = this.createNodeItem(item, fecha, hora);
-        //this.timeline.add(node)
         this.items.add(node);
+        //this.timeline.itemsData.add(node)
         addSesion2(item.sesId);
+        console.log(this.timeline)
+        //console.log(this.timeline.getDataSet())
         //logFiles(`Node item ${item.sesId} `, node);
       }
     }
     //logFiles('Items', this.items);
-    
-    if (!flagEmptySes) 
-      getAllLinks();
 
-    selectChart()
-    this.setRangeTl()
-    console.log("FIRST ID:", firstIds)
-    currentSes = firstIds
-    currentId = reverseDIVotes[firstIds]
+    if (!flagEmptySes) getAllLinks();
+
+    selectChart();
+    this.setRangeTl();
+    console.log("FIRST ID:", firstIds);
+    currentSes = firstIds;
+    currentId = reverseDIVotes[firstIds];
     this.timeline.setSelection(firstIds, { focus: false });
   }
 
-  validateId(item){
-    if(!(item.sesId in this.votosId)){
+  validateId(item) {
+    if (!(item.sesId in this.votosId)) {
       //console.log("no existe alli")
-      this.votosId[item.sesId] = 1
-      return true
+      this.votosId[item.sesId] = 1;
+      return true;
     }
-    console.log("YA EXISTE")
-    return false
+    console.log("YA EXISTE");
+    return false;
   }
 
   setRangeTl() {
@@ -211,8 +221,8 @@ class TimelineObj {
     //logFiles('ranges', [minTl, maxTl]);
     const lastSesion =
       this.orgOption === 1 ? sesiones[lastIdS] : unResolutions[lastIdS];
-    const fecha = lastSesion.fecha.split('-');
-    const hora = lastSesion.hora ? lastSesion.hora.split(':') : '';
+    const fecha = lastSesion.fecha.split("-");
+    const hora = lastSesion.hora ? lastSesion.hora.split(":") : "";
     //logFiles(`Sesion ultima ${lastIdS}`, lastSesion);
     let newMax = new Date(
       parseInt(fecha[0]),
@@ -232,45 +242,52 @@ class TimelineObj {
   }
 
   getContent(item) {
-    let itemDiv = document.createElement('div');
-    itemDiv.className = 'form-check'
-    itemDiv.id = "h" + item.sesId
+    let itemDiv = document.createElement("div");
+    itemDiv.className = "form-check";
+    itemDiv.id = "h" + item.sesId;
 
     var span = document.createElement("label");
     span.className = "form-check-label textbox";
-    span.for = "h" + item.sesId
+    span.for = "h" + item.sesId;
     span.appendChild(document.createTextNode(item.asunto));
     itemDiv.appendChild(span);
 
     let button = document.createElement("button");
-    button.className = 'button-itemTimeline'
+    button.className = "button-itemTimeline";
     //<i class="far fa-trash-alt"></i>
-    let icon = document.createElement("i")
-    icon.className = 'far fa-trash-alt'
-    button.appendChild(icon)
-    itemDiv.appendChild(button)
+    let icon = document.createElement("i");
+    icon.className = "far fa-trash-alt";
+    button.appendChild(icon);
+    itemDiv.appendChild(button);
 
-    itemDiv.addEventListener('mouseover', function(){button.style.display = "block";})
-    itemDiv.addEventListener('mouseout', function(){button.style.display = "none";})
-    button.addEventListener('mouseover', function(){flagClickbuttonItem = true;})
-    button.addEventListener('mouseout', function(){flagClickbuttonItem = false;})
-    button.addEventListener('click', () =>  {
-      console.log(this)
-      logFiles('Remove button', item);
+    itemDiv.addEventListener("mouseover", function () {
+      button.style.display = "block";
+    });
+    itemDiv.addEventListener("mouseout", function () {
+      button.style.display = "none";
+    });
+    button.addEventListener("mouseover", function () {
+      flagClickbuttonItem = true;
+    });
+    button.addEventListener("mouseout", function () {
+      flagClickbuttonItem = false;
+    });
+    button.addEventListener("click", () => {
+      console.log(this);
+      logFiles("Remove button", item);
       this.items.remove(item.sesId);
       removeSes(item.sesId);
       let valuesDICT = Object.keys(idSesiones);
-      console.log('a:', valuesDICT, idSesiones);
+      console.log("a:", valuesDICT, idSesiones);
       if (valuesDICT.length > 1) {
         setRangeTimeline();
       } else if (valuesDICT.length == 1) {
-        console.log('solo queda uno', valuesDICT, idSesiones);
+        console.log("solo queda uno", valuesDICT, idSesiones);
       }
     });
 
     return itemDiv;
-  }  
-
+  }
 }
 
 function logFiles(type, file) {
@@ -281,3 +298,5 @@ function logFiles(type, file) {
   };
   console.log(log);
 }
+
+

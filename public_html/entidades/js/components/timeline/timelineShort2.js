@@ -1,6 +1,6 @@
 const widthCard5 = document.getElementsByClassName('five')[0];
 
-var marginx = { top: 200, right: 40, bottom: 200, left: 40 };
+var marginx = { top: 20, right: 0, bottom: 30, left: 40 };
 const width1 = parseInt(widthCard5.clientWidth);
 const height2 = 52;
 
@@ -23,6 +23,8 @@ let brushTl; //= d3.brushX(xDom).on("brush", brushed)
 let xAxis2;
 let hasSelectArea = false;
 let xDom2;
+let zoomTl2;
+let gx;
 
 function getDomTl() {
   dataTls = [];
@@ -43,8 +45,8 @@ function getDomTl() {
 
   xDom = d3
     .scaleTime()
+    .domain(d3.extent(dataTls.map((item) => item.date)))
     .range([0, width1])
-    .domain(d3.extent(dataTls.map((item) => item.date)));
 
   xBand = d3
     .scaleBand()
@@ -81,6 +83,7 @@ function brushstart() {
   if(hasSelectArea){
     hasSelectArea = false;
     selectArea.detach();
+    //selectArea.update()
   }
 
   selectArea.create(d3.event.sourceEvent)
@@ -90,15 +93,7 @@ function brushstart() {
 }
 
 function brushed() {
-  //console.log('Brushed');
-  //console.log( d3.event)
-  //console.log( d3.event.sourceEvent)
-  //console.log( d3.mouse(this))
-  
-  //var bbox = document.getElementsByClassName('selection')[0];
-  //console.log("BBOX", bbox, bbox.getBBox())
-  //console.log(bbox.getBoundingClientRect())
-
+ 
   selectArea.update()
 
   let extent = d3.event.selection.map(xDom.invert, xDom);
@@ -116,13 +111,14 @@ function startShortTl() {
   getDomTl();
   createBarsTl();
 
-  xAxis2 = d3.axisBottom(xDom)
+  xAxis2 = d3.axisBottom(xDom).ticks(width / 80).tickSizeOuter(0)
   //svgTl.call(xAxis2)
 
-  svgTl.append("g")
-  .attr("class", "x-axis")
-  .attr("transform",  `translate(0,${height2 + marginx.left})`)
-  .call(xAxis2);
+  gx = svgTl
+    .append("g")
+    .attr("class", "x-axis")
+    .attr("transform", `translate(0,${height2 + marginx.left})`)
+    .call(xAxis2, xDom);
 
   brushTl = d3
     .brushX(xDom)
@@ -133,7 +129,7 @@ function startShortTl() {
 
   svgTl.call(brushTl);
 
-  //zoomTl()
+  zoomTl()
 
 }
 
@@ -144,46 +140,67 @@ function zoomTl() {
   console.log(xDom.range())
   xDom2 = d3.scaleTime().range([0, width1]).domain(xDom.domain());
 
-  xAxis2 = d3.axisBottom(xDom2);
+  //xAxis2 = d3.axisBottom(xDom2);
 
-  svgTl.call(
-    d3
-      .zoom()
-      .scaleExtent([1, 8])
-      .translateExtent(extent)
-      .extent(extent)
-      .on('zoom', zoomed)
-  );
+  console.log(extent)
+
+  let z = [[marginx.left, marginx.top], [width1 - marginx.right, height2 - marginx.top]];
+  console.log(z)
+
+  zoomTl2 = d3
+    .zoom()
+    .scaleExtent([1, 8])
+    .translateExtent(z)
+    .extent(z)
+    .on("zoom", zoomed)
+    
+
+  svgTl.call(zoomTl2)
+  .on("mousedown.zoom", null)
+  .on("touchstart.zoom", null)
+  .on("touchmove.zoom", null)
+  .on("touchend.zoom", null)
+
 }
 
 function zoomed() {
   console.log('zoomed');
-  console.log(d3.event);
-  xDom.range(
-    xDom.range().map((d) => {
-      console.log(d);
-      console.log(d3.event);
-      //d3.event.transform.x = d3.event.sourceEvent.x;
-      console.log(d3.event.transform);
-      console.log(d3.event.transform.applyX(d3.event.sourceEvent.x));
-      return d3.event.transform.applyX(d);
-    })
-  );
-  xBand.range(
-    xBand.range().map((d) => {
-      //d3.event.transform.x = d3.event.sourceEvent.x;
-      return d3.event.transform.applyX(d);
-    })
-  );
+  console.log(d3.event.transform);
+  const xz = d3.event.transform.rescaleX(xDom)
+  console.log('xz',xz)
+  //gx.call(xAxis2, xz);
+  //gmain.call(xAxis2, xz);
+
+  //xDom.range(
+  //  xDom.range().map((d) => {
+  //    console.log(d);
+  //    console.log(d3.event);
+  //    //d3.event.transform.x = d3.event.sourceEvent.x;
+  //    console.log(d3.event.transform);
+  //    console.log(d3.event.transform.applyX(d3.event.sourceEvent.x));
+  //    return d3.event.transform.applyX(d);
+  //  })
+  //);
+  //xBand.range(
+  //  xBand.range().map((d) => {
+  //    //d3.event.transform.x = d3.event.sourceEvent.x;
+  //    return d3.event.transform.applyX(d);
+  //  })
+  //);
 
   gmain
     .selectAll('.subBar')
     .attr('x', (d) => {
       //console.log((d.date), xDom2(d.date))
-      return xDom(d.date);
+      return xz(d.date);
     })
     .attr('width', xBand.bandwidth());
-  gmain.selectAll('.x-axis').call(xAxis2);
+
+  //gmain.selectAll('.x-axis').call(xAxis2,xz);
+    console.log(gx)
+  console.log(gx.selectAll('g'))
+  gx.call(d3.axisBottom(xz).ticks(width1 / 80).tickSizeOuter(0));
+
 }
 
 function getSessionsInRange(dates) {
@@ -195,3 +212,14 @@ function getSessionsInRange(dates) {
   outputVotes(filterDates);
   dictIds["yVotos"] = filterDates;
 }
+
+
+ //console.log('Brushed');
+  //console.log( d3.event)
+  //console.log( d3.event.sourceEvent)
+  //console.log( d3.mouse(this))
+  
+  //var bbox = document.getElementsByClassName('selection')[0];
+  //console.log("BBOX", bbox, bbox.getBBox())
+  //console.log(bbox.getBoundingClientRect())
+ 
