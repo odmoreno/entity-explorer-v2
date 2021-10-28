@@ -29,12 +29,13 @@ let zoomTl2; // objeto zoom
 let hasSelectArea = false; // hay un brush creado
 let hasZoomed = false; // has hecho zoom
 let selection; //Brush selection
+let hasbrush = false;
 
 function startShortTl() {
   getDomTl();
   createBarsTl();
   createZoom();
-  createBrush();
+  //createBrush();
   updateDatesR(xDom.domain())
 }
 
@@ -80,7 +81,7 @@ function createBarsTl() {
     .enter()
     .append("rect")
     .classed("subBar", true)
-    .attr("height", heightTl + marginTl.left)
+    .attr("height", heightTl + marginTl.top)
     .attr("width", xBand.bandwidth())
     .attr("x", (d) => {
       //console.log(d)
@@ -91,13 +92,14 @@ function createBarsTl() {
 }
 
 function createBrush() {
+  //console.log("CREATE BRUSH");
   brushTl = d3
     .brushX(xDom)
     .on("start", brushstart)
     .on("brush", brushed)
-    .on("end", brushended)
+    .on("end", brushended);
 
-  svgTl.call(brushTl)
+  svgTl.append("g").attr("class", "brush").call(brushTl);
 }
 
 function brushstart() {
@@ -142,7 +144,7 @@ function createZoom() {
     .append("g")
     .attr("class", "x-axis")
     //.attr("transform", `translate(0,${heightTl + marginTl.left})`)
-    .attr("transform", `translate(0,${heightTl })`)
+    .attr("transform", `translate(0,${heightTl + marginTl.top})`)
     .call(xAxis);
 
   const extent = d3.extent(dataTls.map((item) => item.date));
@@ -164,16 +166,14 @@ function createZoom() {
 
   svgTl
     .call(zoomTl2)
-    //.on("mousedown.zoom", function(){
-    //    console.log(d3.event)
-    //})
+    //.on("mousedown.zoom", null)
     //.on("touchstart.zoom", null)
     //.on("touchmove.zoom", null)
     //.on("touchend.zoom", null);
 }
 
 function zoomed() {
-  console.log("zoomed", d3.event.transform);
+  //console.log("zoomed", d3.event.transform);
   const xz = d3.event.transform.rescaleX(xDom);
   gmain
     .selectAll(".subBar")
@@ -203,6 +203,7 @@ function zoomed() {
   //console.log(xDomTmp.domain());
   updateDatesR(extent);
   hasZoomed = true
+  
   validateBrush()
 }
 
@@ -219,34 +220,77 @@ function getSessionsInRange(dates) {
 function updateDatesR(dates) {
   startDate.update(dates[0]);
   endDate.update(dates[1]);
+  //$(".input-daterange").datepicker("update", dates);
 }
 
 function validateBrush() {
   if (hasSelectArea) {
-    svgTl.call(brushTl.move, selection);
+    d3.select(".brush").remove();
+    selectArea.detach();
+    //svgTl.call(brushTl.move, [0,0]);
+    //svgTl.call(brushTl.move, selection);
   }
 }
 
 //cuando seleccione los inputs de las fechas
 function oninputDates(values) {
-  console.log(values);
   if (values.length == 2) {
+    console.log(values);
+    //svgTl.call(zoomTl2.scaleBy, 1.3)
+
     var range = [xDom(values[0]), xDom(values[1])];
     let domain = range.map(xDom.invert, xDom);
     const xz = xDom.copy().domain(domain);
-    gmain
-      .selectAll(".subBar").transition().duration(200)
-      .attr("x", (d) => {
-        //console.log(d)
-        return xz(d.date);
-      })
-      .attr("width", xBand.bandwidth());
 
-    gx.call(
-        d3
-          .axisBottom(xz)
-          .ticks(widthTl / 80)
-          .tickSizeOuter(0)
-      );
+    svgTl.call(zoomTl2.scaleBy, widthTl / (range[1] - range[0]));
+    updateDatesR(values)
+
+    //datesRange = {};
+    //console.log(datesRange);
+
+    //gmain
+    //  .selectAll(".subBar").transition().duration(200)
+    //  .attr("x", (d) => {
+    //    //console.log(d)
+    //    return xz(d.date);
+    //  })
+    //  .attr("width", xBand.bandwidth());
+    //
+    //gx.call(
+    //    d3
+    //      .axisBottom(xz)
+    //      .ticks(widthTl / 80)
+    //      .tickSizeOuter(0)
+    //  );
+    //
+    //
+    ////svgTl.call(zoomTl2)
+    //svgTl.call(zoomTl2.scaleBy, 1.3)
+    ////.call(zoom.scaleBy, zoomLevel);
   }
 }
+
+
+/**
+ * const canvas = document.getElementById('canvas')
+
+canvas.addEventListener('keydown', function(e){
+    console.log(e)
+})
+
+canvas.addEventListener('keyup', function(e){
+    console.log(e)
+})
+
+$(canvas).keydown(function(e) {
+    if(e.key == "Shift"){
+       console.log("canvas SHIFT press")
+       //shiftPressed = true
+     }
+  }).keyup(function(e) {
+    if (e.key == "Shift") { 
+      console.log(" canvas SHIFT up")
+     // shiftPressed = false;
+    }
+  });
+ */

@@ -84,8 +84,8 @@ class Brush extends Component {
     d3.select('.selection-area')
       .style('left', bbox.x + 'px')
       .style('top', bbox.y + 'px')
-      .style('width', bbox.width/2 + 'px')
-      .style('height', bbox.height/2 + 'px');
+      .style('width', bbox.width + 'px')
+      .style('height', bbox.height/4 + 'px');
   }
 
   connectDraggable() {

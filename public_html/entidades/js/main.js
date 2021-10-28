@@ -135,6 +135,7 @@ $("#searchEntityList")
 $('.input-daterange').datepicker({
   orientation: "top auto",
   language: "es",
+  autoclose: true,
 });
 
 $('.input-daterange input').each(function() {
@@ -148,9 +149,12 @@ $('.input-daterange input').each(function() {
       datesRange[$(this).attr("id")] = e.date;
       //console.log($(this).datepicker())
       console.log(datesRange);
-
+      $(this).datepicker("update", e.date);
       setWindowsTimeline();
     });
+
+  
+  
 
 });
 
@@ -158,13 +162,40 @@ $('.input-daterange input').each(function() {
 
 function setWindowsTimeline () {
   let values = Object.values(datesRange)
-
+  console.log(datesRange)
   oninputDates(values)
+  
   //if(values.length == 2 ){
   //  shortTimeline.setWindow(values[0], values[1]);
   //}
 
 }
+
+
+//const canvas = document.getElementById('canvas')
+$(document).keydown(function(e) {
+  if(e.key == "Shift"){
+     console.log("SHIFT press")
+     svgTl.on('.zoom', null);
+
+     if(!hasbrush){
+       createBrush();
+       hasbrush = true
+     }
+     //shiftPressed = true
+   }
+})
+.keyup(function(e) {
+  if (e.key == "Shift") { 
+    console.log("SHIFT up")
+    if(hasbrush){
+      svgTl.call(zoomTl2)
+      //d3.select('.brush').remove()
+      hasbrush = false
+    }
+    //shiftPressed = false;
+  }
+});
 
 window.addEventListener('click', function(e){    
   if (document.getElementById('div-entity').contains(e.target) || document.getElementById('searchEntity').contains(e.target)){
@@ -186,14 +217,13 @@ window.addEventListener('click', function(e){
        //console.log("SHIFT press")
        shiftPressed = true
      }
-  }).keyup(function(e) {
+  })
+  .keyup(function(e) {
     if (e.key == "Shift") { 
       //console.log("SHIFT up")
       shiftPressed = false;
     }
   });
-  
-
 });
 
 $('#colores-select').multiselect({

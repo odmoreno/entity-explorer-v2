@@ -104,6 +104,7 @@ class Brush extends Component {
     this.hostElBottom = getBounding.bottom;
     this.hostElLeft = getBounding.left;
     this.hostElTop = getBounding.top;
+    this.hostElWidth = getBounding.width;
     this.hostElHeight = this.hostElement.clientHeight;
     console.log(getBounding);
 
@@ -173,10 +174,10 @@ class Brush extends Component {
       .style("top", rigthpos)
       //.style("top", this.hostElTop)
       .style("width", Math.abs(newX - this.x) + "px")
-      .style("height", this.hostElHeight + "px");
+      .style("height", this.hostElHeight/4 + "px");
     //.style("height", Math.abs(newY - this.y) + "px");
 
-    d3.select(".dragzone").style("width", Math.abs(newX - this.x) + "px");
+    d3.select(".dragzone").style("width",  this.hostElWidth + "px")//Math.abs(newX - this.x) + "px");
     //console.log("LEFT:", d3.select("#leftArea"))
     //this.leftSide.style.left = this.x - 36 + "px";
     d3.select("#leftArea").style("left", () => {
