@@ -2,7 +2,7 @@ const widthCard5 = document.getElementsByClassName("five")[0];
 
 var marginTl = { top: 20, right: 0, bottom: 30, left: 40 };
 const widthTl = parseInt(widthCard5.clientWidth);
-const heightTl = 52;
+const heightTl = 25;
 
 console.log(widthCard5);
 console.log(widthCard5.clientWidth);
