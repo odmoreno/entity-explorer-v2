@@ -467,11 +467,6 @@
 
 
 
-
-
-
-
-
                         <div style="grid-column: 1 / 13; grid-row: 2; width: 100%;">
 
                             <!---->
@@ -486,14 +481,10 @@
                                 <div class="d-flex flex-row">
                                     <div class="card" style="border: none; width: 100%;">
                                         <div class="card-body">
-                                            
-                                            
                                         </div>
                                     </div>
-                                    
                                 </div>
                                 
-
                                 <div class="card" style="border: none;">
                                     <div class="card-body">
                                         <!--ondrop="drop2(event)" ondragover="allowDrop2(event)"-->
@@ -511,13 +502,32 @@
                                        ><i class="far fa-trash-alt"></i></button>
                                     </div>
 
-                                    <div id="canvas"  class="d-flex flex-column" style="/*height: 100px;*/ border: 1px solid rgba(98, 155, 255, 0.85); position: relative;">
-                                                
-                                        <div id="pointTimeline" style="border: #3d3d3d solid 1px;" ></div>
+                                    
+                                </div>
+
+                                <!--
+                                    <div class="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingOne">
+                                            <h5 class="mb-0">
+                                                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                                                    data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                                                    style="border: none;">
+                                                    
+                                                </a>
+                                            </h5>
                                         
-                                        <!--<div class="p-2"></div>-->
+                                        </div>
+                                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                            <div id="canvas"  class="d-flex flex-column" style="/*height: 100px; border: 1px solid rgba(98, 155, 255, 0.85); */ position: relative;">
+                                                
+                                                <div id="pointTimeline" style="border: #3d3d3d solid 1px;" ></div>
+                                                
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                -->
                             </div>
 
                             <div class="one" style="float: left; width: 15%; visibility: visible;">
@@ -542,11 +552,7 @@
                                                 <input id="datepicker2" type="text" class="form-control" value="2012-04-19">
                                             </div>
                                        --> 
-                                    <div class="input-daterange input-group" id="datepicker">
-                                        <input  id="datepicker1" type="text" class="input-sm form-control" name="start" />
-                                        <span class="input-group-addon p-2">a</span>
-                                        <input  id="datepicker2" type="text" class="input-sm form-control" name="end" />
-                                    </div>
+                                    
 
                                         <!--<button type="button" class="btn btn-primary btn-sm">Secondary</button>-->
                                 </div>
@@ -554,6 +560,49 @@
 
                         </div>
 
+                        <div style="grid-column: 1 / 13; grid-row: 3; width: 100%;">
+                            <div class="six2" style="float: left; width: 15%; visibility: hidden;">a</div>
+
+                            <div class="five2" style="float: left; width: 70%; margin-top: 4px;">
+                                <!-- Card Header - Accordion -->
+                                <div class="card">
+                                    <div class="card-header2" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                                            style="border: none;">
+                                            </a>
+                                        </h5>                              
+                                    </div>
+                                    <!-- Card Content - Collapse -->
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div id="canvas"  class="d-flex flex-column" style="/*height: 100px; border: 1px solid rgba(98, 155, 255, 0.85); */ position: relative;">
+                                            <div id="pointTimeline" style="border: #3d3d3d solid 1px;" ></div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="one" style="float: left; width: 15%; visibility: visible;" >
+                                <div class="fecha-rango" id="fecha-rango" style="
+                                                position: relative;
+                                                left: 10px; 
+                                                top: 67px;
+                                                width: 90%;
+                                                display: block;
+                                            ">
+                                    <div class="fecha-rango" >
+                                        <div class="input-daterange input-group" id="datepicker">
+                                            <input  id="datepicker1" type="text" class="input-sm form-control" name="start" />
+                                            <span class="input-group-addon p-2">a</span>
+                                            <input  id="datepicker2" type="text" class="input-sm form-control" name="end" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
 
 
                     </div>

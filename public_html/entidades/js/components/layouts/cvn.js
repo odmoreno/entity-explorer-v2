@@ -436,7 +436,7 @@ function sliceDictKeys(keys) {
 
 //Calculamos todos los links
 function getAllLinks() {
-  console.log("calculo de cvns");
+  console.log("calculo de cvns", dictLinks);
   let dictKeys = Object.keys(dictLinks);
   let firstID = dictKeys[0];
   LOGCV && console.log("Keys links id:", dictKeys);

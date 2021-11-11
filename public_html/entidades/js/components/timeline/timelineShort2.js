@@ -1,8 +1,7 @@
 const widthCard5 = document.getElementsByClassName('five')[0];
-
-var marginx = { top: 20, right: 0, bottom: 30, left: 40 };
+var marginx = { top: 20, right: 0, bottom: 30, left: 20 };
 const width1 = parseInt(widthCard5.clientWidth);
-const height2 = 52;
+const height2 = 2;
 
 console.log(widthCard5);
 console.log(widthCard5.clientWidth);
@@ -11,7 +10,7 @@ let svgTl = d3
   .select('#pointTimeline')
   .append('svg')
   .attr('width', width1)
-  .attr('height', height2 + marginx.left +30)
+  .attr('height', height2 + marginx.left)
 
 let gmain = svgTl.append('g')
   .attr('transform', 'translate(' + 0 + ',' + 0 + ')');
@@ -94,13 +93,14 @@ function brushstart() {
 
 function brushed() {
  
-  selectArea.update()
+  //selectArea.update()
 
   let extent = d3.event.selection.map(xDom.invert, xDom);
   getSessionsInRange(extent)
 }
 
 function brushended() {
+  //selectArea.update()
   console.log('Brushed END');
   //let extent = d3.event.selection.map(xDom.invert, xDom);
   //console.log('extent', extent)
