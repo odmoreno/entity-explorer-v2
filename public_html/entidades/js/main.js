@@ -64,7 +64,7 @@ function manageData() {
     organismoOp,
     false,
     '275px',
-    '285px',
+    '585px',
     'top', //orientacion
     'box'
   );
@@ -516,3 +516,23 @@ function fillemptyicons(){
   $("#svgClusters").attr("fill", "#cecece");
   $("#svgCovotingNetworks").attr("fill", "#cecece");
 }
+
+$('#collapseOne').on('hidden.bs.collapse', function () {
+  // do something…
+  const value = heightTl + marginTl.left +20
+  console.log("HIDDEN", value)
+  timeline.setOptions({
+    height: 275+value + 'px',
+  });
+  d3.select('#fecha-rango').style("display", "none")
+})
+
+
+$('#collapseOne').on('shown.bs.collapse', function () {
+  // do something…
+  console.log("SHWON")
+  timeline.setOptions({
+    height: (275-value) + 'px',
+  });
+  d3.select('#fecha-rango').style("display", "block")
+})

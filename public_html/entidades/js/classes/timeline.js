@@ -178,8 +178,10 @@ class TimelineObj {
 
     for (let key in votos) {
       const item = votos[key];
+      console.log("VOTOS:", item)
       let fecha = item.fecha.split("-");
       let hora = item.hora ? item.hora.split(":") : "";
+      if (!dictLinks[item.sesId]) dictLinks[item.sesId] = {};
       //console.log("Antes")
       const flag = this.validateId(item);
       if (flag) {

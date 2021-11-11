@@ -79,7 +79,7 @@ class Brush extends Component {
     var el = document.getElementsByClassName('selection')[0];
     //var bbox = el.getBoundingClientRect(); //posiciones Absolutas
     var bbox = el.getBBox(); //Posiciones relativas
-    //console.log(bbox);
+    console.log(bbox);
 
     d3.select('.selection-area')
       .style('left', bbox.x + 'px')

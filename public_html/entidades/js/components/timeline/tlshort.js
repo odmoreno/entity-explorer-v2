@@ -1,8 +1,8 @@
 const widthCard5 = document.getElementsByClassName("five")[0];
 
-var marginTl = { top: 20, right: 0, bottom: 30, left: 40 };
+var marginTl = { top: 20, right: 0, bottom: 30, left: 20 };
 const widthTl = parseInt(widthCard5.clientWidth);
-const heightTl = 52;
+const heightTl = 22;
 
 console.log(widthCard5);
 console.log(widthCard5.clientWidth);
@@ -12,7 +12,7 @@ let svgTl = d3
   .append("svg")
   .attr("width", widthTl)
   //.attr("height", heightTl);
-  .attr("height", heightTl + marginTl.left);
+  .attr("height", heightTl + marginTl.left +20);
 
 let gmain = svgTl
   .append("g")
@@ -144,7 +144,7 @@ function createZoom() {
     .append("g")
     .attr("class", "x-axis")
     //.attr("transform", `translate(0,${heightTl + marginTl.left})`)
-    .attr("transform", `translate(0,${heightTl + marginTl.top})`)
+    .attr("transform", `translate(0,${heightTl + marginTl.left})`)
     .call(xAxis);
 
   const extent = d3.extent(dataTls.map((item) => item.date));
