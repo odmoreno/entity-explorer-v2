@@ -69,7 +69,8 @@ class Brush extends Component {
     selectedArea.style.top = e.clientY + 'px';
     selectedArea.style.width = 0;
     selectedArea.style.height = 0;
-    selectedArea.style.backgroundColor = 'rgba(177, 177, 177, 0.5)';
+    selectedArea.style.backgroundColor = 'rgba(177, 177, 177, 0.8)';
+    selectedArea.style.cursor = "grab";
 
     this.element = selectedArea
     this.connectDraggable()
@@ -94,11 +95,12 @@ class Brush extends Component {
       event.dataTransfer.effectAllowed = 'move';
       var item = {
         id: new Date(),
+        type: 'box',
         content: 'yVotos',
       };
-      //event.dataTransfer.setData("text/plain", JSON.stringify(item));
-      event.dataTransfer.setData('text/plain', 'yVotos');
-      //console.log("drag start", event);
+      event.dataTransfer.setData("text/plain", JSON.stringify(item));
+      //event.dataTransfer.setData('text/plain', 'yVotos');
+      console.log("drag start", item);
     });
 
     this.element.addEventListener('dragend', (event) => {

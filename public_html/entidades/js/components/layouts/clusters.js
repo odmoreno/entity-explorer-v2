@@ -114,18 +114,15 @@ function updateCluster(id, flag) {
 
 function clusters() {
   // rects for each node.
-  if (doNotAnimate)  durationRect = 1;
+  if (doNotAnimate) durationRect = 1;
 
   circles = circles
     .data(nodes, (d) => {
       //console.log("D:", d)
-      
-      if(d.data){
-        return d.data.id
-      }
-      else  
-        return d.id
 
+      if (d.data) {
+        return d.data.id;
+      } else return d.id;
     })
     .join(
       (enter) =>
@@ -136,7 +133,10 @@ function clusters() {
           //.attr("cy", (d) => d.yOffset)
           .attr("r", 0)
           .attr("pointer-events", "all")
-          .attr("transform", (d) => "translate(" + d.xOffset + "," + d.yOffset + ")")
+          .attr(
+            "transform",
+            (d) => "translate(" + d.xOffset + "," + d.yOffset + ")"
+          )
           .attr("opacity", 0)
           .attr("stroke-width", (d) => (d.labelFlag ? 3.0 : 1))
           .call((enter) =>
@@ -144,11 +144,11 @@ function clusters() {
               .transition()
               .duration(durationRect)
               .attr("id", (d) => {
-                LOGC && console.log("Enter circle")
+                LOGC && console.log("Enter circle");
                 return d.id;
               })
               .attr("stroke", (d) => {
-                console.log("COLOR UPDATE:", globalThis.colorMap)
+                console.log("COLOR UPDATE:", globalThis.colorMap);
                 var _color = color(d, globalThis.colorMap);
                 return d3.rgb(_color).darker(1);
               })
@@ -171,8 +171,8 @@ function clusters() {
       (update) =>
         update
           .attr("id", (d) => {
-            LOGC && console.log("update cluster:")
-            return d.id
+            LOGC && console.log("update cluster:");
+            return d.id;
           })
           .attr("pointer-events", "all")
           .attr("class", (d) => selectClass(d))
@@ -188,10 +188,9 @@ function clusters() {
           .attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
           .attr("r", circleRadius)
           .attr("fill", (d) => {
-
-            var _color = color(d, globalThis.colorMap)
-            console.log("COLOR UPDATE:", _color)
-            return _color
+            var _color = color(d, globalThis.colorMap);
+            console.log("COLOR UPDATE:", _color);
+            return _color;
           }),
       (exit) =>
         exit
@@ -208,15 +207,10 @@ function clusters() {
     .on("mouseover", (d) => mouseOverRect(d))
     .on("mouseout", (d) => mouseOutRect(d));
 
-  circles.on("click", function(e){
-    
-    validateKeypress(e)
-    d3.event.stopPropagation()
-    
-  })
-
-
-
+  circles.on("click", function (e) {
+    d3.event.stopPropagation();
+    validateKeypress(e);
+  });
 
   validateKeypress = (e) => {
     if (shiftPressed) {
@@ -227,18 +221,17 @@ function clusters() {
         fillOp2(e);
       }
     } else {
-      
-      loopIdsOpacidad()
+      loopIdsOpacidad();
       if (!(e.id in idsOpacidad) || idsOpacidad[e.id].value == 2) {
-        fillOp1(e);
+        onclickcircle(e)
+        //fillOp1(e);
       } else {
-        fillOp2(e);
+        onclickcircle(e)
+        //fillOp2(e);
       }
       console.log(idsOpacidad);
     }
   };
-
-
 
   //circles.on('contextmenu', d3.contextMenu(menu));
   //circles.on('contextmenu', d3.contextMenu(menu, {
@@ -277,13 +270,22 @@ function clusters() {
                 //console.log(text)
                 return text;
               })
-              .call((enter) =>
-                enter
-                  .transition()
-                  .duration(durationRect)
-                  .attr("opacity", "1")
-                  .attr("transform", (d) => "translate(" + groups[d].x + "," + (groups[d].y - 50) + ")")
-                  //.attr("transform", "scale(1,1)")
+              .call(
+                (enter) =>
+                  enter
+                    .transition()
+                    .duration(durationRect)
+                    .attr("opacity", "1")
+                    .attr(
+                      "transform",
+                      (d) =>
+                        "translate(" +
+                        groups[d].x +
+                        "," +
+                        (groups[d].y - 50) +
+                        ")"
+                    )
+                //.attr("transform", "scale(1,1)")
               ),
           (update) =>
             update
@@ -297,8 +299,12 @@ function clusters() {
               .transition()
               .duration(durationRect)
               .attr("opacity", "1")
-              .attr("transform", (d) => "translate(" + groups[d].x + "," + (groups[d].y - 50) + ")"),
-              //.attr("transform", "scale(1,1)"),
+              .attr(
+                "transform",
+                (d) =>
+                  "translate(" + groups[d].x + "," + (groups[d].y - 50) + ")"
+              ),
+          //.attr("transform", "scale(1,1)"),
 
           (exit) => exit.remove()
         );

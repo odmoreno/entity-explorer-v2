@@ -209,3 +209,15 @@ function dragendedL (d) {
   //console.log("end:", d)
 }
 
+function onhoverParallelset(asamb){
+  //console.log("Hover parallel set", asamb)
+  let id = asamb.numeroId
+  d3.selectAll("path").attr("opacity", 0.3)
+  d3.selectAll(".l"+id).attr("opacity", 1)
+
+}
+
+function onleaveParallelset(){
+  //console.log()
+  d3.selectAll("path").attr("opacity", 1)
+}

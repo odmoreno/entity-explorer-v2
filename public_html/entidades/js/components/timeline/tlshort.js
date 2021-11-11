@@ -108,6 +108,7 @@ function brushstart() {
     hasSelectArea = false;
     selectArea.detach();
   }
+  timelineLarge.connectDroppable();
   selectArea.create(d3.event.sourceEvent);
   selectArea.attach(true);
   hasSelectArea = true;
