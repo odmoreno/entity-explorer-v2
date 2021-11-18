@@ -468,13 +468,14 @@ function handleDragEnd(e) {
         'end': endDateSelect(fecha, hora), 
     }
 
-    datas.add(node)
+    //datas.add(node)
+    timeline.itemsData.update(node)
     LOGBS && console.log(datas)
     //datas.remove(0)
     LOGBS && console.log(datas)
 
-    getIdSes(item.sesId)
-
+    //getIdSes(item.sesId)
+    addSesion2(item.sesId)
 
     currentSes = item.sesId
     
@@ -495,9 +496,10 @@ function handleDragEnd(e) {
     if(!flagEmptySes)
         getAllLinks()
 
+    timelineLarge.setRangeTl();
     timeline.setSelection(item.sesId, {focus: false});
-    setRangeTimeline()
-    
+    //setRangeTimeline()
+
     selectChart()
 
     d3.select("#btn-remove-all").style("display", "block")
@@ -699,19 +701,20 @@ function addAllVotesHeader() {
       end: endDateSelect(fecha, hora), 
     };
 
-    datas.add(node);
+    timeline.itemsData.update(node)
+    //datas.add(node);
     //getIdSes(item.sesId); // item.sesId === sesId
     addSesion2(item.sesId)
     //updateChart(firstIds, false);
   }
 
-  
 
   if (!flagEmptySes) 
     getAllLinks();
 
     selectChart()
-    setRangeTimeline();
+    //setRangeTimeline();
+    timelineLarge.setRangeTl();
     LOGBS && console.log("FIRST ID:", firstIds)
     currentSes = firstIds
     //currentId = firstIds

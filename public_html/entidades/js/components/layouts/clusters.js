@@ -20,6 +20,7 @@ function updateSesion(sesion) {
 
       if (entidades[_asamb.id]) {
           entidades[_asamb.id].visitado = true
+          //entidades[_asamb.id].marcado = false
           entidades[_asamb.id].lastvote = entidades[_asamb.id].voto
           entidades[_asamb.id].voto = organismoOp == 1 ? codeVotes[_asamb.voto] : UNcodes[_asamb.voto]
           entidades[_asamb.id].curul = _asamb.curul
@@ -54,6 +55,7 @@ function updateSesionUN(sesion) {
       nodosActuales[_asamb.ccode].voto = UNcodes[_asamb.voto]
       if (entidades[_asamb.ccode]) {
           entidades[_asamb.ccode].visitado = true
+          //entidades[_asamb.ccode].marcado = false
           entidades[_asamb.ccode].lastvote = entidades[_asamb.ccode].voto
           entidades[_asamb.ccode].voto = organismoOp == 1 ? codeVotes[_asamb.voto] : UNcodes[_asamb.voto]
           entidades[_asamb.ccode].curul = _asamb.curul
@@ -188,8 +190,15 @@ function clusters() {
           .attr("transform", (d) => "translate(" + d.x + "," + d.y + ")")
           .attr("r", circleRadius)
           .attr("fill", (d) => {
-            var _color = color(d, globalThis.colorMap);
-            console.log("COLOR UPDATE:", _color);
+            var _color;
+            console.log(entidades[d.numeroId].marcado)
+            if(!(entidades[d.numeroId].marcado)){
+              _color = color(d, globalThis.colorMap);
+            }
+            else{
+              _color = 'white'
+            }
+            //console.log("COLOR UPDATE:", _color);
             return _color;
           }),
       (exit) =>

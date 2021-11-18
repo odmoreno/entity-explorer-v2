@@ -267,7 +267,13 @@ opacarNodos = (e) => {
   //d3.select("#text" + e.numeroId).style("opacity", "1")
   ////idsOpacidad[e.numeroid] = 1
   //opacarLista(e)
-  if (!(e.id in idsOpacidad) ) {
+  d3.select("#entity-list").selectAll("circle").attr('fill', '#ffffff')
+  d3.select('#el' + e.numeroId)
+      .select('circle')
+      .attr('fill', color(e, globalThis.colorMap));
+
+  /**
+   * if (!(e.id in idsOpacidad) ) {
     d3.select('#node' + e.numeroId).attr('fill', '#ffffff');
     let value = {
       element: e,
@@ -278,6 +284,7 @@ opacarNodos = (e) => {
       .select('circle')
       .attr('fill', '#ffffff');
   } 
+   */
 
 }
 

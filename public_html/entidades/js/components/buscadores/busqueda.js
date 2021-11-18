@@ -44,7 +44,10 @@ function OrgFilter1(text, searchText){
   else if (text.includes("todo"))
       filterAll()
   else {
-      filterAsams(searchText, false)
+    filterAsams(searchText, false)
+    filterPartidos(searchText, false)
+      filterRegion(searchText, false)
+      filterProv(searchText, false)  
   }
 
 }
@@ -56,7 +59,6 @@ function OrgFilter2(text, searchText){
     filterAll()
   else 
     filterEntidades(searchText)
-
   //filterAll(searchText)
 }
 
@@ -143,7 +145,7 @@ filterPartidos = (text, flag) => {
   }else
     matches = Object.keys(partidos)
 
-  //console.log("matches list partidos:", matches)
+  console.log("matches list partidos:", matches)
   let asambs = []
   let results;
   results = buscarPartidosOpciones(matches, partidosSet, asambs)
@@ -167,7 +169,7 @@ filterPartidos = (text, flag) => {
     outputAsambleistas(asambsunitario)
 
   }
-  //console.log("Partidos set:", partidosSet)
+  console.log("Partidos set:", partidosSet)
   LOGO && console.log(dictIds)
 
 }
@@ -191,9 +193,9 @@ buscarPartidosOpciones = (list, partidosSet, asambs) => {
       info.push(partido)
       info.push(asambsPartidos)
   
-      //console.log(partido, asambsPartidos)
+      console.log(partido, asambsPartidos)
       data.push(info)
-      //console.log(data)
+      console.log(data)
   
     }
     
@@ -590,6 +592,7 @@ function addAllHeaders(id,x,y){
     entidades[asamb.numeroId].xOffset = x +170
     entidades[asamb.numeroId].yOffset = y +80
     entidades[asamb.numeroId].visitado = true
+    entidades[asamb.numeroId].marcado = false
   }
 
   LOGO && console.log("entidades next: ", entidades)
@@ -617,6 +620,7 @@ function onGetIdList(id, x , y){
       entidades[element.numeroId] = element
       entidades[element.numeroId].xOffset = x +170
       entidades[element.numeroId].yOffset = y +80
+      entidades[element.numeroId].marcado = false
       LOGO && console.log(entidades, d3.values(entidades).length)
     }
     else{
@@ -651,6 +655,7 @@ function addAllEntities(id, x, y){
     entidades[idEl].xOffset = x +170
     entidades[idEl].yOffset = y +80
     entidades[idEl].visitado = true
+    entidades[idEl].marcado = false
     //entidades[idEl].voto = element.voto
     //entidades[idEl].curul = element.curul
   }

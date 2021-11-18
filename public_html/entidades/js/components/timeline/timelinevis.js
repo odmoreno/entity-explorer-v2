@@ -292,17 +292,22 @@ function removeAllSessionsTimeline() {
 
   let valuesDICT = Object.keys(idSesiones);
   console.log("a:", valuesDICT, idSesiones);
-  console.log(datas)
-  datas.remove(0)
+  console.log(timeline.itemsData)
+  //datas.remove(0)
+  timeline.itemsData.remove(0)
+
   //d3.select("#pointTimeline").selectAll("div").remove()
-  shortTimeline.destroy();
+  //shortTimeline.destroy();
   for(let key in valuesDICT){
     let id = parseInt(valuesDICT[key])
     console.log(id)
-    datas.remove(id)
+    //datas.remove(id)
+    timelineLarge.items.remove(id)
+    //timeline.itemsData.remove(id)
     //removeSes(id)
     //updateSlider()
     //datas.delete(id)
+    delete timelineLarge.votosId[id]
     delete idSesiones[id]
   }
 

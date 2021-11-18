@@ -95,7 +95,6 @@ class Brush extends Component {
       .style('width', bbox.width + 'px')
       .style('height', bbox.height/4 + 'px');
     
-    
   }
 
   connectDraggable() {

@@ -154,6 +154,20 @@ class TimelineObj {
       this.setVisContentDiv();
     });
     
+    this.timeline.on('click', (properties) => {
+      var id = properties.item;
+      if ((id || id == 0) && !flagClickbuttonItem) {
+        console.log("Click", properties);
+        console.log("currentOP:", currentOptChart);
+        console.log("ID click", id);
+        console.log("flag:", flagClickbuttonItem);
+        currentId = reverseDIVotes[id];
+        currentSes = dictIVotes[currentId];
+        timeline.setSelection(id, { focus: false });
+
+        selectChart()
+      }   
+    })
     //this.container.addEventListener("drop", this.dropevent);
   }
 
@@ -191,7 +205,7 @@ class TimelineObj {
 
     for (let key in votos) {
       const item = votos[key];
-      //console.log("VOTOS:", item)
+      console.log("VOTOS:", item)
       let fecha = item.fecha.split("-");
       let hora = item.hora ? item.hora.split(":") : "";
       if (!dictLinks[item.sesId]) dictLinks[item.sesId] = {};
@@ -200,7 +214,8 @@ class TimelineObj {
       if (flag) {
         const node = this.createNodeItem(item, fecha, hora);
         //this.items.add(node);
-        this.timeline.itemsData.update(node)
+        //this.timeline.itemsData.update(node)
+        this.timeline.itemsData.add(node)
         addSesion2(item.sesId);
         //console.log(this.timeline)
         //console.log(this.timeline.getDataSet())
@@ -214,14 +229,14 @@ class TimelineObj {
     if (!flagEmptySes) getAllLinks();
 
     selectChart();
-    this.setRangeTl();
     console.log("FIRST ID:", firstIds);
     currentSes = firstIds;
     currentId = reverseDIVotes[firstIds];
+    this.setRangeTl();
     this.timeline.setSelection(firstIds, { focus: false });
 
     d3.select("#btn-remove-all").style("display", "block")
-    d3.select("#btn-accordion-tl").style("display", "block")
+    //d3.select("#btn-accordion-tl").style("display", "block")
   }
 
   validateId(item) {
@@ -251,6 +266,7 @@ class TimelineObj {
       parseInt(hora[0]) + 1,
       59
     );
+    
     newMax.setDate(newMax.getDate() + 2);
     minTl.setDate(minTl.getDate() - 2);
 

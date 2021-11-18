@@ -99,7 +99,13 @@ const svg = d3.select("#chart").append("svg").attr('id', 'svg1')
     //  idsOpacidad[id].value = 2
     //})
 
-    loopIdsOpacidad()
+    //loopIdsOpacidad()
+    d3.selectAll(".nodeCircle").attr('fill', d=> {
+      //console.log("DATA:", d)
+      d.visitado =true
+      return color(d, globalThis.colorMap)
+    });
+
 
     d3.event.stopPropagation();
 
@@ -1098,6 +1104,8 @@ loopIdsOpacidad = () => {
 };
 
 onclickcircle = (e) => {
+  entidades[e.numeroId].marcado = true
+  console.log(entidades)
   console.log("opcion 1", e)
   d3.selectAll(".nodeCircle").attr('fill', '#ffffff')
   console.log( d3.selectAll("nodeCircle"))
