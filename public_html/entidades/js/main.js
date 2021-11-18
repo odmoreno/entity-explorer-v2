@@ -59,6 +59,7 @@ function manageData() {
   //createTimelineEvents();
   //createTimelineEvents2();
   //id, option, flag, height, maxHeight, orientation) {
+  
   timelineLarge = new TimelineObj(
     'timelineVis',
     organismoOp,
@@ -70,7 +71,7 @@ function manageData() {
   );
   console.log(timelineLarge)
   timeline = timelineLarge.timeline
-
+  //console.log(timeline)
   startShortTl()
   console.log("Current dataset", organismoOp)
 }

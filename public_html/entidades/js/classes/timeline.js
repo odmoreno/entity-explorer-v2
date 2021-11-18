@@ -38,17 +38,31 @@ class TimelineObj {
       min: new Date(1954, 5, 1), //por defecto (configurable)
       max: new Date(2021, 11, 20), //por defecto (configurable)
       zoomFriction: 4,
+      editable: false,
       moveable: true,
       zoomable: true,
       tooltip: {
         followMouse: true,
       },
+      //onAdd: function(item, callback){
+      //  console.log('drop:', item)
+      //}
     };
     //Instaciar timeline con su div
     this.timeline = new vis.Timeline(this.container);
     this.timeline.setOptions(this.defaultOptions);
     this.timeline.setItems(this.items);
     //this.timeline.setItems(items);
+    
+  }
+
+  setVisContentDiv(){
+    //d3.select(".vis-content").style("transform", "translateY(-3px)")
+    //d3.selectAll(".vis-itemset").style("height", "215px !important")
+    //element.removeProperty('property')
+    console.log(document.getElementsByClassName("vis-itemset")[0])
+    document.getElementsByClassName("vis-itemset")[0].style.removeProperty('height')
+    //d3.selectAll(".vis-itemset").removeProperty('property')
   }
 
   createItems() {
@@ -101,58 +115,60 @@ class TimelineObj {
     //console.log(this.container.firstChild)
     //this.timelineE = this.container.firstChild
     //this.container.style.zIndex = 999;
-    this.container.addEventListener("dragenter", (event) => {
-      if (event.dataTransfer.types[0] === "text/plain") {
-        this.container.classList.add("droppable");
-        //event.preventDefault();
-        console.log("DragEnter");
-      }
-    });
+    //this.container.addEventListener("dragenter", (event) => {
+    //  if (event.dataTransfer.types[0] === "text/plain") {
+    //    this.container.classList.add("droppable");
+    //    //event.preventDefault();
+    //    console.log("DragEnter");
+    //  }
+    //});
 
-    this.container.addEventListener("dragover", (event) => {
-      if (event.dataTransfer.types[0] === "text/plain") {
-        event.preventDefault();
-        //console.log("Dragover")
-        //return false
-      }
-      //console.log(event)
-    });
+    //this.container.addEventListener("dragover", (event) => {
+    //  if (event.dataTransfer.types[0] === "text/plain") {
+    //    event.preventDefault();
+    //    //console.log("Dragover")
+    //    //return false
+    //  }
+    //  //console.log(event)
+    //});
 
-    this.container.addEventListener("dragleave", (event) => {
-      //event.preventDefault();
-      if (event.relatedTarget.closest("div") == this.container) {
-        this.container.classList.remove("droppable");
-        console.log(event.target.nodeName);
-        console.log(event.target.id);
-        console.log(event.target.href);
-        console.log(event.target.className);
-        console.log(event.target.innerHtml);
-        console.log(event.relatedTarget.closest("div"));
-        console.log("DRAGGG leave");
-      }
-    });
+    //this.container.addEventListener("dragleave", (event) => {
+    //  //event.preventDefault();
+    //  if (event.relatedTarget.closest("div") == this.container) {
+    //    this.container.classList.remove("droppable");
+    //    console.log(event.target.nodeName);
+    //    console.log(event.target.id);
+    //    console.log(event.target.href);
+    //    console.log(event.target.className);
+    //    console.log(event.target.innerHtml);
+    //    console.log(event.relatedTarget.closest("div"));
+    //    console.log("DRAGGG leave");
+    //  }
+    //});
 
-    /**
-     * this.timeline.on('drop', function (properties) {
+    this.timeline.on('drop',  (properties) => {
       console.log('DROP');
-      const prjId = event.dataTransfer.getData('text/plain');
-      const obj = JSON.parse(prjId);
-      console.log(prjId);
-      console.log(obj);
-      console.log(obj.content);
+      //const prjId = event.dataTransfer.getData('text/plain');
+      //const obj = JSON.parse(prjId);
+      //console.log(prjId);
+      //console.log(obj);
+      //console.log(obj.content);
+      this.addVotesInArea();      
+      this.setVisContentDiv();
     });
-     */
+    
 
-    this.container.addEventListener("drop", this.dropevent);
+    //this.container.addEventListener("drop", this.dropevent);
   }
 
   dropevent = (event) => {
     event.preventDefault();
     const prjId = event.dataTransfer.getData("text/plain");
     //event.dataTransfer.dropEffect = 'copy';
-    console.log("DROP");
-    const firstKey = prjId.substring(0, 1);
-    logFiles("drop", prjId);
+    const objJson = JSON.parse(prjId)
+    console.log("DROP", objJson);
+    const firstKey = objJson.content.substring(0, 1);
+    //logFiles("drop", prjId);
     if (firstKey == "w") {
       //votaciones
     } else if (firstKey == "y") {
@@ -166,10 +182,11 @@ class TimelineObj {
   }
 
   addVotesInArea() {
+    console.log("add votes in area")
     this.hasContent = true;
     //this.connectDroppable()
     const votos = dictIds["yVotos"]; //Object.values(dictIds["yVotos"])
-    //logFiles('votos pusheados', votos);
+    logFiles('votos pusheados', votos);
 
     this.timeline.setOptions({
       showMajorLabels: true,
@@ -241,6 +258,7 @@ class TimelineObj {
       min: minTl,
       max: newMax,
     });
+    this.timeline.fit()
   }
 
   getContent(item) {

@@ -20,6 +20,7 @@ function createTimelineEvents() {
   defaultOptions = {
     showMajorLabels: false,
     showMinorLabels: false,
+    editable: false,
     //editable: {
     //  add: true,
     //  remove: true
@@ -48,8 +49,9 @@ function createTimelineEvents() {
       followMouse: true,
     },
     onAdd: function (item, callback) {
-      LOGV && console.log("********* ONadd:", item);
-      callback(item);
+      //LOGV && console.log("********* ONadd:", item);
+      console.log("********* ONadd:", item);
+      //callback(item);
     },
     onRemove: function (item, callback) {
       LOGV && console.log("item on remove:", item);
@@ -66,6 +68,16 @@ function createTimelineEvents() {
   timeline.setItems(datas);
 
   //d3.select("#btn-remove-all").style("display", "block")
+  timeline.on('drop', function (properties) {
+    console.log('DROP');
+    console.log(properties)
+    const prjId = properties.event.dataTransfer.getData('text/plain');
+    const obj = JSON.parse(prjId);
+    console.log(prjId);
+    console.log(obj);
+    console.log(obj.content);
+
+  });
 
   timeline.on("click", function (properties) {
     var id = properties.item;

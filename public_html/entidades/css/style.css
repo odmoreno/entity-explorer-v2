@@ -7,6 +7,10 @@ body{
     height: 3rem !important;
 }
 
+.vis-itemset{
+    height: 250px !important;
+}
+
 /*grid layout*/
 .wrapper {
     display: grid;

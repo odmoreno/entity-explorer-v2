@@ -96,9 +96,9 @@ class Brush extends Component {
         id: new Date(),
         content: 'yVotos',
       };
-      //event.dataTransfer.setData("text/plain", JSON.stringify(item));
-      event.dataTransfer.setData('text/plain', 'yVotos');
-      //console.log("drag start", event);
+      event.dataTransfer.setData("text/plain", JSON.stringify(item));
+      //event.dataTransfer.setData('text/plain', 'yVotos');
+      console.log("drag start", event);
     });
 
     this.element.addEventListener('dragend', (event) => {
