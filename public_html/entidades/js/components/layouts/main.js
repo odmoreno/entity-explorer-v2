@@ -236,14 +236,14 @@ var menu = [
 
 
 function showPsets(){
-  ////d3.select("#g1").transition().duration(durationRect).attr("opacity", "0") 
-  //gsets.transition().duration(durationRect).attr("opacity", "1") 
+  d3.select("#g1").transition().duration(durationRect).attr("opacity", "0") 
+  gsets.transition().duration(durationRect).attr("opacity", "1") 
   //leginline.transition().duration(durationRect).style('opacity', 1)
 }
 
 function hidePsets(){
-  //d3.select("#g1").transition().duration(durationRect).attr("opacity", "1") 
-  //gsets.transition().duration(durationRect).attr("opacity", "0") 
+  d3.select("#g1").transition().duration(durationRect).attr("opacity", "1") 
+  gsets.transition().duration(durationRect).attr("opacity", "0") 
   //leginline.transition().duration(durationRect).style('opacity', 0)
 }
 
@@ -326,7 +326,7 @@ function handlechart(value) {
       LOG && console.log("CVN");
       $("#svgCovotingNetworks").attr("fill", "#2e59d9");
 
-      //hidePsets()
+      hidePsets()
       hideVotesGrp()
 
       d3.selectAll(".labeltext")
@@ -377,7 +377,7 @@ function handlechart(value) {
     } else if (value == "3") {
       $("#svgParlamento").attr("fill", "#2e59d9");
 
-      //hidePsets()
+      hidePsets()
       currentOptChart = value;
       removeAllLinks();
       hideVotesGrp()
@@ -395,7 +395,7 @@ function handlechart(value) {
     else if(value == "4"){
       currentOptChart = value;
       $("#svgSets").attr("fill", "#2e59d9");
-      //showPsets()
+      showPsets()
       hideVotesGrp()
       createSet()
       colorMap = "partidos";
@@ -1094,3 +1094,11 @@ loopIdsOpacidad = () => {
     });
   }
 };
+
+onclickcircle = (e) => {
+  console.log("opcion 1", e)
+  d3.selectAll(".nodeCircle").attr('fill', '#ffffff')
+  console.log( d3.selectAll("nodeCircle"))
+  d3.select('#node' + e.numeroId).attr('fill', color(e, globalThis.colorMap));
+}
+

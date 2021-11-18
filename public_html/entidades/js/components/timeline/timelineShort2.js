@@ -93,13 +93,14 @@ function brushstart() {
 
 function brushed() {
  
-  selectArea.update()
+  //selectArea.update()
 
   let extent = d3.event.selection.map(xDom.invert, xDom);
   getSessionsInRange(extent)
 }
 
 function brushended() {
+  //selectArea.update()
   console.log('Brushed END');
   //let extent = d3.event.selection.map(xDom.invert, xDom);
   //console.log('extent', extent)

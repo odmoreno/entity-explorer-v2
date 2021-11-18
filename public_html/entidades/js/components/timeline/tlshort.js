@@ -2,7 +2,7 @@ const widthCard5 = document.getElementsByClassName("five")[0];
 
 var marginTl = { top: 20, right: 0, bottom: 30, left: 20 };
 const widthTl = parseInt(widthCard5.clientWidth);
-const heightTl = 22;
+const heightTl = 25;
 
 console.log(widthCard5);
 console.log(widthCard5.clientWidth);
@@ -108,6 +108,7 @@ function brushstart() {
     hasSelectArea = false;
     selectArea.detach();
   }
+  timelineLarge.connectDroppable();
   selectArea.create(d3.event.sourceEvent);
   selectArea.attach(true);
   hasSelectArea = true;
@@ -115,7 +116,7 @@ function brushstart() {
 
 function brushed() {
  // console.log(d3.event.selection)
-  selectArea.update();
+  //selectArea.update();
   let extent;
 
   if (hasZoomed) {
@@ -131,6 +132,7 @@ function brushed() {
 }
 
 function brushended() {
+  selectArea.update();
   //console.log("Brushed END");
 }
 

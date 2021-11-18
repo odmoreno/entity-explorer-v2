@@ -9,7 +9,7 @@ class TimelineObj {
   votosId = {};
 
   constructor(id, option, flag, height, maxHeight, orientation, type) {
-    this.height = height; // 285px normal, 50px el corto
+    this.height = height; // 285px normal, 50px el corto  
     this.maxHeight = maxHeight; //300px max
     this.orientation = orientation; // bot para el corto, top para el largo
     this.id = id;
@@ -44,9 +44,10 @@ class TimelineObj {
       tooltip: {
         followMouse: true,
       },
-      //onAdd: function(item, callback){
-      //  console.log('drop:', item)
-      //}
+      onAdd: function(item, callback){
+        //console.log(callback)
+        console.log(item)
+      },
     };
     //Instaciar timeline con su div
     this.timeline = new vis.Timeline(this.container);
@@ -57,12 +58,8 @@ class TimelineObj {
   }
 
   setVisContentDiv(){
-    //d3.select(".vis-content").style("transform", "translateY(-3px)")
-    //d3.selectAll(".vis-itemset").style("height", "215px !important")
-    //element.removeProperty('property')
     console.log(document.getElementsByClassName("vis-itemset")[0])
     document.getElementsByClassName("vis-itemset")[0].style.removeProperty('height')
-    //d3.selectAll(".vis-itemset").removeProperty('property')
   }
 
   createItems() {
@@ -157,7 +154,6 @@ class TimelineObj {
       this.setVisContentDiv();
     });
     
-
     //this.container.addEventListener("drop", this.dropevent);
   }
 
@@ -195,7 +191,7 @@ class TimelineObj {
 
     for (let key in votos) {
       const item = votos[key];
-      console.log("VOTOS:", item)
+      //console.log("VOTOS:", item)
       let fecha = item.fecha.split("-");
       let hora = item.hora ? item.hora.split(":") : "";
       if (!dictLinks[item.sesId]) dictLinks[item.sesId] = {};
@@ -203,20 +199,22 @@ class TimelineObj {
       const flag = this.validateId(item);
       if (flag) {
         const node = this.createNodeItem(item, fecha, hora);
-        this.items.add(node);
-        //this.timeline.itemsData.add(node)
+        //this.items.add(node);
+        this.timeline.itemsData.update(node)
         addSesion2(item.sesId);
-        console.log(this.timeline)
+        //console.log(this.timeline)
         //console.log(this.timeline.getDataSet())
         //logFiles(`Node item ${item.sesId} `, node);
       }
     }
     //logFiles('Items', this.items);
 
+    console.log(this.timeline)
+
     if (!flagEmptySes) getAllLinks();
 
     selectChart();
-    this.setRangeTl();
+    //this.setRangeTl();
     console.log("FIRST ID:", firstIds);
     currentSes = firstIds;
     currentId = reverseDIVotes[firstIds];
