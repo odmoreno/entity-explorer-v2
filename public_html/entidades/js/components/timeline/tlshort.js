@@ -30,6 +30,7 @@ let hasSelectArea = false; // hay un brush creado
 let hasZoomed = false; // has hecho zoom
 let selection; //Brush selection
 let hasbrush = false;
+let filterDates;
 
 function startShortTl() {
   getDomTl();
@@ -133,6 +134,9 @@ function brushed() {
 
 function brushended() {
   selectArea.update();
+  console.log(filterDates)
+  selectArea.dragZone.innerHTML =  `${filterDates.length} Votaciones`
+  //selectArea.element.innerHTML = "Votaciones"
   //console.log("Brushed END");
 }
 
@@ -210,7 +214,7 @@ function zoomed() {
 }
 
 function getSessionsInRange(dates) {
-  let filterDates = dataTls.filter(
+  filterDates = dataTls.filter(
     (sess) => sess.date >= dates[0] && sess.date <= dates[1]
   );
   //console.log(filterDates);

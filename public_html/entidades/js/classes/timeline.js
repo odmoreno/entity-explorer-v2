@@ -214,7 +214,7 @@ class TimelineObj {
     if (!flagEmptySes) getAllLinks();
 
     selectChart();
-    //this.setRangeTl();
+    this.setRangeTl();
     console.log("FIRST ID:", firstIds);
     currentSes = firstIds;
     currentId = reverseDIVotes[firstIds];

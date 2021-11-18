@@ -24,6 +24,8 @@ let linksf = d3.select("#linksf").selectAll("g"); //.selectAll("g")
 let namesf = d3.select("#namesf").selectAll("text");
 let votosf = d3.select("#votosf").selectAll("text");
 
+//let leginline = d3.select("#inlineLeg");
+
 let sesidsP = []; //keys de las sesiones
 let entidadesKeys = [];
 let firstid;

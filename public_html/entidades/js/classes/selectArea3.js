@@ -61,6 +61,12 @@ class Brush extends Component {
     const areaTemplate = document.getElementById('selected-area');
     const areaBody = document.importNode(areaTemplate.content, true);
     selectedArea.append(areaBody);
+    
+    let dragZone = document.createElement("div");
+    dragZone.className = "dragzone";
+
+    selectedArea.appendChild(dragZone);
+    //dragZone.innerHTML = "jpla"
 
     console.log("event", e)
 
@@ -73,6 +79,7 @@ class Brush extends Component {
     selectedArea.style.cursor = "grab";
 
     this.element = selectedArea
+    this.dragZone = dragZone
     this.connectDraggable()
   }
 
@@ -87,6 +94,8 @@ class Brush extends Component {
       .style('top', bbox.y + 'px')
       .style('width', bbox.width + 'px')
       .style('height', bbox.height/4 + 'px');
+    
+    
   }
 
   connectDraggable() {

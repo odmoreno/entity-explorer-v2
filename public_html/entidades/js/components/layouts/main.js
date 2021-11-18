@@ -235,17 +235,7 @@ var menu = [
 ];
 
 
-function showPsets(){
-  d3.select("#g1").transition().duration(durationRect).attr("opacity", "0") 
-  gsets.transition().duration(durationRect).attr("opacity", "1") 
-  //leginline.transition().duration(durationRect).style('opacity', 1)
-}
 
-function hidePsets(){
-  d3.select("#g1").transition().duration(durationRect).attr("opacity", "1") 
-  gsets.transition().duration(durationRect).attr("opacity", "0") 
-  //leginline.transition().duration(durationRect).style('opacity', 0)
-}
 
 function removeAllLinks(){
   d3.timeout( mainLinksR , 500)
@@ -268,7 +258,7 @@ function hideVotesGrp(){
 }
 
 function showVotesGrp(){
-  //d3.selectAll(".grp").transition().duration(durationRect).attr("opacity", "1") 
+  d3.selectAll(".grp").transition().duration(durationRect).attr("opacity", "1") 
 }
 
 function optionColor1() {
@@ -406,6 +396,18 @@ function handlechart(value) {
       updateLegends()
     }
   }
+}
+
+function showPsets(){
+  d3.select("#g1").transition().duration(durationRect).attr("opacity", "0") 
+  gsets.transition().duration(durationRect).attr("opacity", "1") 
+  //leginline.transition().duration(durationRect).style('opacity', 1)
+}
+
+function hidePsets(){
+  d3.select("#g1").transition().duration(durationRect).attr("opacity", "1") 
+  gsets.transition().duration(durationRect).attr("opacity", "0") 
+  //leginline.transition().duration(durationRect).style('opacity', 0)
 }
 
 function initChart() {
