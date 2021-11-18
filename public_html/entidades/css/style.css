@@ -682,6 +682,7 @@ body {
   white-space: nowrap; /* Don't forget this one */
   text-overflow: ellipsis;
   color: black;
+  font-size: 11px;
 }
 
 .textZone {

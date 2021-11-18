@@ -219,6 +219,9 @@ class TimelineObj {
     currentSes = firstIds;
     currentId = reverseDIVotes[firstIds];
     this.timeline.setSelection(firstIds, { focus: false });
+
+    d3.select("#btn-remove-all").style("display", "block")
+    d3.select("#btn-accordion-tl").style("display", "block")
   }
 
   validateId(item) {

@@ -501,7 +501,19 @@
                                         onClick="removeAllSessionsTimeline()"
                                        ><i class="far fa-trash-alt"></i></button>
                                     </div>
-
+                                    <div>
+                                        
+                                        <button id="btn-accordion-tl" type="button" class="btn btn-outline-light btn-sm" 
+                                        style="right: 5px;
+                                            bottom: 5px;
+                                            background-color: #e9e9e9;
+                                            position: absolute;
+                                            border: none;
+                                            display: block"
+                                            data-toggle="collapse" role="button"
+                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                                       ><i class="fas fa-angle-down"></i></button>
+                                    </div>
                                     
                                 </div>
 
@@ -566,14 +578,7 @@
                             <div class="five2" style="float: left; width: 70%; margin-top: 4px;">
                                 <!-- Card Header - Accordion -->
                                 <div class="card">
-                                    <div class="card-header2" id="headingOne">
-                                        <h5 class="mb-0">
-                                            <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button"
-                                            data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
-                                            style="border: none;">
-                                            </a>
-                                        </h5>                              
-                                    </div>
+                                    
                                     <!-- Card Content - Collapse -->
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div id="canvas"  class="d-flex flex-column" style="/*height: 100px; border: 1px solid rgba(98, 155, 255, 0.85); */ position: relative;">
@@ -588,7 +593,7 @@
                                 <div class="fecha-rango" id="fecha-rango" style="
                                                 position: relative;
                                                 left: 10px; 
-                                                top: 67px;
+                                                top: 36px;
                                                 width: 90%;
                                                 display: block;
                                             ">
